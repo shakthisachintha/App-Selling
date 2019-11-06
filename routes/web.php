@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->middleware('guest');
 
 Auth::routes();
 
@@ -21,4 +21,4 @@ Route::resources([
     'plans' => 'PlanController'
 ]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
