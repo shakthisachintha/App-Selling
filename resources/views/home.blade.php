@@ -9,48 +9,26 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="charts.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Charts</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="widgets.html" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Widgets</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tables.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Tables</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">Full Width</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Forms </span></a>
+                        <li class="sidebar-item"> <a class="active sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="charts.html" aria-expanded="false"><i class="fas fa-play"></i><span class="hide-menu">All Aps</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-code"></i><span class="hide-menu">My Apps</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Form Basic </span></a></li>
-                                <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Form Wizard </span></a></li>
+                                <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="fas fa-plus"></i><span class="hide-menu"> Create New App </span></a></li>
+                                <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="fas fa-shopping-basket"></i><span class="hide-menu"> My App Purchases </span></a></li>
                             </ul>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-buttons.html" aria-expanded="false"><i class="mdi mdi-relative-scale"></i><span class="hide-menu">Buttons</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">Icons </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="icon-material.html" class="sidebar-link"><i class="mdi mdi-emoticon"></i><span class="hide-menu"> Material Icons </span></a></li>
-                                <li class="sidebar-item"><a href="icon-fontawesome.html" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> Font Awesome Icons </span></a></li>
-                            </ul>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-elements.html" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">Elements</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Addons </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="index2.html" class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu"> Dashboard-2 </span></a></li>
-                                <li class="sidebar-item"><a href="pages-gallery.html" class="sidebar-link"><i class="mdi mdi-multiplication-box"></i><span class="hide-menu"> Gallery </span></a></li>
-                                <li class="sidebar-item"><a href="pages-calendar.html" class="sidebar-link"><i class="mdi mdi-calendar-check"></i><span class="hide-menu"> Calendar </span></a></li>
-                                <li class="sidebar-item"><a href="pages-invoice.html" class="sidebar-link"><i class="mdi mdi-bulletin-board"></i><span class="hide-menu"> Invoice </span></a></li>
-                                <li class="sidebar-item"><a href="pages-chat.html" class="sidebar-link"><i class="mdi mdi-message-outline"></i><span class="hide-menu"> Chat Option </span></a></li>
-                            </ul>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-key"></i><span class="hide-menu">Authentication </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="authentication-login.html" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Login </span></a></li>
-                                <li class="sidebar-item"><a href="authentication-register.html" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Register </span></a></li>
-                            </ul>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-alert"></i><span class="hide-menu">Errors </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="error-403.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 403 </span></a></li>
-                                <li class="sidebar-item"><a href="error-404.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 404 </span></a></li>
-                                <li class="sidebar-item"><a href="error-405.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 405 </span></a></li>
-                                <li class="sidebar-item"><a href="error-500.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 500 </span></a></li>
-                            </ul>
-                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tables.html" aria-expanded="false"><i class="fas fa-people-carry"></i><span class="hide-menu">Upcoming Apps</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="fas fa-question"></i><span class="hide-menu">Help</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="far fa-envelope"></i><span class="hide-menu">Contact Us</span></a></li>
+
+                        {{-- Admin Links --}}
+                        
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tables.html" aria-expanded="false"><i class="fas fa-boxes"></i><span class="hide-menu">All Plans</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="far fa-plus-square"></i><span class="hide-menu">Add Plan</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="fas fa-inbox"></i><span class="hide-menu">Requests</span></a></li>
+
+                        {{-- End Admin Links --}}
+                        
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -62,5 +40,132 @@
 @endsection
 
 @section('content')
+
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success" role="alert">
+    	<button type="button" class="close" data-dismiss="alert">×</button>	
+            {{ $message }}
+    </div>
+    @endif
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Add New App Plan</h3>
+                </div>
+                    <div class="card-body">
+                            <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{route('plans.store')}}">
+                                @csrf
+                                <div class="form-group row">
+                                    <label class="control-label col-form-label">Plan Name</label>
+                                    <input class="@error('name') is-invalid @enderror form-control" value="{{old('name')}}" type="text" placeholder="App Plan Name" name="name">
+                                    @error('name') <span class="invalid-feedback">{{$message}}</span> @enderror
+                                </div>
+            
+                                <div class="form-group row">
+                                    <label class="control-label col-form-label">App Icon Image</label>
+                                    <input type="file" class="@error('icon') is-invalid @enderror form-control" id="icon" placeholder="App Image Icon" name="icon">
+                                    @error('icon') <span class="invalid-feedback">{{$message}}</span> @enderror
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <label class="control-label col-form-label">Preview Link</label>
+                                    <input class="@error('prevlink') is-invalid @enderror form-control" value="{{old('prevlink')}}" type="text" placeholder="Preview Link" name="prevlink">
+                                    @error('prevlink') <span class="invalid-feedback">{{$message}}</span> @enderror
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <label class="control-label col-form-label">Video Link</label>
+                                    <input class="@error('videolink') is-invalid @enderror form-control" value="{{old('videolink')}}" type="text" placeholder="Video Link" name="videolink">
+                                    @error('videolink') <span class="invalid-feedback">{{$message}}</span> @enderror
+                                </div>
+            
+                                <div class="form-group row">
+                                    <label class="control-label col-form-label">Price</label>
+                                    <input class="@error('price') is-invalid @enderror form-control" value="{{old('price')}}" type="text" placeholder="Price" name="price">
+                                    @error('price') <span class="invalid-feedback">{{$message}}</span> @enderror
+                                </div>
+        
+                                <div class="form-group row">
+                                    <input type="submit" value="Save" class="ml-0 btn btn-lg btn-primary">
+                                </div>
+                                
+                                                       
+                            </form>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Edit App Plan</h3>
+                    </div>
+                        <div class="card-body">
+                                <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{route('plans.update',3)}}">
+                                    @csrf
+                                    {{ method_field('PUT') }}
+                                    <div class="form-group row">
+                                        <label class="control-label col-form-label">Plan Name</label>
+                                        <input class="@error('name') is-invalid @enderror form-control" value="{{old('name')}}" type="text" placeholder="App Plan Name" name="name">
+                                        @error('name') <span class="invalid-feedback">{{$message}}</span> @enderror
+                                    </div>
+                
+                                    <div class="form-group row">
+                                        <label class="control-label col-form-label">App Icon Image</label>
+                                        <input type="file" class="@error('icon') is-invalid @enderror form-control" id="icon" placeholder="App Image Icon" name="icon">
+                                        @error('icon') <span class="invalid-feedback">{{$message}}</span> @enderror
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label class="control-label col-form-label">Preview Link</label>
+                                        <input class="@error('prevlink') is-invalid @enderror form-control" value="{{old('prevlink')}}" type="text" placeholder="Preview Link" name="prevlink">
+                                        @error('prevlink') <span class="invalid-feedback">{{$message}}</span> @enderror
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label class="control-label col-form-label">Video Link</label>
+                                        <input class="@error('videolink') is-invalid @enderror form-control" value="{{old('videolink')}}" type="text" placeholder="Video Link" name="videolink">
+                                        @error('videolink') <span class="invalid-feedback">{{$message}}</span> @enderror
+                                    </div>
+                
+                                    <div class="form-group row">
+                                        <label class="control-label col-form-label">Price</label>
+                                        <input class="@error('price') is-invalid @enderror form-control" value="{{old('price')}}" type="text" placeholder="Price" name="price">
+                                        @error('price') <span class="invalid-feedback">{{$message}}</span> @enderror
+                                    </div>
+            
+                                    <div class="form-group row">
+                                        
+                                        <div class="col-sm-6 m-0 p-0">
+                                            <input type="submit" value="Save" class="ml-0 btn btn-lg btn-primary">
+                                        </div>
+                                    </form>
+                                        <div class="col-sm-6 text-right m-0 p-0">
+                                            <form action="{{route('plans.destroy',3)}}" method="POST">
+                                                @csrf
+                                                {{ method_field('DELETE') }}
+                                                <input type="submit" value="Delete" class="ml-0 btn btn-lg btn-danger">
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                    
+                                                           
+                                
+                        </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+    </div>
+
+
+    
 
 @endsection

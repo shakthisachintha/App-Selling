@@ -17,4 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::resources([
+    'plans' => 'PlanController'
+]);
+
 Route::get('/home', 'HomeController@index')->name('home');
