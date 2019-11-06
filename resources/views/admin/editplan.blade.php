@@ -61,7 +61,7 @@
                                     {{ method_field('PUT') }}
                                     <div class="form-group row">
                                         <label class="control-label col-form-label">Plan Name</label>
-                                        <input class="@error('name') is-invalid @enderror form-control" value="{{old('name')}}" type="text" placeholder="App Plan Name" name="name">
+                                        <input class="@error('name') is-invalid @enderror form-control" value="{{$app->name}}" type="text" placeholder="App Plan Name" name="name">
                                         @error('name') <span class="invalid-feedback">{{$message}}</span> @enderror
                                     </div>
                 
@@ -73,19 +73,19 @@
                                     
                                     <div class="form-group row">
                                         <label class="control-label col-form-label">Preview Link</label>
-                                        <input class="@error('prevlink') is-invalid @enderror form-control" value="{{old('prevlink')}}" type="text" placeholder="Preview Link" name="prevlink">
+                                        <input class="@error('prevlink') is-invalid @enderror form-control" value="{{$app->prevLink}}" type="text" placeholder="Preview Link" name="prevlink">
                                         @error('prevlink') <span class="invalid-feedback">{{$message}}</span> @enderror
                                     </div>
                                     
                                     <div class="form-group row">
                                         <label class="control-label col-form-label">Video Link</label>
-                                        <input class="@error('videolink') is-invalid @enderror form-control" value="{{old('videolink')}}" type="text" placeholder="Video Link" name="videolink">
+                                        <input class="@error('videolink') is-invalid @enderror form-control" value="{{$app->videoLink}}" type="text" placeholder="Video Link" name="videolink">
                                         @error('videolink') <span class="invalid-feedback">{{$message}}</span> @enderror
                                     </div>
                 
                                     <div class="form-group row">
                                         <label class="control-label col-form-label">Price</label>
-                                        <input class="@error('price') is-invalid @enderror form-control" value="{{old('price')}}" type="text" placeholder="Price" name="price">
+                                        <input class="@error('price') is-invalid @enderror form-control" value="{{$app->price}}" type="text" placeholder="Price" name="price">
                                         @error('price') <span class="invalid-feedback">{{$message}}</span> @enderror
                                     </div>
             
@@ -96,13 +96,12 @@
                                         </div>
                                     </form>
                                         <div class="col-sm-6 text-right m-0 p-0">
-                                            <form action="{{route('plans.destroy',3)}}" method="POST">
+                                            <form action="{{route('plans.destroy',$app->id)}}" method="POST">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
                                                 <input type="submit" value="Delete" class="ml-0 btn btn-lg btn-danger">
                                             </form>
                                         </div>
-
                                     </div>
                                     
                                                            

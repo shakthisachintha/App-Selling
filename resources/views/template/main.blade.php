@@ -13,11 +13,15 @@ $user = Auth::user();
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ URL::asset('assets/images/favicon.png')}}">
     <title>App Management Platform</title>
 
-    <link href="assets/libs/flot/css/float-chart.css" rel="stylesheet">
-    <link href="dist/css/style.min.css" rel="stylesheet">
+    <link href="{{ URL::asset('assets/libs/flot/css/float-chart.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('dist/css/style.min.css')}}" rel="stylesheet">
+
+    <link href="{{ URL::asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('assets/extra-libs/multicheck/multicheck.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('assets/libs/toastr/build/toastr.min.css')}}" rel="stylesheet">
   
 </head>
 
@@ -134,22 +138,28 @@ $user = Auth::user();
        
     </div>
    
-    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="assets/extra-libs/sparkline/sparkline.js"></script>
-    <script src="dist/js/waves.js"></script>
-    <script src="dist/js/sidebarmenu.js"></script>
-    <script src="dist/js/custom.min.js"></script>
-    <script src="assets/libs/flot/excanvas.js"></script>
-    <script src="assets/libs/flot/jquery.flot.js"></script>
-    <script src="assets/libs/flot/jquery.flot.pie.js"></script>
-    <script src="assets/libs/flot/jquery.flot.time.js"></script>
-    <script src="assets/libs/flot/jquery.flot.stack.js"></script>
-    <script src="assets/libs/flot/jquery.flot.crosshair.js"></script>
-    <script src="assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-    <script src="dist/js/pages/chart/chart-page-init.js"></script>
+    <script src="{{URL::asset('assets/libs/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{URL::asset('assets/libs/popper.js/dist/umd/popper.min.js')}}"></script>
+    <script src="{{URL::asset('assets/libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{URL::asset('assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js')}}"></script>
+    <script src="{{URL::asset('assets/extra-libs/sparkline/sparkline.js')}}"></script>
+    <script src="{{URL::asset('dist/js/waves.js')}}"></script>
+    <script src="{{URL::asset('dist/js/sidebarmenu.js')}}"></script>
+    <script src="{{URL::asset('dist/js/custom.min.js')}}"></script>
+    <script src="{{URL::asset('assets/libs/flot/excanvas.js')}}"></script>
+    <script src="{{URL::asset('assets/libs/flot/jquery.flot.js')}}"></script>
+    <script src="{{URL::asset('assets/libs/flot/jquery.flot.pie.js')}}"></script>
+    <script src="{{URL::asset('assets/libs/flot/jquery.flot.time.js')}}"></script>
+    <script src="{{URL::asset('assets/libs/flot/jquery.flot.stack.js')}}"></script>
+    <script src="{{URL::asset('assets/libs/flot/jquery.flot.crosshair.js')}}"></script>
+    <script src="{{URL::asset('assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js')}}"></script>
+    <script src="{{URL::asset('dist/js/pages/chart/chart-page-init.js')}}"></script>
+
+    <script src="{{URL::asset('assets/extra-libs/multicheck/datatable-checkbox-init.js')}}"></script>
+    <script src="{{URL::asset('assets/extra-libs/multicheck/jquery.multicheck.js')}}"></script>
+    <script src="{{URL::asset('assets/extra-libs/DataTables/datatables.min.js')}}"></script>
+
+    @yield('scripts')
 
 </body>
 

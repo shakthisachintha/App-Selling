@@ -15,7 +15,8 @@ class PlanController extends Controller
      */
     public function index()
     {
-        //
+        $apps=App_Plans::all();
+        return view('admin.allplans',["apps"=>$apps]);
     }
 
     /**
@@ -25,7 +26,7 @@ class PlanController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.addplan');
     }
 
     /**
@@ -66,7 +67,7 @@ class PlanController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -75,9 +76,10 @@ class PlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id,SaveApp $request)
+    public function edit($id)
     {
-        
+        $app=App_Plans::find($id);
+        return view('admin.editplan',["app"=>$app]);
     }
 
     /**
@@ -115,6 +117,8 @@ class PlanController extends Controller
      */
     public function destroy($id)
     {
-        echo "delete";
+        $app=App_Plans::find($id);
+        $app->forceDelete();
+        return redirect()->route('plans.index')->with('success',"Application Plan $app->name Is Permanatly Deleted");
     }
 }
