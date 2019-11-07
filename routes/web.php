@@ -22,3 +22,4 @@ Route::resources([
 ]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/newapp', 'AppRequestController@index')->name('appreq')->middleware('auth');
