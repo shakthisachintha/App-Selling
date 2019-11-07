@@ -46,10 +46,10 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1','https://ssdevelopments.xyz'),
+            'host' => env('DB_HOST', '127.0.0.1','db4free.net'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge','mybloglk_sandeep'),
-            'username' => env('DB_USERNAME', 'forge','mybloglk_user'),
+            'database' => env('DB_DATABASE', 'forge','sandeeppola'),
+            'username' => env('DB_USERNAME', 'forge','shakthi'),
             'password' => env('DB_PASSWORD', '','shakthi123!@#'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
