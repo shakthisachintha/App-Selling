@@ -48,7 +48,7 @@ class AppRequestController extends Controller
             "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
         );
         $apikey = env("SENDGRID_KEY", "somedefaultvalue");
-        $sendgrid = new \SendGrid(getenv("$apikey"));
+        $sendgrid = new \SendGrid(getenv($apikey));
         try {
             $response = $sendgrid->send($email);
             print $response->statusCode() . "\n";
