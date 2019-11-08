@@ -15,6 +15,26 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user');
+            $table->bigInteger('transactionId')->unique()->nullable();
+            $table->bigInteger('tempId')->unique();
+            $table->bigInteger('appPlan');
+            $table->string('appName');
+            $table->string('appLogo')->nullable();
+            $table->string('packageName')->nullable();
+            $table->string('appVersion')->nullable();
+            $table->string('privacy')->nullable();
+            $table->string('adminLink')->nullable();
+            $table->string('admobBanner')->nullable();
+            $table->string('admobInter')->nullable();
+            $table->string('admobNative')->nullable();
+            $table->string('facebookBanner')->nullable();
+            $table->string('facebookInter')->nullable();
+            $table->string('facebookNative')->nullable();
+            $table->string('facebookNativeBanner')->nullable();
+            $table->char('payment',10)->default('NO');
+            $table->foreign('user')->on('users')->references('id')->onDelete('cascade');
+            $table->foreign('appPlan')->on('app_plans')->references('id')->onDelete('cascade');
             $table->timestamps();
         });
     }

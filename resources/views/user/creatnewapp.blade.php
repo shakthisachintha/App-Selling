@@ -216,7 +216,7 @@
                                 <div class="tab-pane p-20" id="messages" role="tabpanel">
                                     <div class="p-4">
                                             <div class="card">
-                                                    <form class="form-horizontal">
+                                                   
                                                         <div class="card-body">
                                                             <h3 class="card-title">Get Your App</h3>
                                                             <div class="row">
@@ -237,8 +237,19 @@
                                                                                     <h4 class="m-b-0 text-left">{{$plan->name}}</h4>
                                                                                 </div>
                                                                                 <div class="row mt-1">
-                                                                                    <div class="col"><h4 class="pt-2 text-dark">₹{{$plan->price}}</h4></div>
-                                                                                    <a href="{{route('payment',$plan->id)}}" class="btn btn-outline-success">Pay & Generate App</a>
+                                                                                    <div class="col">
+                                                                                        <h4 class="pt-2 text-dark">₹{{$plan->price}}</h4>
+                                                                                    </div>
+                                                                                    <div class="col">
+                                                                                          
+                                                                                        <form method="POST" action="{{route('payment')}}">
+                                                                                             @csrf 
+                                                                                             <input type="hidden" value="{{$orderId}}" name="orderId">
+                                                                                             <input name="plan" value="{{$plan->id}}" type="hidden">
+                                                                                             <input type="submit" class="btn btn-outline-success" value="Pay & Generate App">
+                                                                                        </form>
+                                                                                    </div>
+                                                                                    
                                                                                 </div>
                                                                                 <div class="row mt-1">
                                                                                     <div class="col">
@@ -253,8 +264,6 @@
                                                                 
                                                             </div>
                                                         </div>
-                                                        
-                                                    </form>
                                                 </div>
                                     </div>
                                 </div>

@@ -47,7 +47,7 @@
         <div class="col-lg-3 col-md-6">
             <div class="card">
                 <div class="el-card-item">
-                    <div class="el-card-avatar el-overlay-1"> <img src="{{$plan->icon)}}" alt="user">
+                    <div class="el-card-avatar el-overlay-1"> <img src="{{$plan->icon}}" alt="user">
                         <div class="el-overlay">
                             <ul class="list-style-none el-info">
                             <li class="el-item"><a class="btn btn-sm  btn-primary-outline el-link" target="new" href="{{$plan->videoLink}}">Video</a></li>

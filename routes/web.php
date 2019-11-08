@@ -25,4 +25,6 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/newapp/', 'AppRequestController@index')->name('appreq')->middleware('auth');
 Route::get('/newapp/{id}', 'AppRequestController@create')->name('makeapp')->middleware('auth');
 Route::get('/apps', 'PlanController@display')->name('allaps')->middleware('auth');
-Route::get('/makepay/{id}', 'AppRequestController@makePayment')->name('payment')->middleware('auth');
+
+Route::post('/makepay', 'AppRequestController@makePayment')->name('payment')->middleware('auth');
+Route::post('/payment/{trans_id}/{user_id}', 'AppRequestController@PayComplete')->name('payComplete')->middleware('auth');
