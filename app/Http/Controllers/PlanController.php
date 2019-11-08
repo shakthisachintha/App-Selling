@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\App_Plans;
 use App\Http\Requests\SaveApp;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class PlanController extends Controller
 {
@@ -17,6 +18,11 @@ class PlanController extends Controller
     {
         $apps=App_Plans::all();
         return view('admin.allplans',["apps"=>$apps]);
+    }
+
+    public function display(){
+        $plans=App_Plans::all();
+        return view('user.allaps',['plans'=>$plans]);
     }
 
     /**
@@ -45,9 +51,16 @@ class PlanController extends Controller
 
         if(request()->file('icon')){
             $file = request()->file('icon');
-            $path=$file->store('appimage', ['disk' => 'public']);
-            $path="storage/".$path;
+            $image       = $request->file('icon');
+            $filename    = $image->getClientOriginalName();
+
+            $image_resize = Image::make($image->getRealPath());              
+            $image_resize->resize(890, 593);
+        
+            $image_resize->save(storage_path("app/public/appimage/" .$filename));
+            $path="storage/appimage/".$filename;
             $app->icon=$path;
+            
         }
        
         $app->name=$request->name;
