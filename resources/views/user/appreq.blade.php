@@ -45,26 +45,26 @@
     <div class="row el-element-overlay">
         @foreach ($plans as $plan)
         <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="el-card-item">
-                        <div class="el-card-avatar el-overlay-1"> <img src="{{$plan->icon}}" alt="user">
-                            <div class="el-overlay">
-                                <ul class="list-style-none el-info">
-                                <li class="el-item"><a class="btn btn-sm  btn-primary-outline el-link" target="new" href="{{$plan->videoLink}}">Video</a></li>
-                                    <li class="el-item"><a class="btn btn-sm  btn-primary-outline el-link" target="new" href="{{$plan->prevLink}}">Preview</a></li>
-                                </ul>
-                            </div>
+            <div class="card">
+                <div class="el-card-item">
+                    <div class="el-card-avatar el-overlay-1"> <img src="{{$plan->icon)}}" alt="user">
+                        <div class="el-overlay">
+                            <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn btn-sm  btn-primary-outline el-link" target="new" href="{{$plan->videoLink}}">Video</a></li>
+                                <li class="el-item"><a class="btn btn-sm  btn-primary-outline el-link" target="new" href="{{$plan->prevLink}}">Preview</a></li>
+                            </ul>
                         </div>
-                        <div class="el-card-content">
-                            <h4 class="m-b-0">{{$plan->name}}</h4> <span class="text-muted">
-                        <div class="row mt-1">
-                            <div class="col"><a href="{{route('makeapp',$plan->id)}}" class="btn btn-success">Create</a></div>
-                            <div class="col"><h4 class="pt-2 text-dark">₹{{$plan->price}}</h4></div>
-                        </div>
-                        </div>
+                    </div>
+                    <div class="el-card-content">
+                        <h4 class="m-b-0">{{$plan->name}}</h4> <span class="text-muted">
+                    <div class="row mt-1">
+                        <div class="col"><a href="{{route('makeapp',$plan->id)}}" class="btn btn-success">Create</a></div>
+                        <div class="col"><h4 class="pt-2 text-dark">₹{{$plan->price}}</h4></div>
+                    </div>
                     </div>
                 </div>
             </div>
+        </div>
         @endforeach
     </div>
 </div>

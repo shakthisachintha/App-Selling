@@ -34,4 +34,13 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
+    'paytm-wallet' => [
+        'env' => 'local', // values : (local | production)
+        'merchant_id' => 'OCUQLo91648644953516',
+        'merchant_key' => 'knoHWm8fBCWIQBMH',
+        'merchant_website' => 'WEBSTAGING',
+        'channel' => 'WEB',
+        'industry_type' => 'Retail',
+    ],
+
 ];

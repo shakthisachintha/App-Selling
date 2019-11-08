@@ -15,7 +15,10 @@ $user = Auth::user();
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ URL::asset('assets/images/favicon.png')}}">
     <title>App Management Platform</title>
-
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
     <link href="{{ URL::asset('assets/libs/flot/css/float-chart.css')}}" rel="stylesheet">
     <link href="{{ URL::asset('dist/css/style.min.css')}}" rel="stylesheet">
 
@@ -138,7 +141,11 @@ $user = Auth::user();
        
     </div>
    
-    <script src="{{URL::asset('assets/libs/jquery/dist/jquery.min.js')}}"></script>
+    {{-- <script src="{{URL::asset('assets/libs/jquery/dist/jquery.min.js')}}"></script> --}}
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
     <script src="{{URL::asset('assets/libs/popper.js/dist/umd/popper.min.js')}}"></script>
     <script src="{{URL::asset('assets/libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <script src="{{URL::asset('assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js')}}"></script>

@@ -61,47 +61,47 @@
                                             <div class="card">
                                                     <form class="form-horizontal">
                                                         <div class="card-body">
-                                                            <h4 class="card-title">Personal Info</h4>
+                                                            <h4 class="card-title">App Info</h4>
                                                             <div class="form-group row">
-                                                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">First Name</label>
+                                                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">App Name</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="fname" placeholder="First Name Here">
+                                                                    <input type="text" class="form-control" id="fname" placeholder="App Name">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Last Name</label>
+                                                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">App Logo</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="lname" placeholder="Last Name Here">
+                                                                    <input type="file" class="form-control" id="lname" placeholder="Last Name Here">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Password</label>
+                                                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Package Name</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="password" class="form-control" id="lname" placeholder="Password Here">
+                                                                    <input type="text" class="form-control" id="lname" placeholder="Package Name">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="email1" class="col-sm-3 text-right control-label col-form-label">Company</label>
+                                                                <label for="email1" class="col-sm-3 text-right control-label col-form-label">App Version</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="email1" placeholder="Company Name Here">
+                                                                    <input type="text" class="form-control" id="email1" placeholder="App Version">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Contact No</label>
+                                                                <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Privacy Policy</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="cono1" placeholder="Contact No Here">
+                                                                    <input type="text" class="form-control" id="cono1" placeholder="Privacy Policy">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Message</label>
+                                                                <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Admin Panel Link</label>
                                                                 <div class="col-sm-9">
-                                                                    <textarea class="form-control"></textarea>
+                                                                    <input type="text" class="form-control" placeholder="Admin Panel Link">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="border-top">
                                                             <div class="card-body">
-                                                                <button type="button" class="btn btn-primary">Submit</button>
+                                                                <button type="button" class="btn btn-primary">Save</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -113,47 +113,100 @@
                                             <div class="card">
                                                     <form class="form-horizontal">
                                                         <div class="card-body">
-                                                            <h4 class="card-title">Personal Info</h4>
-                                                            <div class="form-group row">
-                                                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">First Name</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="fname" placeholder="First Name Here">
-                                                                </div>
+                                                            <h4 class="card-title">Advertising Info</h4>
+                                                            <div class="form-group row mt-3">
+                                                                    <label class="col-sm-3 text-right control-label col-form-label">Advertising Platforms</label>
+                                                                    <div class="col-sm-9">
+                                                                        <div class="form-group-row">
+                                                                            <div class="col-sm-4">
+                                                                                    <div class="custom-control custom-checkbox mr-sm-2">
+                                                                                        <input type="checkbox" class="custom-control-input" id="switchAdmob">
+                                                                                        <label class="custom-control-label" for="switchAdmob">Admob</label>
+                                                                                    </div>
+                                                                            </div>
+                                                                            <div class="col-sm-4">
+                                                                                    <div class="custom-control custom-checkbox mr-sm-2">
+                                                                                        <input type="checkbox" class="custom-control-input" id="switchFacebook">
+                                                                                        <label class="custom-control-label" for="switchFacebook">Facebook</label>
+                                                                                    </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                             </div>
-                                                            <div class="form-group row">
-                                                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Last Name</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="lname" placeholder="Last Name Here">
-                                                                </div>
+                                                            <div style="display:none" id="admob">
+                                                                    <div class="form-group row">
+                                                                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Admob Banner</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" id="fname" placeholder="Admob Banner">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="lname" class="col-sm-3 text-right control-label col-form-label">Admob Interstitial</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" id="lname" placeholder="Admob Interstitial">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="lname" class="col-sm-3 text-right control-label col-form-label">Admob Native</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" id="lname" placeholder="Admob Native">
+                                                                            </div>
+                                                                        </div>
                                                             </div>
-                                                            <div class="form-group row">
-                                                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Password</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="password" class="form-control" id="lname" placeholder="Password Here">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label for="email1" class="col-sm-3 text-right control-label col-form-label">Company</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="email1" placeholder="Company Name Here">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Contact No</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="cono1" placeholder="Contact No Here">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Message</label>
-                                                                <div class="col-sm-9">
-                                                                    <textarea class="form-control"></textarea>
-                                                                </div>
+
+                                                            <script>
+                                                                $(document).ready(function () {
+                                                                    $('#switchAdmob').click(function(){
+                                    
+                                                                        if(this.checked == true) {
+                                                                             $("#admob").fadeIn();
+                                                                         } else {
+                                                                            $("#admob").fadeOut();
+                                                                        }
+                                                                    });
+                                                                    $('#switchFacebook').click(function(){
+                                                           
+                                                                        if(this.checked == true) {
+                                                                             $("#facebook").fadeIn();
+                                                                         } else {
+                                                                            $("#facebook").fadeOut();
+                                                                        }
+                                                                    });
+                                                                });
+                                                                
+                                                          
+                                                            </script>
+
+                                                            <div style="display:none" id="facebook">
+                                                                    <div class="form-group row">
+                                                                            <label for="email1" class="col-sm-3 text-right control-label col-form-label">Facebook Banner</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" id="email1" placeholder="Facebook Banner">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Facebook Interstitial</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" id="cono1" placeholder="Facebook Interstitial">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                                <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Facebook Native</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <input type="text" class="form-control" id="cono1" placeholder="Facebook Native">
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                                <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Facebook Native Banner</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <input type="text" class="form-control" id="cono1" placeholder="Facebook Native Banner">
+                                                                                </div>
+                                                                        </div>
                                                             </div>
                                                         </div>
                                                         <div class="border-top">
                                                             <div class="card-body">
-                                                                <button type="button" class="btn btn-primary">Submit</button>
+                                                                <button type="button" class="btn btn-primary">Save</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -165,49 +218,42 @@
                                             <div class="card">
                                                     <form class="form-horizontal">
                                                         <div class="card-body">
-                                                            <h4 class="card-title">Personal Info</h4>
-                                                            <div class="form-group row">
-                                                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">First Name</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="fname" placeholder="First Name Here">
+                                                            <h3 class="card-title">Get Your App</h3>
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <h5 class="lead">Selected App Plan</h5>
+                                                                    <div class="row ml-1 el-element-overlay">
+                                                                        <div class="card">
+                                                                            <div class="el-card-item">
+                                                                                <div class="el-card-avatar el-overlay-1"> <img src="/{{$plan->icon}}" alt="user">
+                                                                                    <div class="el-overlay">
+                                                                                        <ul class="list-style-none el-info">
+                                                                                        <li class="el-item"><a class="btn btn-sm  btn-primary-outline el-link" target="new" href="{{$plan->videoLink}}">Video</a></li>
+                                                                                            <li class="el-item"><a class="btn btn-sm  btn-primary-outline el-link" target="new" href="{{$plan->prevLink}}">Preview</a></li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="el-card-content">
+                                                                                    <h4 class="m-b-0 text-left">{{$plan->name}}</h4>
+                                                                                </div>
+                                                                                <div class="row mt-1">
+                                                                                    <div class="col"><h4 class="pt-2 text-dark">₹{{$plan->price}}</h4></div>
+                                                                                    <a href="{{route('payment',$plan->id)}}" class="btn btn-outline-success">Pay & Generate App</a>
+                                                                                </div>
+                                                                                <div class="row mt-1">
+                                                                                    <div class="col">
+                                                                                        <small class="text-muted">You Will Receive APK,Source Code & Keystore After The Purchase.</small>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                   
                                                                 </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Last Name</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="lname" placeholder="Last Name Here">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Password</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="password" class="form-control" id="lname" placeholder="Password Here">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label for="email1" class="col-sm-3 text-right control-label col-form-label">Company</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="email1" placeholder="Company Name Here">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Contact No</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="cono1" placeholder="Contact No Here">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Message</label>
-                                                                <div class="col-sm-9">
-                                                                    <textarea class="form-control"></textarea>
-                                                                </div>
+                                                                
                                                             </div>
                                                         </div>
-                                                        <div class="border-top">
-                                                            <div class="card-body">
-                                                                <button type="button" class="btn btn-primary">Submit</button>
-                                                            </div>
-                                                        </div>
+                                                        
                                                     </form>
                                                 </div>
                                     </div>
