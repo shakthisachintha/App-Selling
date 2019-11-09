@@ -86,7 +86,17 @@ class AppRequestController extends Controller
         }
     }
 
-    
+    public function viewOrder($id){
+        $order=Order::findOrFail($id);
+        $plan=App_Plans::find($order->appPlan);
+        return view('user.viewapp',["order"=>$order,"plan"=>$plan]);
+    }
+
+    public function delOrder($id){
+        Order::find($id)->delete();
+        return redirect()->back();
+    }
+
 
     public function saveAppInfo(Request $request){
         $order=Order::where('orderId',$request->orderId)->first();
