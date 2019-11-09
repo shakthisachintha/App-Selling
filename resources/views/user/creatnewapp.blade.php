@@ -11,21 +11,19 @@
                     <ul id="sidebarnav" class="p-t-30">
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('home')}}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('allaps')}}" aria-expanded="false"><i class="fas fa-play"></i><span class="hide-menu">All Aps</span></a></li>
-                        <li class="sidebar-item"> <a class="active sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-code"></i><span class="hide-menu">My Apps</span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                            <li class="sidebar-item"><a href="{{route('appreq')}}" class="active sidebar-link"><i class="fas fa-plus"></i><span class="hide-menu"> Create New App </span></a></li>
-                                <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="fas fa-shopping-basket"></i><span class="hide-menu"> My App Purchases </span></a></li>
-                            </ul>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tables.html" aria-expanded="false"><i class="fas fa-people-carry"></i><span class="hide-menu">Upcoming Apps</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="fas fa-question"></i><span class="hide-menu">Help</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="far fa-envelope"></i><span class="hide-menu">Contact Us</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('appreq')}}" aria-expanded="false"><i class="fas fa-plus"></i><span class="hide-menu">Create New App</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('apppurch')}}" aria-expanded="false"><i class="fas fa-shopping-basket"></i></i><span class="hide-menu">My App Purchases</span></a></li>
+                       
+                        
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="fas fa-people-carry"></i><span class="hide-menu">Upcoming Apps</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="fas fa-question"></i><span class="hide-menu">Help</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="far fa-envelope"></i><span class="hide-menu">Contact Us</span></a></li>
 
                         {{-- Admin Links --}}
                         
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('plans.index')}}" aria-expanded="false"><i class="fas fa-boxes"></i><span class="hide-menu">All Plans</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('plans.create')}}" aria-expanded="false"><i class="far fa-plus-square"></i><span class="hide-menu">Add Plan</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="fas fa-inbox"></i><span class="hide-menu">Requests</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('orders')}}" aria-expanded="false"><i class="fas fa-inbox"></i><span class="hide-menu">Requests</span></a></li>
 
                         {{-- End Admin Links --}}
                         
@@ -68,7 +66,7 @@
                                                             <div class="form-group row">
                                                                 <label for="fname" class="col-sm-3 text-right control-label col-form-label">App Name</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" name="appname" class="form-control" id="fname" placeholder="App Name">
+                                                                    <input type="text" name="appname" required class="form-control" id="fname" placeholder="App Name">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -80,25 +78,25 @@
                                                             <div class="form-group row">
                                                                 <label for="lname" class="col-sm-3 text-right control-label col-form-label">Package Name</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" name="packagename" class="form-control" id="lname" placeholder="Package Name">
+                                                                    <input type="text" name="packagename" required class="form-control" id="lname" placeholder="Package Name">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="email1" class="col-sm-3 text-right control-label col-form-label">App Version</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" name="appversion" class="form-control" id="email1" placeholder="App Version">
+                                                                    <input type="text" name="appversion" required class="form-control" id="email1" placeholder="App Version">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Privacy Policy</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" name="privacy" class="form-control" id="cono1" placeholder="Privacy Policy">
+                                                                    <input type="text" name="privacy" required class="form-control" id="cono1" placeholder="Privacy Policy">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Admin Panel Link</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" name="adminpanellink" class="form-control" placeholder="Admin Panel Link">
+                                                                    <input type="text" required name="adminpanellink" class="form-control" placeholder="Admin Panel Link">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -244,6 +242,8 @@
                                                         $("#appinfo-save-btn").addClass("btn-success");
                                                         // $("#appinfo-save-btn").attr("disabled","disabled");
                                                         $("#appinfo-save-btn").text("Saved!");
+                                                        $("#purchase-btn").removeAttr("disabled");
+                                                        $("#purchase-hint").fadeOut();
                                                     },
                                                     error: function(data){
                                                         console.log("error");
@@ -305,8 +305,9 @@
                                                                                              @csrf 
                                                                                              <input type="hidden" value="{{$orderId}}" name="orderId">
                                                                                              <input name="plan" value="{{$plan->id}}" type="hidden">
-                                                                                             <input type="submit" class="btn btn-outline-success" value="Pay & Generate App">
-                                                                                        </form>
+                                                                                             <input id="purchase-btn" type="submit" disabled class="btn btn-outline-success" value="Pay & Generate App"><BR>
+                                                                                             <span id="purchase-hint"><small><span class="text-danger">*</span>Fill & Save App Info Details To Proceed To The Payment Section.</small></span>
+                                                                                            </form>
                                                                                     </div>
                                                                                     
                                                                                 </div>

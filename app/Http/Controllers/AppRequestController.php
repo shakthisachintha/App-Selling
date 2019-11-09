@@ -7,14 +7,21 @@ use Illuminate\Http\Request;
 use App\App_Plans;
 use PaytmWallet;
 use App\Order;
-use App\Mail\SendGridMail;
-// use App\Http\Controllers\Mail;
+
 
 class AppRequestController extends Controller
 {
     public function index(){
         $plans=App_Plans::All();
         return view('user.appreq',["plans"=>$plans]);
+    }
+
+    public function allPurchases(){
+        
+    }
+
+    public function orders(){
+        
     }
 
     public function create($id){
@@ -32,7 +39,7 @@ class AppRequestController extends Controller
         $payment->prepare([
           'order' => $order_id,
           'user' => \Auth::getUser()->id,
-          'mobile_number' => ' ',
+          'mobile_number' => \Auth::getUser()->telephone,
           'email' => \Auth::getUser()->email,
           'amount' => $plan->price,
           'callback_url' =>route('payComplete',[$order_id,\Auth::getUser()->id])
@@ -41,10 +48,23 @@ class AppRequestController extends Controller
     }
 
     public function payComplete($trans_id,$user_id,Request $request){
-        // dd($request->all());  
-        $data = ['message' => 'This is a test!'];
-
-        \Mail::to('shakthisachintha@gmail.com')->send(new SendGridMail($data));
+        $email = new \SendGrid\Mail\Mail(); 
+        $email->setFrom("orders@apdue.com", "Notification");
+        $email->setSubject("New Order");
+        $email->addTo("shakthisachintha@gmail.com", "Shakthi Sachintha");
+        $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
+        $email->addContent(
+            "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
+        );
+        $sendgrid = new \SendGrid(getenv(env("SENDGRID_KEY")));
+        try {
+            $response = $sendgrid->send($email);
+            print $response->statusCode() . "\n";
+            print_r($response->headers());
+            print $response->body() . "\n";
+        } catch (Exception $e) {
+            echo 'Caught exception: '. $e->getMessage() ."\n";
+        }
     }
 
     public function saveAppInfo(Request $request){

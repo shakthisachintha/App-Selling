@@ -25,6 +25,8 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/newapp/', 'AppRequestController@index')->name('appreq')->middleware('auth');
 Route::get('/newapp/{id}', 'AppRequestController@create')->name('makeapp')->middleware('auth');
 Route::get('/apps', 'PlanController@display')->name('allaps')->middleware('auth');
+Route::get('/paidapps', 'AppRequestController@allPurchases')->name('apppurch')->middleware('auth');
+Route::get('/orders', 'AppRequestController@orders')->name('orders')->middleware('auth');
 
 Route::post('/makepay', 'AppRequestController@makePayment')->name('payment')->middleware('auth');
 Route::post('/saveappinfo', 'AppRequestController@saveAppInfo')->name('appinfo')->middleware('auth');
