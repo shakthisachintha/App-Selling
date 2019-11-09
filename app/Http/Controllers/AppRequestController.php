@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\App_Plans;
 use PaytmWallet;
 use App\Order;
 use App\Mail\SendGridMail;
+// use App\Http\Controllers\Mail;
 
 class AppRequestController extends Controller
 {
@@ -42,6 +44,6 @@ class AppRequestController extends Controller
         // dd($request->all());  
         $data = ['message' => 'This is a test!'];
 
-        Mail::to('shakthisachintha@gmail.com')->send(new TestEmail($data));
+        \Mail::to('shakthisachintha@gmail.com')->send(new SendGridMail($data));
     }
 }
