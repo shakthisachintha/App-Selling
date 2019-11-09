@@ -183,27 +183,27 @@
                                                                             <div class="form-group row">
                                                                                     <label for="fname" class="col-sm-3 control-label col-form-label">APK</label>
                                                                                     <div class="col-sm-5 text-left">
-                                                                                        <a href="" class="btn btn-sm btn-outline-cyan">Download</a>
+                                                                                        <a href="{{route('download',['apk',$order->id])}}" class="btn @if (!$order->apk) disabled @endif btn-sm btn-outline-cyan">Download</a>
                                                                                     </div>
                                                                                 </div>
             
                                                                                 <div class="form-group row">
                                                                                         <label for="fname" class="col-sm-3 control-label col-form-label">Source Code</label>
                                                                                         <div class="col-sm-5 text-left">
-                                                                                            <a href="" class="btn btn-sm btn-outline-cyan">Download</a>
+                                                                                            <a href="{{route('download',['source',$order->id])}}" class="btn @if (!$order->sourceCode) disabled @endif btn-sm btn-outline-cyan">Download</a>
                                                                                         </div>
                                                                                 </div>
             
                                                                                 <div class="form-group row">
                                                                                     <label for="fname" class="col-sm-3 control-label col-form-label">Keystore</label>
                                                                                     <div class="col-sm-5">
-                                                                                        <a href="" class="btn disabled btn-sm btn-outline-cyan">Download</a>
+                                                                                        <a href="{{route('download',['keystore',$order->id])}}" class="btn @if (!$order->keyStore) disabled @endif btn-sm btn-outline-cyan">Download</a>
                                                                                     </div>
                                                                                 </div>
 
                                                                                 <div class="form-group row">
                                                                                     <label for="fname" class="col-sm-3 control-label col-form-label">Admin Panel Link</label>
-                                                                                    <div class="col-sm-5">
+                                                                                    <div class="col-sm-9">
                                                                                         <input type="text" readonly class="form-control">
                                                                                     </div>
                                                                                 </div>

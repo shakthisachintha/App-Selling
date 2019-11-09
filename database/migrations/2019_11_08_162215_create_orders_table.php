@@ -24,16 +24,16 @@ class CreateOrdersTable extends Migration
             $table->string('appVersion')->nullable();
             $table->string('privacy')->nullable();
             
-            $table->string('admobBanner')->nullable();
-            $table->string('admobInter')->nullable();
-            $table->string('admobNative')->nullable();
-            $table->string('admobinteraftrclck')->nullable();
+            $table->text('admobBanner')->nullable();
+            $table->text('admobInter')->nullable();
+            $table->text('admobNative')->nullable();
+            $table->text('admobintraftclck')->nullable();
 
-            $table->string('facebookBanner')->nullable();
-            $table->string('facebookInter')->nullable();
-            $table->string('facebookNative')->nullable();
-            $table->string('facebookNativeBanner')->nullable();
-            $table->string('fbintraftclck')->nullable();
+            $table->text('facebookBanner')->nullable();
+            $table->text('facebookInter')->nullable();
+            $table->text('facebookNative')->nullable();
+            $table->text('facebookNativeBanner')->nullable();
+            $table->text('fbintraftclck')->nullable();
 
             $table->char('payment',5)->default('NO');
             $table->char('delivered',5)->default('NO');
@@ -41,14 +41,14 @@ class CreateOrdersTable extends Migration
             $table->foreign('user')->on('users')->references('id')->onDelete('cascade');
             $table->foreign('appPlan')->on('app_plans')->references('id')->onDelete('cascade');
 
-            $table->string('apk');
-            $table->string('sourceCode');
-            $table->string('keyStore');
-            $table->string('adminLink')->nullable();
-            $table->string('username')->nullable();
-            $table->string('password')->nullable();
-            $table->string('custommsg')->nullable();
-            $table->string('guidevideo')->nullable();
+            $table->text('apk')->nullable();
+            $table->text('sourceCode')->nullable();
+            $table->text('keyStore')->nullable();
+            $table->text('adminLink')->nullable();
+            $table->text('username')->nullable();
+            $table->text('password')->nullable();
+            $table->text('custommsg')->nullable();
+            $table->text('guidevideo')->nullable();
 
             $table->timestamps();
         });

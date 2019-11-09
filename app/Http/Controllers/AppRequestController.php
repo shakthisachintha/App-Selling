@@ -53,6 +53,25 @@ class AppRequestController extends Controller
         return $payment->receive();
     }
 
+    public function download($file,$id){
+        $order=Order::findOrFail($id);
+        if($order->apk && $file=="apk"){
+            return \Storage::download($order->apk);
+            return redirect()->back();
+        }
+        else if($order->keyStore && $file=="keystore"){
+            return \Storage::download($order->keyStore);
+            return redirect()->back();
+        }
+        else if($order->sourceCode && $file=="source"){
+             return \Storage::download($order->sourceCode);
+             return redirect()->back();
+        }else{
+            return redirect()->back(404);
+        }
+    }
+
+
     public function notify($to_email,$to_name){
         $email = new \SendGrid\Mail\Mail(); 
         $email->setFrom("orders@apdue.com", "Notification");
@@ -144,6 +163,8 @@ class AppRequestController extends Controller
             $order->facebookInter=$request->fbinter;
             $order->facebookNative=$request->fbnative;
             $order->facebookNativeBanner=$request->fbnativebanner;
+            $order->fbintraftclck=$request->fbintraftclck;
+            $order->admobintraftclck=$request->admobintraftclck;
             $order->save();
             echo ($order->id);
         }else{
@@ -159,6 +180,8 @@ class AppRequestController extends Controller
             $order->facebookInter=$request->fbinter;
             $order->facebookNative=$request->fbnative;
             $order->facebookNativeBanner=$request->fbnativebanner;
+            $order->fbintraftclck=$request->fbintraftclck;
+            $order->admobintraftclck=$request->admobintraftclck;
             $order->save();
             echo($order->id);
         }

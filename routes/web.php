@@ -39,3 +39,4 @@ Route::get('/contact', 'GeneralController@contact')->name('contact')->middleware
 
 Route::get('/vieworder/{id}', 'AppRequestController@viewOrder')->name('vieworder')->middleware('auth');
 Route::get('/del/{id}', 'AppRequestController@delOrder')->name('delorder')->middleware('auth');
+Route::get('/download/{file}/{id}', 'AppRequestController@download')->name('download')->middleware('auth');

@@ -63,13 +63,13 @@
                                                         <div class="card-body">
                                                             <h4 class="card-title">App Info</h4>
                                                             <div class="form-group row">
-                                                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">App Name</label>
+                                                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">App Name<span class="text-danger">*</span></label>
                                                                 <div class="col-sm-9">
                                                                     <input type="text" name="appname" required class="form-control" id="fname" placeholder="App Name">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">App Logo</label>
+                                                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">App Logo<span class="text-danger">*</span></label>
                                                                 <div class="col-sm-9">
                                                                     <input type="file" name="applogo" class="form-control" id="lname" placeholder="Last Name Here">
                                                                 </div>
@@ -77,19 +77,19 @@
                                                             <div class="form-group row">
                                                                 <label for="lname" class="col-sm-3 text-right control-label col-form-label">Package Name</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" name="packagename" required class="form-control" id="lname" placeholder="Package Name">
+                                                                    <input type="text" name="packagename" class="form-control" id="lname" placeholder="com.appanem.yourname">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="email1" class="col-sm-3 text-right control-label col-form-label">App Version</label>
+                                                                <label for="email1" class="col-sm-3 text-right control-label col-form-label">App Version<span class="text-danger">*</span></label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" name="appversion" required class="form-control" id="email1" placeholder="App Version">
+                                                                    <input type="number" name="appversion" value="1.0" required class="form-control" id="email1" placeholder="App Version">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Privacy Policy</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" name="privacy" required class="form-control" id="cono1" placeholder="Privacy Policy">
+                                                                    <input type="text" name="privacy" class="form-control" id="cono1" placeholder="Privacy Policy">
                                                                 </div>
                                                             </div>
                                                            
@@ -150,6 +150,12 @@
                                                                                 <input type="text" class="form-control" name="admobnative" id="lname" placeholder="Admob Native">
                                                                             </div>
                                                                         </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="lname" class="col-sm-3 text-right control-label col-form-label">Interstitial Ad After Click</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" name="admobinteraftrclck" id="lname" placeholder="Interstitial Ad After Click">
+                                                                            </div>
+                                                                        </div>
                                                             </div>
 
                                                             <div style="display:none" id="facebook">
@@ -176,6 +182,12 @@
                                                                                 <div class="col-sm-9">
                                                                                     <input type="text" class="form-control" name="fbnativebanner" id="cono1" placeholder="Facebook Native Banner">
                                                                                 </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="lname" class="col-sm-3 text-right control-label col-form-label">Interstitial Ad After Click</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" name="fbintraftclck" id="lname" placeholder="Interstitial Ad After Click">
+                                                                            </div>
                                                                         </div>
                                                             </div>
                                                         </div>
