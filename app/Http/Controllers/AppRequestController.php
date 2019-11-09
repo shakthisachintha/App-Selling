@@ -106,7 +106,6 @@ class AppRequestController extends Controller
             $order->packageName=$request->packagename;
             $order->appVersion=$request->appversion;
             $order->privacy=$request->privacy;
-            $order->adminLink=$request->adminpanellink;
             $order->appPlan=$request->plan;
             $order->save();
             echo ($order->id);
@@ -118,7 +117,6 @@ class AppRequestController extends Controller
             $order->user=\Auth::getUser()->id;
             $order->appVersion=$request->appversion;
             $order->privacy=$request->privacy;
-            $order->adminLink=$request->adminpanellink;
             $order->appPlan=$request->plan;
 
             if($request->file('applogo')){

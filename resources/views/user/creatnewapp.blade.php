@@ -92,12 +92,7 @@
                                                                     <input type="text" name="privacy" required class="form-control" id="cono1" placeholder="Privacy Policy">
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group row">
-                                                                <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Admin Panel Link</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" required name="adminpanellink" class="form-control" placeholder="Admin Panel Link">
-                                                                </div>
-                                                            </div>
+                                                           
                                                         </div>
                                                         <div class="border-top">
                                                             <div class="card-body">

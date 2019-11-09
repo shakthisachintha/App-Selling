@@ -178,10 +178,70 @@
                                                             <div class="card-body">
                                                                 <h3 class="card-title">Get Your App</h3>
                                                                 
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                            <div class="form-group row">
+                                                                                    <label for="fname" class="col-sm-3 control-label col-form-label">APK</label>
+                                                                                    <div class="col-sm-5 text-left">
+                                                                                        <a href="" class="btn btn-sm btn-outline-cyan">Download</a>
+                                                                                    </div>
+                                                                                </div>
+            
+                                                                                <div class="form-group row">
+                                                                                        <label for="fname" class="col-sm-3 control-label col-form-label">Source Code</label>
+                                                                                        <div class="col-sm-5 text-left">
+                                                                                            <a href="" class="btn btn-sm btn-outline-cyan">Download</a>
+                                                                                        </div>
+                                                                                </div>
+            
+                                                                                <div class="form-group row">
+                                                                                    <label for="fname" class="col-sm-3 control-label col-form-label">Keystore</label>
+                                                                                    <div class="col-sm-5">
+                                                                                        <a href="" class="btn disabled btn-sm btn-outline-cyan">Download</a>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="form-group row">
+                                                                                    <label for="fname" class="col-sm-3 control-label col-form-label">Admin Panel Link</label>
+                                                                                    <div class="col-sm-5">
+                                                                                        <input type="text" readonly class="form-control">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="form-group row">
+                                                                                    <label for="fname" class="col-sm-3 control-label col-form-label">Username</label>
+                                                                                    <div class="col-sm-9">
+                                                                                        <input type="text" readonly class="form-control">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="form-group row">
+                                                                                    <label for="fname" class="col-sm-3 control-label col-form-label">Password</label>
+                                                                                    <div class="col-sm-9">
+                                                                                        <input type="text" readonly class="form-control">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="form-group row">
+                                                                                    <label for="fname" class="col-sm-3 control-label col-form-label">Custom Message</label>
+                                                                                    <div class="col-sm-9">
+                                                                                        <input type="text" readonly class="form-control">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="form-group row">
+                                                                                    <label for="fname" class="col-sm-3 control-label col-form-label">Guide Video</label>
+                                                                                    <div class="col-sm-9">
+                                                                                        <input type="text" readonly class="form-control">
+                                                                                    </div>
+                                                                                </div>
+                                                                    </div>
                                                                     
                                                                 </div>
+                                                                    
+                                                                
                                                             </div>
-                                                    </div>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
