@@ -48,10 +48,62 @@ class AppRequestController extends Controller
     }
 
     public function saveAppInfo(Request $request){
+        $order=Order::where('orderId',$request->orderId)->first();
+        if($order){
+            echo "true";
+            $order->orderId=$request->orderId;
+            $order->appName=$request->appname;
+            $order->packageName=$request->packagename;
+            $order->appVersion=$request->appversion;
+            $order->privacy=$request->privacy;
+            $order->adminLink=$request->adminpanellink;
+            $order->appPlan=$request->plan;
+            $order->save();
+            echo ($order->id);
+        }else{
+            $order=new Order;
+            $order->orderId=$request->orderId;
+            $order->appName=$request->appname;
+            $order->packageName=$request->packagename;
+            $order->user=\Auth::getUser()->id;
+            $order->appVersion=$request->appversion;
+            $order->privacy=$request->privacy;
+            $order->adminLink=$request->adminpanellink;
+            $order->appPlan=$request->plan;
+            $order->save();
+            echo ($order->id);
+        }
         print_r($request->all());
     }
 
     public function saveAddInfo(Request $request){
         print_r($request->all());
+        $order=Order::where('orderId',$request->orderId)->first();
+        if($order){
+            $order->admobBanner=$request->admobbanner;
+            $order->admobInter=$request->admobinter;
+            $order->admobNative=$request->admobnative;
+            $order->facebookBanner=$request->fbbanner;
+            $order->facebookInter=$request->fbinter;
+            $order->facebookNative=$request->fbnative;
+            $order->facebookNativeBanner=$request->fbnativebanner;
+            $order->save();
+            echo ($order->id);
+        }else{
+            $order=new Order;
+            $order->orderId=$request->orderId;
+            $order->appPlan=$request->plan;
+            $order->user=\Auth::getUser()->id;
+            $order->appName="Test App";
+            $order->admobBanner=$request->admobbanner;
+            $order->admobInter=$request->admobinter;
+            $order->admobNative=$request->admobnative;
+            $order->facebookBanner=$request->fbbanner;
+            $order->facebookInter=$request->fbinter;
+            $order->facebookNative=$request->fbnative;
+            $order->facebookNativeBanner=$request->fbnativebanner;
+            $order->save();
+            echo($order->id);
+        }
     }
 }

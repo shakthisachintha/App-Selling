@@ -62,6 +62,7 @@
                                                     <form method="POST" action="{{route('appinfo')}}" id="appInfoForm" class="form-horizontal">
                                                         @csrf
                                                         <input type="hidden" value="{{$orderId}}" name="orderId">
+                                                        <input name="plan" value="{{$plan->id}}" type="hidden">
                                                         <div class="card-body">
                                                             <h4 class="card-title">App Info</h4>
                                                             <div class="form-group row">
@@ -103,7 +104,7 @@
                                                         </div>
                                                         <div class="border-top">
                                                             <div class="card-body">
-                                                                <button type="submit" class="btn btn-primary">Save</button>
+                                                                <button type="submit" id="appinfo-save-btn" class="btn btn-primary">Save</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -113,9 +114,10 @@
                                 <div class="tab-pane  p-20" id="profile" role="tabpanel">
                                     <div class="p-4">
                                             <div class="card">
-                                                    <form method="post" action="{{route('addinfo')}}" id="addInfoForm" class="form-horizontal">
+                                                    <form method="post" enctype="multipart/form-data" action="{{route('addinfo')}}" id="addInfoForm" class="form-horizontal">
                                                         @csrf
                                                         <input type="hidden" value="{{$orderId}}" name="orderId">
+                                                        <input name="plan" value="{{$plan->id}}" type="hidden">
                                                         <div class="card-body">
                                                             <h4 class="card-title">Advertising Info</h4>
                                                             <div class="form-group row mt-3">
@@ -187,7 +189,7 @@
                                                         </div>
                                                         <div class="border-top">
                                                             <div class="card-body">
-                                                                <button type="submit" class="btn btn-primary">Save</button>
+                                                                <button id="add-save-btn" type="submit" class="btn btn-primary">Save</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -206,12 +208,22 @@
                                                 $.ajax({
                                                     type: "POST",
                                                     url: url,
-                                                    processData:false,
+                                                    data:new FormData(this),
                                                     cache:false,
-                                                    data: form.serialize(), // serializes the form's elements.
+                                                    contentType: false,
+                                                    processData: false, // serializes the form's elements.
                                                     success: function (data) {
                                                         console.log(data);
+                                                        $("#add-save-btn").removeClass("btn-primary");
+                                                        $("#add-save-btn").addClass("btn-success");
+                                                        // $("#add-save-btn").attr("disabled","disabled");
+                                                        $("#add-save-btn").text("Saved!");
+                                                    },
+                                                    error: function(data){
+                                                        console.log("error");
+                                                        console.log(data);
                                                     }
+                               
                                                 });
                                             });
 
@@ -219,14 +231,22 @@
                                                 e.preventDefault();
                                                 var form = $(this);
                                                 var url = form.attr('action');
-
                                                 $.ajax({
                                                     type: "POST",
                                                     url: url,
-                                                    processData:false,
+                                                    data:new FormData(this),
                                                     cache:false,
-                                                    data: form.serialize(), // serializes the form's elements.
+                                                    contentType: false,
+                                                    processData: false, // serializes the form's elements.
                                                     success: function (data) {
+                                                        console.log(data);
+                                                        $("#appinfo-save-btn").removeClass("btn-primary");
+                                                        $("#appinfo-save-btn").addClass("btn-success");
+                                                        // $("#appinfo-save-btn").attr("disabled","disabled");
+                                                        $("#appinfo-save-btn").text("Saved!");
+                                                    },
+                                                    error: function(data){
+                                                        console.log("error");
                                                         console.log(data);
                                                     }
                                                 });
