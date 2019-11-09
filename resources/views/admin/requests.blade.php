@@ -7,7 +7,7 @@
         <div class="col-md-6 col-lg-3">
             <div class="card card-hover">
                 <div class="box bg-dark text-center">
-                    <h1 class="font-light text-white">100</h1>
+                    <h1 class="count font-light text-white">{{$total_orders}}</h1>
                     <h6 class="text-white">Total Orders</h6>
                 </div>
             </div>
@@ -16,7 +16,7 @@
         <div class="col-md-6 col-lg-3">
             <div class="card card-hover">
                 <div class="box bg-success text-center">
-                    <h1 class="font-light text-white">100</h1>
+                    <h1 class="count font-light text-white">{{$this_month}}</h1>
                     <h6 class="text-white">Orders This Month</h6>
                 </div>
             </div>
@@ -25,8 +25,8 @@
         <div class="col-md-6 col-lg-3">
             <div class="card card-hover">
                 <div class="box bg-warning text-center">
-                    <h1 class="font-light text-white">12</h1>
-                    <h6 class="text-white">Awiting Deliveries<small>(New Orders)</small></h6>
+                    <h1 class="count font-light text-white">{{$new_orders}}</h1>
+                    <h6 class="text-white">Awaiting Deliveries<small>(New Orders)</small></h6>
                 </div>
             </div>
         </div>
@@ -34,12 +34,12 @@
         <div class="col-md-6 col-lg-3">
             <div class="card card-hover">
                 <div class="box bg-info text-center">
-                    <h1 class="font-light text-white">₹ 5000</h1>
+                    <h1 class="font-light text-white">₹ <span class="count">{{$total}}</span></h1>
                     <h6 class="text-white">Totoal Earning</h6>
                 </div>
             </div>
         </div>
-    </div>
+</div>
 
 <div class="row">
         <div class="col-12">

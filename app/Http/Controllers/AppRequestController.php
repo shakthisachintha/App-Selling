@@ -17,7 +17,8 @@ class AppRequestController extends Controller
     }
 
     public function allPurchases(){
-        
+        $orders=Order::where('user_id',\Auth::getUser()->id)->where('payment',"YES")->get();
+        return view('user.allaps',["apps"=>$orders,"title"=>"All Purchased Applications"]);
     }
 
     public function response(Request $request){
@@ -41,6 +42,7 @@ class AppRequestController extends Controller
             $order->keystore=$path;
         }
 
+        $order->delivered="YES";
         $order->save();
         return redirect()->back()->with('success',"Order Delivered");
     }
@@ -55,7 +57,11 @@ class AppRequestController extends Controller
 
     public function orders(){
         $orders=Order::where('payment',"YES")->get();
-        return view('admin.requests',["orders"=>$orders]);
+        $orders_total=Order::where('payment',"YES")->count();
+        $new=Order::where('delivered',"NO")->where('payment','YES')->count();
+        $count=Order::where('payment','YES')->count('amount');
+        $this_month=\DB::table('orders')->select('id')->whereRaw("MONTH(created_at)=MONTH(CURDATE())")->count();
+        return view('admin.requests',["orders"=>$orders,"this_month"=>$this_month,"total_orders"=>$orders_total,"new_orders"=>$new,"total"=>$count]);
     }
 
     public function create($id){
@@ -65,7 +71,7 @@ class AppRequestController extends Controller
 
     public function display(){
         $orders=Order::where('user_id',\Auth::getUser()->id)->get();
-        return view('user.allaps',["apps"=>$orders]);
+        return view('user.allaps',["apps"=>$orders,"title"=>"All Applications"]);
     }
 
     public function makePayment(Request $request){

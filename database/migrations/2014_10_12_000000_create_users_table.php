@@ -27,9 +27,9 @@ class CreateUsersTable extends Migration
         DB::table('users')->insert(
             array(
                 'email' => 'admin@apdue.com',
-                'name' => "apdue",
+                'name' => "Apdue Admin",
                 'telephone'=>'7711223344',
-                'password'=>'$2y$12$3e40J3r41.V5zMS70zBG...MjjjeNwH6.naO4IE3P2wXefxoVWulK',//Sandeepola&9
+                'password'=>'$2y$10$OC3EHhtUzPRYNK3JOAqcq.33JInEbj7WQg6rH3KhQ7q5a6UkqZqs2',//Sandeepola&9
             )
         );
     }

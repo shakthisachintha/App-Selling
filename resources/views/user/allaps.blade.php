@@ -9,7 +9,7 @@
        <div class="col-md-10">
             <div class="card">
                     <div class="card-header">
-                            <h3 class="card-title">All Applications</h3>
+                            <h3 class="card-title">{{$title}}</h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -65,5 +65,18 @@
        <div class="col-md-1"></div>
    </div>
 </div>
+
+@endsection
+
+@section('scripts')
+<script>
+        $('#zero_config').DataTable({
+            "columnDefs": [
+                { "orderable": false, "targets": [0,2] }
+            ]
+        });
+</script>
+
+
 
 @endsection

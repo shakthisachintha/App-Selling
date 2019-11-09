@@ -50,8 +50,8 @@ class CreateOrdersTable extends Migration
             $table->text('custommsg')->nullable();
             $table->text('guidevideo')->nullable();
 
-            $table->text('responded')->default("NO");
-            $table->text('viewed')->default("YES");
+            $table->string('responded')->default("NO");
+            $table->string('viewed')->default("YES");
             
             $table->timestamps();
         });

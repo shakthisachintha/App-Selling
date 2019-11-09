@@ -36,6 +36,7 @@ Route::post('/payment/{trans_id}/{user_id}', 'AppRequestController@PayComplete')
 Route::get('/upcommingapps', 'GeneralController@upcomming')->name('upcomming')->middleware('auth');
 Route::get('/help', 'GeneralController@help')->name('help')->middleware('auth');
 Route::get('/contact', 'GeneralController@contact')->name('contact')->middleware('auth');
+Route::get('/users', 'GeneralController@users')->name('allusers')->middleware('auth');
 
 Route::get('/vieworder/{id}', 'AppRequestController@viewOrder')->name('vieworder')->middleware('auth');
 Route::get('/del/{id}', 'AppRequestController@delOrder')->name('delorder')->middleware('auth');
