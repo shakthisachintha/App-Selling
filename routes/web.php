@@ -27,4 +27,7 @@ Route::get('/newapp/{id}', 'AppRequestController@create')->name('makeapp')->midd
 Route::get('/apps', 'PlanController@display')->name('allaps')->middleware('auth');
 
 Route::post('/makepay', 'AppRequestController@makePayment')->name('payment')->middleware('auth');
+Route::post('/saveappinfo', 'AppRequestController@saveAppInfo')->name('appinfo')->middleware('auth');
+Route::post('/saveaddinfo', 'AppRequestController@saveAddInfo')->name('addinfo')->middleware('auth');
 Route::post('/payment/{trans_id}/{user_id}', 'AppRequestController@PayComplete')->name('payComplete')->middleware('auth');
+

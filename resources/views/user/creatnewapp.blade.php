@@ -59,49 +59,51 @@
                                 <div class="tab-pane active" id="home" role="tabpanel">
                                     <div class="p-4">
                                             <div class="card">
-                                                    <form class="form-horizontal">
+                                                    <form method="POST" action="{{route('appinfo')}}" id="appInfoForm" class="form-horizontal">
+                                                        @csrf
+                                                        <input type="hidden" value="{{$orderId}}" name="orderId">
                                                         <div class="card-body">
                                                             <h4 class="card-title">App Info</h4>
                                                             <div class="form-group row">
                                                                 <label for="fname" class="col-sm-3 text-right control-label col-form-label">App Name</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="fname" placeholder="App Name">
+                                                                    <input type="text" name="appname" class="form-control" id="fname" placeholder="App Name">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="lname" class="col-sm-3 text-right control-label col-form-label">App Logo</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="file" class="form-control" id="lname" placeholder="Last Name Here">
+                                                                    <input type="file" name="applogo" class="form-control" id="lname" placeholder="Last Name Here">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="lname" class="col-sm-3 text-right control-label col-form-label">Package Name</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="lname" placeholder="Package Name">
+                                                                    <input type="text" name="packagename" class="form-control" id="lname" placeholder="Package Name">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="email1" class="col-sm-3 text-right control-label col-form-label">App Version</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="email1" placeholder="App Version">
+                                                                    <input type="text" name="appversion" class="form-control" id="email1" placeholder="App Version">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Privacy Policy</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" id="cono1" placeholder="Privacy Policy">
+                                                                    <input type="text" name="privacy" class="form-control" id="cono1" placeholder="Privacy Policy">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Admin Panel Link</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control" placeholder="Admin Panel Link">
+                                                                    <input type="text" name="adminpanellink" class="form-control" placeholder="Admin Panel Link">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="border-top">
                                                             <div class="card-body">
-                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="submit" class="btn btn-primary">Save</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -111,7 +113,9 @@
                                 <div class="tab-pane  p-20" id="profile" role="tabpanel">
                                     <div class="p-4">
                                             <div class="card">
-                                                    <form class="form-horizontal">
+                                                    <form method="post" action="{{route('addinfo')}}" id="addInfoForm" class="form-horizontal">
+                                                        @csrf
+                                                        <input type="hidden" value="{{$orderId}}" name="orderId">
                                                         <div class="card-body">
                                                             <h4 class="card-title">Advertising Info</h4>
                                                             <div class="form-group row mt-3">
@@ -137,86 +141,121 @@
                                                                     <div class="form-group row">
                                                                             <label for="fname" class="col-sm-3 text-right control-label col-form-label">Admob Banner</label>
                                                                             <div class="col-sm-9">
-                                                                                <input type="text" class="form-control" id="fname" placeholder="Admob Banner">
+                                                                                <input type="text" class="form-control" id="fname" name="admobbanner" placeholder="Admob Banner">
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group row">
                                                                             <label for="lname" class="col-sm-3 text-right control-label col-form-label">Admob Interstitial</label>
                                                                             <div class="col-sm-9">
-                                                                                <input type="text" class="form-control" id="lname" placeholder="Admob Interstitial">
+                                                                                <input type="text" class="form-control" id="lname" name="admobinter" placeholder="Admob Interstitial">
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group row">
                                                                             <label for="lname" class="col-sm-3 text-right control-label col-form-label">Admob Native</label>
                                                                             <div class="col-sm-9">
-                                                                                <input type="text" class="form-control" id="lname" placeholder="Admob Native">
+                                                                                <input type="text" class="form-control" name="admobnative" id="lname" placeholder="Admob Native">
                                                                             </div>
                                                                         </div>
                                                             </div>
-
-                                                            <script>
-                                                                $(document).ready(function () {
-                                                                    $('#switchAdmob').click(function(){
-                                    
-                                                                        if(this.checked == true) {
-                                                                             $("#admob").fadeIn();
-                                                                         } else {
-                                                                            $("#admob").fadeOut();
-                                                                        }
-                                                                    });
-                                                                    $('#switchFacebook').click(function(){
-                                                           
-                                                                        if(this.checked == true) {
-                                                                             $("#facebook").fadeIn();
-                                                                         } else {
-                                                                            $("#facebook").fadeOut();
-                                                                        }
-                                                                    });
-                                                                });
-                                                                
-                                                          
-                                                            </script>
 
                                                             <div style="display:none" id="facebook">
                                                                     <div class="form-group row">
                                                                             <label for="email1" class="col-sm-3 text-right control-label col-form-label">Facebook Banner</label>
                                                                             <div class="col-sm-9">
-                                                                                <input type="text" class="form-control" id="email1" placeholder="Facebook Banner">
+                                                                                <input type="text" name="fbbanner" class="form-control" id="email1" placeholder="Facebook Banner">
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group row">
                                                                             <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Facebook Interstitial</label>
                                                                             <div class="col-sm-9">
-                                                                                <input type="text" class="form-control" id="cono1" placeholder="Facebook Interstitial">
+                                                                                <input type="text" name="fbinter" class="form-control" id="cono1" placeholder="Facebook Interstitial">
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group row">
                                                                                 <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Facebook Native</label>
                                                                                 <div class="col-sm-9">
-                                                                                    <input type="text" class="form-control" id="cono1" placeholder="Facebook Native">
+                                                                                    <input type="text" name="fbnative" class="form-control" id="cono1" placeholder="Facebook Native">
                                                                                 </div>
                                                                         </div>
                                                                         <div class="form-group row">
                                                                                 <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Facebook Native Banner</label>
                                                                                 <div class="col-sm-9">
-                                                                                    <input type="text" class="form-control" id="cono1" placeholder="Facebook Native Banner">
+                                                                                    <input type="text" class="form-control" name="fbnativebanner" id="cono1" placeholder="Facebook Native Banner">
                                                                                 </div>
                                                                         </div>
                                                             </div>
                                                         </div>
                                                         <div class="border-top">
                                                             <div class="card-body">
-                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                                <button type="submit" class="btn btn-primary">Save</button>
                                                             </div>
                                                         </div>
                                                     </form>
                                                 </div>
                                     </div>
                                 </div>
+
+                                <script>
+                                        $(document).ready(function () {
+
+                                            $("#addInfoForm").submit(function (e) { 
+                                                e.preventDefault();
+                                                var form = $(this);
+                                                var url = form.attr('action');
+
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: url,
+                                                    processData:false,
+                                                    cache:false,
+                                                    data: form.serialize(), // serializes the form's elements.
+                                                    success: function (data) {
+                                                        console.log(data);
+                                                    }
+                                                });
+                                            });
+
+                                            $("#appInfoForm").submit(function (e) { 
+                                                e.preventDefault();
+                                                var form = $(this);
+                                                var url = form.attr('action');
+
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: url,
+                                                    processData:false,
+                                                    cache:false,
+                                                    data: form.serialize(), // serializes the form's elements.
+                                                    success: function (data) {
+                                                        console.log(data);
+                                                    }
+                                                });
+                                            });
+
+                                            $('#switchAdmob').click(function(){
+            
+                                                if(this.checked == true) {
+                                                     $("#admob").fadeIn();
+                                                 } else {
+                                                    $("#admob").fadeOut();
+                                                }
+                                            });
+                                            $('#switchFacebook').click(function(){
+                                   
+                                                if(this.checked == true) {
+                                                     $("#facebook").fadeIn();
+                                                 } else {
+                                                    $("#facebook").fadeOut();
+                                                }
+                                            });
+                                        });
+                                        
+                                  
+                                    </script>
+
                                 <div class="tab-pane p-20" id="messages" role="tabpanel">
                                     <div class="p-4">
                                             <div class="card">
-                                                   
                                                         <div class="card-body">
                                                             <h3 class="card-title">Get Your App</h3>
                                                             <div class="row">

@@ -46,4 +46,12 @@ class AppRequestController extends Controller
 
         \Mail::to('shakthisachintha@gmail.com')->send(new SendGridMail($data));
     }
+
+    public function saveAppInfo(Request $request){
+        print_r($request->all());
+    }
+
+    public function saveAddInfo(Request $request){
+        print_r($request->all());
+    }
 }

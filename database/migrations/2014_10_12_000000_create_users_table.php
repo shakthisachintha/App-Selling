@@ -22,6 +22,14 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('users')->insert(
+            array(
+                'email' => 'admin@apdue.com',
+                'name' => "apdue",
+                'password'=>'$2y$12$3e40J3r41.V5zMS70zBG...MjjjeNwH6.naO4IE3P2wXefxoVWulK',//Sandeepola&9
+            )
+        );
     }
 
     /**
