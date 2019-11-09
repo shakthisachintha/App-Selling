@@ -15,9 +15,9 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user');
+            $table->bigInteger('user_id');
             $table->bigInteger('orderId')->unique()->nullable();
-            $table->bigInteger('appPlan');
+            $table->bigInteger('app_plan_id');
             $table->string('appName');
             $table->string('appLogo')->default('public/applogos/def_app.png');
             $table->string('packageName')->nullable();
@@ -38,8 +38,8 @@ class CreateOrdersTable extends Migration
             $table->char('payment',5)->default('NO');
             $table->char('delivered',5)->default('NO');
             $table->integer('amount')->default(0);
-            $table->foreign('user')->on('users')->references('id')->onDelete('cascade');
-            $table->foreign('appPlan')->on('app_plans')->references('id')->onDelete('cascade');
+            // $table->foreign('user_id')->on('users')->references('id')->onDelete('cascade');
+            // $table->foreign('app_plan_id')->on('app_plans')->references('id')->onDelete('cascade');
 
             $table->text('apk')->nullable();
             $table->text('sourceCode')->nullable();

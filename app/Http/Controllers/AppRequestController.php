@@ -20,9 +20,14 @@ class AppRequestController extends Controller
         
     }
 
+    public function viewReq($id){
+        $order=Order::findOrFail($id);
+        return view('admin.view_request',["order"=>$order]);
+    }
+
     public function orders(){
-        $orders=Order::where('payment',"YES");
-        return view('admin.requests');
+        $orders=Order::where('payment',"YES")->get();
+        return view('admin.requests',["orders"=>$orders]);
     }
 
     public function create($id){
@@ -99,7 +104,7 @@ class AppRequestController extends Controller
             // dd($order->appPlan());
            
             $order->payment="YES";
-            $order->amount=App_Plans::find($order->appPlan)->price;
+            $order->amount=App_Plans::find($order->app_plan_id)->price;
             $order->save();
             return redirect()->route('apppurch');
         }
@@ -133,10 +138,10 @@ class AppRequestController extends Controller
             $order->orderId=$request->orderId;
             $order->appName=$request->appname;
             $order->packageName=$request->packagename;
-            $order->user=\Auth::getUser()->id;
+            $order->user_id=\Auth::getUser()->id;
             $order->appVersion=$request->appversion;
             $order->privacy=$request->privacy;
-            $order->appPlan=$request->plan;
+            $order->app_plan_id=$request->plan;
 
             if($request->file('applogo')){
                 $path = $request->file('applogo')->store('public/applogos');
@@ -170,8 +175,8 @@ class AppRequestController extends Controller
         }else{
             $order=new Order;
             $order->orderId=$request->orderId;
-            $order->appPlan=$request->plan;
-            $order->user=\Auth::getUser()->id;
+            $order->app_plan_id=$request->plan;
+            $order->user_id=\Auth::getUser()->id;
             $order->appName="Test App";
             $order->admobBanner=$request->admobbanner;
             $order->admobInter=$request->admobinter;
