@@ -33,3 +33,6 @@ Route::post('/saveappinfo', 'AppRequestController@saveAppInfo')->name('appinfo')
 Route::post('/saveaddinfo', 'AppRequestController@saveAddInfo')->name('addinfo')->middleware('auth');
 Route::post('/payment/{trans_id}/{user_id}', 'AppRequestController@PayComplete')->name('payComplete')->middleware('auth');
 
+Route::get('/upcommingapps', 'GeneralController@upcomming')->name('upcomming')->middleware('auth');
+Route::get('/help', 'GeneralController@help')->name('help')->middleware('auth');
+Route::get('/contact', 'GeneralController@contact')->name('contact')->middleware('auth');
