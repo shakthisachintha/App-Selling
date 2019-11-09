@@ -60,6 +60,20 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                
+                                <!-- tel -->
+                                <div class="input-group mb-3" data-toggle="tooltip" data-placement="right" title="" data-original-title="Ex: 7711223344">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-mobile"></i></span>
+                                    </div>
+                                    <input type="tel" class="form-control form-control-lg" placeholder="Mobile Number" value="{{ old('telephone') }}" name="telephone" aria-label="Email" aria-describedby="basic-addon1" required>
+                                </div>
+                                @error('telephone')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>

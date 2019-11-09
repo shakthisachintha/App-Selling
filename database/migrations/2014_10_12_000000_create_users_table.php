@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('telephone')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -27,6 +28,7 @@ class CreateUsersTable extends Migration
             array(
                 'email' => 'admin@apdue.com',
                 'name' => "apdue",
+                'telephone'=>'7711223344',
                 'password'=>'$2y$12$3e40J3r41.V5zMS70zBG...MjjjeNwH6.naO4IE3P2wXefxoVWulK',//Sandeepola&9
             )
         );
