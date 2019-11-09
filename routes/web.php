@@ -42,3 +42,4 @@ Route::get('/del/{id}', 'AppRequestController@delOrder')->name('delorder')->midd
 Route::get('/download/{file}/{id}', 'AppRequestController@download')->name('download')->middleware('auth');
 
 Route::get('/viewreq/{id}', 'AppRequestController@viewReq')->name('viewreq')->middleware('auth');
+Route::post('/response', 'AppRequestController@response')->name('response')->middleware('auth');

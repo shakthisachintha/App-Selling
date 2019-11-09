@@ -20,6 +20,19 @@ class AppRequestController extends Controller
         
     }
 
+    public function response(Request $request){
+        $order=Order::find($request->order);
+        $order->username=$request->username;
+        $order->password=$request->password;
+        $order->custommsg=$request->custommessage;
+        $order->adminLink =$request->adminlink;
+        $order->apk="not";
+        $order->keystore="not";
+        $order->sourceCode="not";
+        $order->save();
+        return redirect()->back()->with('success',"Order Delivered");
+    }
+
     public function viewReq($id){
         $order=Order::findOrFail($id);
         return view('admin.view_request',["order"=>$order]);
@@ -36,7 +49,7 @@ class AppRequestController extends Controller
     }
 
     public function display(){
-        $orders=Order::where('user',\Auth::getUser()->id)->get();
+        $orders=Order::where('user_id',\Auth::getUser()->id)->get();
         return view('user.allaps',["apps"=>$orders]);
     }
 
@@ -112,7 +125,7 @@ class AppRequestController extends Controller
 
     public function viewOrder($id){
         $order=Order::findOrFail($id);
-        $plan=App_Plans::find($order->appPlan);
+        $plan=App_Plans::find($order->app_plan_id);
         return view('user.viewapp',["order"=>$order,"plan"=>$plan]);
     }
 
