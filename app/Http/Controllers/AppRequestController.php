@@ -21,12 +21,18 @@ class AppRequestController extends Controller
     }
 
     public function orders(){
-        
+        $orders=Order::where('payment',"YES");
+        return view('admin.requests');
     }
 
     public function create($id){
         $plan=App_Plans::findOrFail($id);
         return view('user.creatnewapp',["plan"=>$plan,"orderId"=>rand(11111,99999)]);
+    }
+
+    public function display(){
+        $orders=Order::where('user',\Auth::getUser()->id)->get();
+        return view('user.allaps',["apps"=>$orders]);
     }
 
     public function makePayment(Request $request){
@@ -47,11 +53,11 @@ class AppRequestController extends Controller
         return $payment->receive();
     }
 
-    public function payComplete($trans_id,$user_id,Request $request){
+    public function notify($to_email,$to_name){
         $email = new \SendGrid\Mail\Mail(); 
         $email->setFrom("orders@apdue.com", "Notification");
         $email->setSubject("New Order");
-        $email->addTo("shakthisachintha@gmail.com", "Shakthi Sachintha");
+        $email->addTo("$to_email", "$to_name");
         $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
         $email->addContent(
             "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
@@ -67,10 +73,24 @@ class AppRequestController extends Controller
         }
     }
 
+    public function payComplete($trans_id,$user_id,Request $request){
+        $this->notify("shakthisachintha@gmail.com","Shakthi Sachintha");
+        $order=Order::where('orderId',$trans_id)->first();
+        if($order){
+            // dd($order->appPlan());
+           
+            $order->payment="YES";
+            $order->amount=App_Plans::find($order->appPlan)->price;
+            $order->save();
+            return redirect()->route('apppurch');
+        }
+    }
+
+    
+
     public function saveAppInfo(Request $request){
         $order=Order::where('orderId',$request->orderId)->first();
         if($order){
-            echo "true";
             $order->orderId=$request->orderId;
             $order->appName=$request->appname;
             $order->packageName=$request->packagename;
@@ -90,10 +110,19 @@ class AppRequestController extends Controller
             $order->privacy=$request->privacy;
             $order->adminLink=$request->adminpanellink;
             $order->appPlan=$request->plan;
+
+            if($request->file('applogo')){
+                $path = $request->file('applogo')->store('public/applogos');
+                // return \Storage::download($path);
+                // $url = \Storage::url($path);
+                $order->appLogo=$path;
+    
+            }
+           
             $order->save();
             echo ($order->id);
+            
         }
-        print_r($request->all());
     }
 
     public function saveAddInfo(Request $request){

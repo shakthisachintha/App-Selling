@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->bigInteger('orderId')->unique()->nullable();
             $table->bigInteger('appPlan');
             $table->string('appName');
-            $table->string('appLogo')->nullable();
+            $table->string('appLogo')->default('public/applogos/def_app.png');
             $table->string('packageName')->nullable();
             $table->string('appVersion')->nullable();
             $table->string('privacy')->nullable();
@@ -31,7 +31,9 @@ class CreateOrdersTable extends Migration
             $table->string('facebookInter')->nullable();
             $table->string('facebookNative')->nullable();
             $table->string('facebookNativeBanner')->nullable();
-            $table->char('payment',10)->default('NO');
+            $table->char('payment',5)->default('NO');
+            $table->char('delivered',5)->default('NO');
+            $table->integer('amount')->default(0);
             $table->foreign('user')->on('users')->references('id')->onDelete('cascade');
             $table->foreign('appPlan')->on('app_plans')->references('id')->onDelete('cascade');
             $table->timestamps();
