@@ -26,15 +26,30 @@ class AppRequestController extends Controller
         $order->password=$request->password;
         $order->custommsg=$request->custommessage;
         $order->adminLink =$request->adminlink;
-        $order->apk="not";
-        $order->keystore="not";
-        $order->sourceCode="not";
+        $order->guidevideo  =$request->guidevideo ;
+        
+        if($request->file('apk')){
+            $path = $request->file('apk')->store('public/apk');
+            $order->apk=$path;
+        }
+        if($request->file('source')){
+            $path = $request->file('source')->store('public/source');
+            $order->sourceCode=$path;
+        }
+        if($request->file('keystore')){
+            $path = $request->file('keystore')->store('public/keystore');
+            $order->keystore=$path;
+        }
+
         $order->save();
         return redirect()->back()->with('success',"Order Delivered");
     }
 
     public function viewReq($id){
         $order=Order::findOrFail($id);
+        $order->responded="YES";
+        $order->viewed="NO";
+        $order->save();
         return view('admin.view_request',["order"=>$order]);
     }
 
@@ -125,6 +140,8 @@ class AppRequestController extends Controller
 
     public function viewOrder($id){
         $order=Order::findOrFail($id);
+        $order->viewed="YES";
+        $order->save();
         $plan=App_Plans::find($order->app_plan_id);
         return view('user.viewapp',["order"=>$order,"plan"=>$plan]);
     }
@@ -161,7 +178,6 @@ class AppRequestController extends Controller
                 // return \Storage::download($path);
                 // $url = \Storage::url($path);
                 $order->appLogo=$path;
-    
             }
            
             $order->save();
