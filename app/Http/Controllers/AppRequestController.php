@@ -16,6 +16,39 @@ class AppRequestController extends Controller
         return view('user.appreq',["plans"=>$plans]);
     }
 
+    public function saveAppInfoTwo(Request $request){
+        $order=Order::find($request->orderId);
+        if($order){
+            $order->appName=$request->appname;
+            $order->packageName=$request->packagename;
+            $order->appVersion=$request->appversion;
+            $order->privacy=$request->privacy;
+            if($request->file('applogo')){
+                $path = $request->file('applogo')->store('public/applogos');
+                $order->appLogo=$path;
+            }
+            $order->save();
+            return redirect()->back();
+        }
+    }
+    public function saveAddInfoTwo(Request $request){
+        $order=Order::find($request->orderId);
+        if($order){
+            $order->admobBanner=$request->admobbanner;
+            $order->admobInter=$request->admobinter;
+            $order->admobNative=$request->admobnative;
+            $order->facebookBanner=$request->fbbanner;
+            $order->facebookInter=$request->fbinter;
+            $order->facebookNative=$request->fbnative;
+            $order->facebookNativeBanner=$request->fbnativebanner;
+            $order->fbintraftclck=$request->fbintraftclck;
+            $order->admobintraftclck=$request->admobintraftclck;
+            $order->save();
+            return redirect()->back();
+        }
+    }
+
+
     public function allPurchases(){
         $orders=Order::where('user_id',\Auth::getUser()->id)->where('payment',"YES")->get();
         return view('user.allaps',["apps"=>$orders,"title"=>"All Purchased Applications"]);
@@ -30,15 +63,15 @@ class AppRequestController extends Controller
         $order->guidevideo  =$request->guidevideo ;
         
         if($request->file('apk')){
-            $path = $request->file('apk')->store('public/apk');
+            $path = $request->file('apk')->storeAs('public/apk',$request->file('apk')->getClientOriginalName());
             $order->apk=$path;
         }
         if($request->file('source')){
-            $path = $request->file('source')->store('public/source');
+            $path = $request->file('source')->storeAs('public/source',$request->file('source')->getClientOriginalName());
             $order->sourceCode=$path;
         }
         if($request->file('keystore')){
-            $path = $request->file('keystore')->store('public/keystore');
+            $path = $request->file('keystore')->storeAs('public/keystore',$request->file('keystore')->getClientOriginalName());
             $order->keystore=$path;
         }
 
@@ -59,7 +92,7 @@ class AppRequestController extends Controller
         $orders=Order::where('payment',"YES")->get();
         $orders_total=Order::where('payment',"YES")->count();
         $new=Order::where('delivered',"NO")->where('payment','YES')->count();
-        $count=Order::where('payment','YES')->count('amount');
+        $count=Order::where('payment','YES')->sum('amount');
         $this_month=\DB::table('orders')->select('id')->whereRaw("MONTH(created_at)=MONTH(CURDATE())")->count();
         return view('admin.requests',["orders"=>$orders,"this_month"=>$this_month,"total_orders"=>$orders_total,"new_orders"=>$new,"total"=>$count]);
     }
@@ -113,7 +146,7 @@ class AppRequestController extends Controller
 
     public function notify($to_email="sandeepolamail@gmail.com",$to_name,$from,$amount,$date){
         $email = new \SendGrid\Mail\Mail(); 
-        $email->setFrom("orders@apdue.com", "Notification");
+        $email->setFrom("orders@apdue.com", "New AppDue Order");
         $email->setSubject("Apdue New Order");
         $email->addTo("$to_email", "$to_name");
         $email->addContent("text/plain", "New Order Received From $from.");
@@ -144,6 +177,7 @@ class AppRequestController extends Controller
             $order->payment="YES";
             $order->amount=App_Plans::find($order->app_plan_id)->price;
             $order->save();
+            $this->notify("sandeepolamail@gmail.com","Sandeep",\Auth::getUser()->name,$order->amount,$order->updated_at);
             $this->notify("shakthisachintha@gmail.com","Sandeep",\Auth::getUser()->name,$order->amount,$order->updated_at);
             return redirect()->route('apppurch');
         }
@@ -198,7 +232,6 @@ class AppRequestController extends Controller
     }
 
     public function saveAddInfo(Request $request){
-        print_r($request->all());
         $order=Order::where('orderId',$request->orderId)->first();
         if($order){
             $order->admobBanner=$request->admobbanner;

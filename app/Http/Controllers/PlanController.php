@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\App_Plans;
+use App\Category;
 use App\Http\Requests\SaveApp;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -32,7 +33,7 @@ class PlanController extends Controller
      */
     public function create()
     {
-        return view('admin.addplan');
+        return view('admin.addplan',["cats"=>Category::all()]);
     }
 
     /**
@@ -67,6 +68,7 @@ class PlanController extends Controller
         $app->prevLink=$request->prevlink;
         $app->videoLink=$request->videolink;
         $app->price=$request->price;
+        $app->category_id=$request->cat;
         
         $app->save();
         return redirect()->back()->with('success', "App Plan ($request->name #$app->id) Saved!");
@@ -82,6 +84,23 @@ class PlanController extends Controller
     {
         
     }
+
+    public function addCat(){
+        return view('admin.addcat');
+    }
+
+    public function catSave(Request $request){
+        $cat=new Category();
+        $cat->name=$request->name;
+        if($request->file('icon')){
+            $path = $request->file('icon')->store('public/appcats');
+            $cat->icon=$path;
+        }
+        $cat->save();
+        return redirect()->back()->with("success","Category ($request->name) Saved.");
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.
