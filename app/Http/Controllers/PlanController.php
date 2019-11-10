@@ -61,7 +61,6 @@ class PlanController extends Controller
             $image_resize->save(storage_path("app/public/appimage/" .$filename));
             $path="appimage/".$filename;
             $app->icon=$path;
-            
         }
        
         $app->name=$request->name;
@@ -69,6 +68,7 @@ class PlanController extends Controller
         $app->videoLink=$request->videolink;
         $app->price=$request->price;
         $app->category_id=$request->cat;
+        $app->hprice=$request->hprice;
         
         $app->save();
         return redirect()->back()->with('success', "App Plan ($request->name #$app->id) Saved!");
@@ -111,7 +111,7 @@ class PlanController extends Controller
     public function edit($id)
     {
         $app=App_Plans::find($id);
-        return view('admin.editplan',["app"=>$app]);
+        return view('admin.editplan',["app"=>$app,"cats"=>Category::all()]);
     }
 
     /**
@@ -127,8 +127,14 @@ class PlanController extends Controller
         
         if(request()->file('icon')){
             $file = request()->file('icon');
-            $path=$file->store('appimage', ['disk' => 'public']);
-            $path="storage/".$path;
+            $image       = $request->file('icon');
+            $filename    = $image->getClientOriginalName();
+
+            $image_resize = Image::make($image->getRealPath());              
+            $image_resize->resize(890, 593);
+        
+            $image_resize->save(storage_path("app/public/appimage/" .$filename));
+            $path="appimage/".$filename;
             $app->icon=$path;
         }
        
@@ -136,6 +142,8 @@ class PlanController extends Controller
         $app->prevLink=$request->prevlink;
         $app->videoLink=$request->videolink;
         $app->price=$request->price;
+        $app->category_id=$request->cat;
+        $app->hprice=$request->hprice;
         
         $app->save();
         return redirect()->back()->with('success', "App Plan ($request->name #$app->id) Saved!");

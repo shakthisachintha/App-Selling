@@ -21,6 +21,7 @@ class CreateAppPlansTable extends Migration
             $table->string('category_id')->nullable();
             $table->string('videoLink')->nullable();
             $table->string('price')->nullable();
+            $table->string('hprice')->nullable();
             $table->foreign('category_id')->references('id')->on('category');
             $table->timestamps();
         });

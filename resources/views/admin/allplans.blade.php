@@ -26,16 +26,21 @@
                                 <table id="zero_config" class="text-center table dataTable" role="grid" aria-describedby="zero_config_info">
                         <thead>
                             <tr role="row">
-                                <th tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" style="width: 176.2px;">Icon</th>
-                                <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" style="width: 281px;">Name</th>
-                                <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" style="width: 129.8px;">Action</th>
-                                <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" style="width: 60.2px;">Price</th>
+                                <th tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" >Icon</th>
+                                <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" >Name</th>
+                                <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" >Category</th>                                
+                                <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" >Price</th>
+                                <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" >Half Price</th>
+                                <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" >Action</th>
                         </thead>
                         <tbody>
                             @foreach ($apps as $app)
                                 <tr>
-                                    <td class="mx-auto text-center"><img src="{{$app->icon}}" class="rounded-circle text-center" style="height:45px;width:45px" alt=""></td>
+                                    <td class="mx-auto text-center"><img src="{{\Storage::url($app->icon)}}" class="rounded-circle text-center" style="height:45px;width:45px" alt=""></td>
                                     <td>{{$app->name}}</td>
+                                    <td>{{$app->category->name}}</td>
+                                    <td>₹ {{$app->price}}</td>
+                                    <td>₹ {{$app->hprice}}</td>
                                     <td>
                                         <form action="{{route('plans.edit',$app->id)}}" method="GET">
                                             @csrf
@@ -43,7 +48,7 @@
                                             <input type="submit" value="Edit" class="d-inline-block btn btn-sm btn-warning">
                                         </form>
                                     </td>
-                                    <td>₹ {{$app->price}}</td>
+                                   
                                 </tr>
                             @endforeach
                         </tbody>
@@ -51,8 +56,11 @@
                             <tr>
                                 <th rowspan="1" colspan="1">Icon</th>
                                 <th rowspan="1" colspan="1">Name</th>
-                                <th rowspan="1" colspan="1">Action</th>
+                                <th rowspan="1" colspan="1">Category</th>
                                 <th rowspan="1" colspan="1">Price</th>
+                                <th rowspan="1" colspan="1">Half Price</th>
+                                <th rowspan="1" colspan="1">Action</th>
+                                
                             </tr>
                         </tfoot>
                     </table>
