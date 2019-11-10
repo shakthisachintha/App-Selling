@@ -18,8 +18,10 @@ class CreateAppPlansTable extends Migration
             $table->string('name');
             $table->string('icon')->default('appimage/def_app.png');
             $table->string('prevLink')->nullable();
+            $table->string('category_id')->nullable();
             $table->string('videoLink')->nullable();
             $table->string('price')->nullable();
+            $table->foreign('category_id')->references('id')->on('category');
             $table->timestamps();
         });
     }

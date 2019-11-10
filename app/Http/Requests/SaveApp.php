@@ -28,7 +28,8 @@ class SaveApp extends FormRequest
             'prevlink' => 'required|url',
             'videolink' => 'url',
             'price' => 'required|numeric',
-            'icon'=>'image'
+            'icon'=>'image',
+            'cat'=>'required'
         ];
     }
 
@@ -40,6 +41,7 @@ class SaveApp extends FormRequest
             'videolink' => 'Video Link',
             'prevlink' => 'Preview Link',
             'price' => 'App Price',
+            'cat' => 'App Category',
         ];
     }
 }

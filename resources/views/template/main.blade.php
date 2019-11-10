@@ -1,10 +1,11 @@
 <?php 
 use Illuminate\Support\Facades\Auth;
 use App\Order;
+$user = Auth::user();
 
 $new_reqs=Order::where('responded','NO')->count();
-$responded=Order::where('viewed','NO')->count();
-$user = Auth::user();
+$responded=Order::where('delivered','YES')->where('viewed','NO')->where('user_id',$user->id)->count();
+
 
 ?>
 <!DOCTYPE html>
@@ -163,6 +164,7 @@ $user = Auth::user();
                                 @if ($user->email=='admin@apdue.com')
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('plans.index')}}" aria-expanded="false"><i class="fas fa-boxes"></i><span class="hide-menu">All Plans</span></a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('plans.create')}}" aria-expanded="false"><i class="far fa-plus-square"></i><span class="hide-menu">Add Plan</span></a></li>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('addcat')}}" aria-expanded="false"><i class="fas fa-list-ol"></i><span class="hide-menu">Add Category</span></a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('orders')}}" aria-expanded="false"><i class="fas fa-inbox"></i><span class="hide-menu">Requests</span>@if($new_reqs>0)<span class="badge badge-pill badge-success">{{$new_reqs}}</span>@endif</a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('allusers')}}" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu">All Users</span></a></li>
                                 @endif

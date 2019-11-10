@@ -16,38 +16,58 @@
                                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab"><span class="hidden-sm-up"></span> <span class="hidden-xs-down">Ads</span></a> </li>
                                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages" role="tab"><span class="hidden-sm-up"></span> <span class="hidden-xs-down">Download App</span></a> </li>
                                 </ul>
-                                <!-- Tab panes -->
-                                <div class="tab-content tabcontent-border">
+                               <!-- Tab panes -->
+                               <div class="tab-content tabcontent-border">
                                     <div class="tab-pane active" id="home" role="tabpanel">
                                         <div class="p-4">
                                                 <div class="card">
-                                                        <form class="form-horizontal">
+                                                    <form method="post" enctype="multipart/form-data" action="{{route('appinfo2')}}" class="form-horizontal">
+                                                            @csrf
+                                                            <input type="hidden" value="{{$order->id}}" name="orderId">
+                                            
                                                             <div class="card-body">
                                                                 <h4 class="card-title">App Info</h4>
                                                                 <div class="form-group row">
                                                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">App Name</label>
                                                                     <div class="col-sm-9">
-                                                                        <input type="text" readonly name="appname" value="{{$order->appName}}" class="form-control" id="fname" placeholder="App Name">
+                                                                        <input type="text"  name="appname" value="{{$order->appName}}" class="form-control" id="fname" placeholder="App Name">
                                                                     </div>
                                                                 </div>
                                                                 
                                                                 <div class="form-group row">
                                                                     <label for="lname" class="col-sm-3 text-right control-label col-form-label">Package Name</label>
                                                                     <div class="col-sm-9">
-                                                                        <input type="text" value="{{$order->packageName}}" name="packagename" readonly class="form-control" id="lname" placeholder="Package Name">
+                                                                        <input type="text" value="{{$order->packageName}}" name="packagename"  class="form-control" id="lname" placeholder="Package Name">
                                                                     </div>
                                                                 </div>
+                                                                
+                                                                <div class="form-group row">
+                                                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">App Logo</label>
+                                                                    <div class="col-sm-9 text-left">
+                                                                        <a target="new" href="{{\Storage::url($order->appLogo)}}" class="btn btn-sm btn-dark">View</a> 
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Change Image</label>
+                                                                    <div class="col-sm-9 text-left">
+                                                                        <input type="file" name="applogo">
+                                                                    </div>
+                                                                </div>
+                                                    
                                                                 <div class="form-group row">
                                                                     <label for="email1" class="col-sm-3 text-right control-label col-form-label">App Version</label>
                                                                     <div class="col-sm-9">
-                                                                        <input type="text" value="{{$order->appVersion}}" readonly name="appversion" class="form-control" id="email1" placeholder="App Version">
+                                                                        <input type="text" value="{{$order->appVersion}}"  name="appversion" class="form-control" id="email1" placeholder="App Version">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                     <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Privacy Policy</label>
                                                                     <div class="col-sm-9">
-                                                                        <input type="text" name="privacy" value="{{$order->privacy}}" readonly class="form-control" id="cono1" placeholder="Privacy Policy">
+                                                                        <input type="text" name="privacy" value="{{$order->privacy}}"  class="form-control" id="cono1" placeholder="Privacy Policy">
                                                                     </div>
+
+                                                                    <input type="submit" value="Save" class="btn btn-primary">
                                                                 </div>
                                                 
                                                             </div>
@@ -59,74 +79,91 @@
                                     <div class="tab-pane  p-20" id="profile" role="tabpanel">
                                         <div class="p-4">
                                                 <div class="card">
-                                                        <form class="form-horizontal">
-                                                        
+                                                        <form action="{{route('addinfo2')}}"  method="POST" class="form-horizontal">
+                                                            @csrf
+                                                            <input type="hidden" value="{{$order->id}}" name="orderId">
                                                             <div class="card-body">
                                                                 <h4 class="card-title">Advertising Info</h4>
                                             
                                                                 
-                                                                        @if ($order->admobBanner)
+                                                                        
                                                                         <div class="form-group row">
                                                                             <label for="fname" class="col-sm-3 text-right control-label col-form-label">Admob Banner</label>
                                                                             <div class="col-sm-9">
-                                                                                <input type="text" readonly value="{{$order->admobBanner}}" class="form-control" id="fname" name="admobbanner" placeholder="Admob Banner">
+                                                                                <input type="text"  value="{{$order->admobBanner}}" name="admobbanner" class="form-control" id="fname" name="admobbanner" placeholder="Admob Banner">
                                                                             </div>
                                                                         </div>
-                                                                        @endif
+                                                                        
 
-                                                                        @if ($order->admobInter)
+                                                                        
                                                                             <div class="form-group row">
                                                                                 <label for="lname" class="col-sm-3 text-right control-label col-form-label">Admob Interstitial</label>
                                                                                 <div class="col-sm-9">
-                                                                                    <input type="text" readonly value="{{$order->admobInter}}" class="form-control" id="lname" name="admobinter" placeholder="Admob Interstitial">
+                                                                                    <input type="text"  value="{{$order->admobInter}}" name="admobinter" class="form-control" id="lname" name="admobinter" placeholder="Admob Interstitial">
                                                                                 </div>
                                                                             </div>
-                                                                        @endif
                                                                         
-                                                                        @if ($order->admobNative)
+                                                                        
+                                                                       
                                                                             <div class="form-group row">
                                                                                 <label for="lname" class="col-sm-3 text-right control-label col-form-label">Admob Native</label>
                                                                                 <div class="col-sm-9">
-                                                                                    <input type="text" readonly value="{{$order->admobInter}}" class="form-control" name="admobnative" id="lname" placeholder="Admob Native">
+                                                                                    <input type="text"  value="{{$order->admobNative}}" name="admobnative" class="form-control" name="admobnative" id="lname" placeholder="Admob Native">
                                                                                 </div>
                                                                             </div>
-                                                                        @endif
+                                                                       
+                                                                            <div class="form-group row">
+                                                                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Admob Interstitial Ad After Click</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <input type="text" value="{{$order->admobintraftclck}}" class="form-control" name="admobinteraftrclck" id="lname" placeholder="Interstitial Ad After Click">
+                                                                                </div>
+                                                                            </div>
                                                                         
-                                                                        @if($order->facebookBanner)
+                                                                       
                                                                             <div class="form-group row">
                                                                                 <label for="email1" class="col-sm-3 text-right control-label col-form-label">Facebook Banner</label>
                                                                                 <div class="col-sm-9">
-                                                                                    <input type="text" readonly value="{{$order->facebookBanner}}" class="form-control" id="email1" placeholder="Facebook Banner">
+                                                                                    <input type="text"  value="{{$order->facebookBanner}}" name="fbbanner" class="form-control" id="email1" placeholder="Facebook Banner">
                                                                                 </div>
                                                                             </div>
-                                                                        @endif
+                                                                        
 
-                                                                        @if($order->facebookInter)
+                                                                        
                                                                             <div class="form-group row">
                                                                                 <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Facebook Interstitial</label>
                                                                                 <div class="col-sm-9">
-                                                                                    <input type="text" readonly value="{{$order->facebookInter}}" class="form-control" id="cono1" placeholder="Facebook Interstitial">
+                                                                                    <input type="text"  value="{{$order->facebookInter}}" name="fbinter" class="form-control" id="cono1" placeholder="Facebook Interstitial">
                                                                                 </div>
                                                                             </div>
-                                                                        @endif
+                                                                        
 
-                                                                        @if($order->facebookNative)
+                                                                        
                                                                             <div class="form-group row">
                                                                                 <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Facebook Native</label>
                                                                                 <div class="col-sm-9">
-                                                                                    <input type="text" readonly value="{{$order->facebookNative}}" class="form-control" id="cono1" placeholder="Facebook Interstitial">
+                                                                                    <input type="text"  value="{{$order->facebookNative}}" name="fbnative" class="form-control" id="cono1" placeholder="Facebook Interstitial">
                                                                                 </div>
                                                                             </div>
-                                                                        @endif
 
-                                                                        @if($order->facebookNativeBanner)
+                                                                            <div class="form-group row">
+                                                                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Interstitial Ad After Click</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <input type="text" value="{{$order->fbintraftclck}}" class="form-control" name="fbintraftclck" id="lname" placeholder="Interstitial Ad After Click">
+                                                                                </div>
+                                                                            </div>
+                                                                      
+
+                                                                       
                                                                             <div class="form-group row">
                                                                                 <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Facebook Native Banner</label>
                                                                                 <div class="col-sm-9">
-                                                                                    <input type="text" readonly value="{{$order->facebookNativeBanner}}" class="form-control" id="cono1" placeholder="Facebook Interstitial">
+                                                                                    <input type="text"  value="{{$order->facebookNativeBanner}}" name="fbnativebanner" class="form-control" id="cono1" placeholder="Facebook Interstitial">
                                                                                 </div>
+                                                                                
+                                                                                <input type="submit" value="Save" class="btn btn-primary">
                                                                             </div>
-                                                                        @endif
+                                                                            
+
     
                                                                 </div>
                                                         </form>

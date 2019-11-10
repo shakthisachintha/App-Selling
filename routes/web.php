@@ -44,3 +44,8 @@ Route::get('/download/{file}/{id}', 'AppRequestController@download')->name('down
 
 Route::get('/viewreq/{id}', 'AppRequestController@viewReq')->name('viewreq')->middleware('auth');
 Route::post('/response', 'AppRequestController@response')->name('response')->middleware('auth');
+
+Route::post('/saveapp', 'AppRequestController@saveAppInfoTwo')->name('appinfo2')->middleware('auth');
+Route::post('/saveadd', 'AppRequestController@saveAddInfoTwo')->name('addinfo2')->middleware('auth');
+Route::get('/cat', 'PlanController@addCat')->name('addcat')->middleware('auth');
+Route::post('/catsave', 'PlanController@catSave')->name('catsave')->middleware('auth');

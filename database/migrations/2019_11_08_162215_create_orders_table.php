@@ -36,10 +36,10 @@ class CreateOrdersTable extends Migration
             $table->text('fbintraftclck')->nullable();
 
             $table->char('payment',5)->default('NO');
+            $table->char('paymentType',5)->nullable();
             $table->char('delivered',5)->default('NO');
             $table->integer('amount')->default(0);
-            // $table->foreign('user_id')->on('users')->references('id')->onDelete('cascade');
-            // $table->foreign('app_plan_id')->on('app_plans')->references('id')->onDelete('cascade');
+         
 
             $table->text('apk')->nullable();
             $table->text('sourceCode')->nullable();
