@@ -111,16 +111,22 @@ class AppRequestController extends Controller
     }
 
 
-    public function notify($to_email,$to_name){
+    public function notify($to_email="sandeepolamail@gmail.com",$to_name,$from,$amount,$date){
         $email = new \SendGrid\Mail\Mail(); 
         $email->setFrom("orders@apdue.com", "Notification");
-        $email->setSubject("New Order");
+        $email->setSubject("Apdue New Order");
         $email->addTo("$to_email", "$to_name");
-        $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
+        $email->addContent("text/plain", "New Order Received From $from.");
         $email->addContent(
-            "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
+            "text/html", 
+            "<center>
+                <h3>New Order</h3>
+                <p>New Order From $from</p>
+                <p>Total Amount ₹ $amount</p>
+                <p>Date ₹ $date</p>
+            </center>"
         );
-        $sendgrid = new \SendGrid(getenv(env("SENDGRID_KEY")));
+        $sendgrid = new \SendGrid(env("SENDGRID_KEY"));
         try {
             $response = $sendgrid->send($email);
             print $response->statusCode() . "\n";
@@ -132,14 +138,13 @@ class AppRequestController extends Controller
     }
 
     public function payComplete($trans_id,$user_id,Request $request){
-        $this->notify("shakthisachintha@gmail.com","Shakthi Sachintha");
         $order=Order::where('orderId',$trans_id)->first();
         if($order){
             // dd($order->appPlan());
-           
             $order->payment="YES";
             $order->amount=App_Plans::find($order->app_plan_id)->price;
             $order->save();
+            $this->notify("shakthisachintha@gmail.com","Sandeep",\Auth::getUser()->name,$order->amount,$order->updated_at);
             return redirect()->route('apppurch');
         }
     }

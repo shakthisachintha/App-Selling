@@ -16,7 +16,7 @@ class CreateAppPlansTable extends Migration
         Schema::create('app__plans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('icon')->default('assets/images/def_app.png');
+            $table->string('icon')->default('appimage/def_app.png');
             $table->string('prevLink')->nullable();
             $table->string('videoLink')->nullable();
             $table->string('price')->nullable();

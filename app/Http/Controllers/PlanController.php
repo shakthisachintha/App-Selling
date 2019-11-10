@@ -58,7 +58,7 @@ class PlanController extends Controller
             $image_resize->resize(890, 593);
         
             $image_resize->save(storage_path("app/public/appimage/" .$filename));
-            $path="storage/appimage/".$filename;
+            $path="appimage/".$filename;
             $app->icon=$path;
             
         }
