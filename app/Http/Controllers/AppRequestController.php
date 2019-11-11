@@ -50,9 +50,28 @@ class AppRequestController extends Controller
 
 
     public function allPurchases(){
-        $orders=Order::where('user_id',\Auth::getUser()->id)->where('payment',"YES")->get();
+        $orders=Order::where('user_id',\Auth::getUser()->id)->orderBy('updated_at','desc')->where('payment',"YES")->get();
         return view('user.allaps',["apps"=>$orders,"title"=>"All Purchased Applications"]);
     }
+
+    public function payOtherHalf(Request $request){
+        $order_id=$request->orderId+1;
+        $plan_id=$request->plan;
+        $plan=App_Plans::find($plan_id);
+        
+        $payment = PaytmWallet::with('receive');
+        $payment->prepare([
+          'order' => $order_id,
+          'user' => \Auth::getUser()->id,
+          'mobile_number' => \Auth::getUser()->telephone,
+          'email' => \Auth::getUser()->email,
+          'amount' => $plan->hprice,
+          'callback_url' =>route('payComplete',[$order_id-1,'ah',\Auth::getUser()->id])
+        ]);
+        return $payment->receive();
+    }
+
+    
 
     public function response(Request $request){
         $order=Order::find($request->order);
@@ -105,7 +124,7 @@ class AppRequestController extends Controller
     }
 
     public function display(){
-        $orders=Order::where('user_id',\Auth::getUser()->id)->get();
+        $orders=Order::where('user_id',\Auth::getUser()->id)->orderBy('updated_at','desc')->get();
         return view('user.allaps',["apps"=>$orders,"title"=>"All Applications"]);
     }
 
@@ -209,7 +228,7 @@ class AppRequestController extends Controller
             $transction->order_id=$order->id;
             $transction->save();
 
-            if($request->RESPCODE!=1){ //transaction failed
+            if($request->RESPCODE!=1 && $pay_type!="ah"){ //transaction failed
                 $order->payment="NO";
                 $order->save();
                 return redirect()->route('allaps')->with('payFail',$request->RESPMSG);
@@ -221,10 +240,13 @@ class AppRequestController extends Controller
                 }else if($pay_type=='f'){
                     $order->paymentType="FULL";
                     $order->amount=App_Plans::find($order->app_plan_id)->price;
+                }else if($pay_type=='ah'){
+                    $order->paymentType="FULL";
+                    $order->amount+=App_Plans::find($order->app_plan_id)->hprice;
                 }
+                $order->save();
                 $this->notify("sandeepolamail@gmail.com","Sandeep",\Auth::getUser()->name,$order->amount,$order->updated_at,$pay_type);
                 $this->notify("shakthisachintha@gmail.com","Sandeep",\Auth::getUser()->name,$order->amount,$order->updated_at,$pay_type);
-                $order->save();
                 return redirect()->route('apppurch')->with('payDone',"Payment Received. Your App Is Being Generated!");
             }
         }
@@ -236,7 +258,7 @@ class AppRequestController extends Controller
         $order->viewed="YES";
         $order->save();
         $plan=App_Plans::find($order->app_plan_id);
-        return view('user.viewapp',["order"=>$order,"plan"=>$plan]);
+        return view('user.viewapp',["order"=>$order,"plan"=>$plan,"orderId"=>$order->orderId]);
     }
 
     public function delOrder($id){

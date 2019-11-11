@@ -51,10 +51,15 @@
                                             </td>
                                             <td>
                                                 @if ($app->payment=="YES")
-                                                    <span class="badge badge-success">Purchased</span>
+                                                    @if($app->paymentType=="HALF")
+                                                    <span class="badge badge-info">Half Payment</span>
+                                                    @else
+                                                    <span class="badge badge-success">Full Payment</span>
+                                                    @endif
                                                 @else
-                                                <span class="badge badge-danger">Not Purchased</span>
+                                                    <span class="badge badge-danger">Not Purchased</span>
                                                 @endif
+                                                
                                             </td>
                                         </tr>
                                     @endforeach

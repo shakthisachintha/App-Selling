@@ -172,79 +172,320 @@
                                     </div>
     
              
-       
-    
                                     <div class="tab-pane p-20" id="messages" role="tabpanel">
-                                        <div class="p-4">
+                                            <div class="pl-2 pr-2 pb-4 pt-2">
                                                 <div class="card">
-                                                            <div class="card-body">
-                                                                <h3 class="card-title">Get Your App</h3>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                                <div class="form-group row">
-                                                                                    <label for="fname" class="col-sm-3 control-label col-form-label">APK</label>
-                                                                                    <div class="col-sm-5 text-left">
-                                                                                        <a href="{{route('download',['apk',$order->id])}}" class="btn @if (!$order->apk) disabled @endif btn-sm btn-outline-cyan">Download</a>
-                                                                                    </div>
-                                                                                </div>
-            
-                                                                                <div class="form-group row">
-                                                                                        <label for="fname" class="col-sm-3 control-label col-form-label">Source Code</label>
-                                                                                        <div class="col-sm-5 text-left">
-                                                                                            <a href="{{route('download',['source',$order->id])}}" class="btn @if (!$order->sourceCode) disabled @endif btn-sm btn-outline-cyan">Download</a>
-                                                                                        </div>
-                                                                                </div>
-            
-                                                                                <div class="form-group row">
-                                                                                    <label for="fname" class="col-sm-3 control-label col-form-label">Keystore</label>
-                                                                                    <div class="col-sm-5">
-                                                                                        <a href="{{route('download',['keystore',$order->id])}}" class="btn @if (!$order->keyStore) disabled @endif btn-sm btn-outline-cyan">Download</a>
-                                                                                    </div>
-                                                                                </div>
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <h3 class="card-title">Get Your App</h3>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+                                                                    @if ($order->payment=="NO" || $order->paymentType=="HALF")
+                                                                    <table class="w-100">
+                                                                        <tr>
+                                                                            <td valign="center" rowspan="2" style="font-size:1rem">
+                                                                             Pay & Generate App
+                                                                            </td>
+                                                                            <td class="text-right">
+                                                                               @if($order->paymentType=="HALF") <form method="POST" action="{{route('ahpayment')}}"> @else <form method="POST" action="{{route('hpayment')}}"> @endif
+                                                                                     @csrf 
+                                                                                     <input type="hidden" value="{{$orderId}}" name="orderId">
+                                                                                     <input name="plan" value="{{$plan->id}}" type="hidden">
+                                                                                     <input id="purchase-half-btn" type="submit" data-toggle="tooltip" data-placement="top" title="" data-original-title="The App Is Ready Pay The Rest & Download" class="btn btn-success" value="Make Half Payment">
+                                                                                </form>
+                                                                               
+                                                                            </td>
+                                                                            <td class="text-right">
+                                                                                    @if($order->paymentType!="HALF")
+                                                                                    <form method="POST" action="{{route('payment')}}">
+                                                                                        @csrf 
+                                                                                        <input type="hidden" value="{{$orderId}}" name="orderId">
+                                                                                        <input name="plan" value="{{$plan->id}}" type="hidden">
+                                                                                        <input id="purchase-full-btn" type="submit" data-toggle="tooltip" data-placement="top" title="" data-original-title="Once The App Ready Is Just Donwload " class="btn btn-primary" value="Make Full Payment">
+                                                                                   </form> 
+                                                                                    @endif
+                                                                            </td>
+                                                                        </tr>
+                                                                        
+                                                                        <tr>
+                                                                            <td class="h4 text-right pt-1">
+                                                                                ₹ {{$plan->price}}
+                                                                            </td>
+                                                                            <td class="h4 text-right pt-1">
+                                                                                @if ($order->paymentType!="HALF")
+                                                                                    ₹ {{$plan->hprice}}
+                                                                                @endif
+                                                                            </td>
+                                                                        </tr>
+        
+                                                                        <tr>
+                                                                            @if($order->paymentType=="HALF")
+                                                                            <td colspan="3" class="text-center">
+                                                                                Pay The Due Amount & Get Your App
+                                                                            </td>
+                                                                            @else
+                                                                            <td colspan="3" class="pt-2 text-center">
+                                                                                You Haven't Paid For The Application. Make The Payment & Download The App.
+                                                                            </td>
+                                                                            @endif
+                                                                        </tr>
+                                                                    </table>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
 
+                                                            @if($order->paymentType=="FULL")
+                                                                
+                                                                <div class="col-12">
+                                                                    <div class="row mt-3 border-top">
+                                                                        <div class="row">
+                                                                            <div class="col-4">
                                                                                 <div class="form-group row">
-                                                                                    <label for="fname" class="col-sm-3 control-label col-form-label">Admin Panel Link</label>
-                                                                                    <div class="col-sm-9">
-                                                                                        <input type="text" readonly value="{{$order->adminLink}}" class="form-control">
+                                                                                    <label for="fname" class="col-sm-12 text-center control-label col-form-label">APK</label>
+                                                                                    <div class="col-sm-12 text-left">
+                                                                                        <a href="{{route('download',['apk',$order->id])}}" class="btn @if (!$order->apk) btn-outline-cyan disabled @endif btn-cyan w-100 btn-sm ">Download &nbsp;<i class=" fas fa-download"></i></a>
                                                                                     </div>
                                                                                 </div>
+                                                                            </div>
+                                                                            <div class="col-4">
+                                                                                <div class="form-group row">
+                                                                                    <label for="fname" class="col-sm-12 text-center control-label col-form-label">Source</label>
+                                                                                    <div class="col-sm-12 text-left">
+                                                                                        <a href="{{route('download',['source',$order->id])}}" class="btn @if (!$order->sourceCode) disabled btn-outline-cyan @endif w-100 btn-sm btn-cyan">Download &nbsp;<i class=" fas fa-download"></i></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-4">
+                                                                                <div class="form-group row">
+                                                                                    <label for="fname" class="col-sm-12 text-center control-label col-form-label">Keystore</label>
+                                                                                    <div class="col-sm-12 text-left">
+                                                                                        <a href="{{route('download',['keystore',$order->id])}}" class="btn @if (!$order->keyStore) btn-outline-cyan disabled @endif w-100 btn-sm btn-cyan">Download &nbsp;<i class=" fas fa-download"></i></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
-                                                                                <div class="form-group row">
-                                                                                    <label for="fname" class="col-sm-3 control-label col-form-label">Username</label>
-                                                                                    <div class="col-sm-9">
-                                                                                        <input type="text" readonly value="{{$order->username}}" class="form-control">
+                                                                <div class="row mt-3 border-top pt-3">
+                                                                    <div class="col-xs-6 col-sm-6 col-md-6 mx-auto">
+                                                                        <div class="form-group row">
+                                                                            <label for="fname" class="col-sm-5 control-label col-form-label">Admin Panel Link</label>
+                                                                            <div class="col-sm-7">
+                                                                                <input type="text" value="{{$order->adminLink}}" readonly class="form-control form-control-sm">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="fname" class="col-sm-5 control-label col-form-label">Username</label>
+                                                                            <div class="col-sm-7">
+                                                                                <input type="text" value="{{$order->username}}" readonly class="form-control form-control-sm">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="fname" class="col-sm-5 control-label col-form-label">Password</label>
+                                                                            <div class="col-sm-7">
+                                                                                <input type="text" value="{{$order->password}}" readonly class="form-control form-control-sm">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="fname" class="col-sm-5 control-label col-form-label">Custom Message</label>
+                                                                            <div class="col-sm-7">
+                                                                                <input type="text" value="{{$order->custommsg}}" readonly class="form-control form-control-sm">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="fname" class="col-sm-5 control-label col-form-label">Guide Video</label>
+                                                                            <div class="col-sm-7">
+                                                                                <input type="text" value="{{$order->guidevideo}}" readonly class="form-control form-control-sm">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-xs-6 col-sm-6 col-md-6 mx-auto text-center">
+                                                                        <div class="p-5">
+                                                                            <h5 class="text-center">Your App Is Ready To Download</h5>
+                                                                            <div class="col-sm">
+                                                                                <div class="card shadow">
+                                                                                    <div class="box pt-3 bg-success text-center">
+                                                                                        <p class="h1 text-white">00:00:00</p>
                                                                                     </div>
                                                                                 </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            
+                                                                @elseif($order->paymentType=="HALF")
+                                                                
+                                                                <div class="row mt-3 border-top" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="You Can Dowload Files After Completing The Payment">
+                                                                    <div class="col-12">
+                                                                        <div class="row">
+                                                                            <div class="col-4">
+                                                                                <div class="form-group row">
+                                                                                    <label for="fname" class="col-sm-12 text-center control-label col-form-label">APK</label>
+                                                                                    <div class="col-sm-12 text-left">
+                                                                                        <a href="#" class="btn disabled btn-outline-cyan w-100 btn-sm">Download &nbsp;<i class=" fas fa-download"></i></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-4">
+                                                                                <div class="form-group row">
+                                                                                    <label for="fname" class="col-sm-12 text-center control-label col-form-label">Source</label>
+                                                                                    <div class="col-sm-12 text-left">
+                                                                                        <a href="#" class="btn disabled btn-outline-cyan w-100 btn-sm">Download &nbsp;<i class=" fas fa-download"></i></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-4">
+                                                                                <div class="form-group row">
+                                                                                    <label for="fname" class="col-sm-12 text-center control-label col-form-label">Keystore</label>
+                                                                                    <div class="col-sm-12 text-left">
+                                                                                        <a href="#" class="btn btn-outline-cyan disabled w-100 btn-sm">Download &nbsp;<i class=" fas fa-download"></i></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
-                                                                                <div class="form-group row">
-                                                                                    <label for="fname" class="col-sm-3 control-label col-form-label">Password</label>
-                                                                                    <div class="col-sm-9">
-                                                                                        <input type="text" readonly value="{{$order->password}}" class="form-control">
+                                                                <div class="row mt-3 border-top pt-3">
+                                                                    <div class="col-xs-6 col-sm-6 col-md-6 mx-auto" data-toggle="tooltip" data-placement="left" title="" data-original-title="These Will Be Available After Completing The Payment">
+                                                                        <div class="form-group row">
+                                                                            <label for="fname" class="col-sm-5 control-label col-form-label">Admin Panel Link</label>
+                                                                            <div class="col-sm-7">
+                                                                                <input type="text" readonly class="form-control form-control-sm">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="fname" class="col-sm-5 control-label col-form-label">Username</label>
+                                                                            <div class="col-sm-7">
+                                                                                <input type="text" readonly class="form-control form-control-sm">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="fname" class="col-sm-5 control-label col-form-label">Password</label>
+                                                                            <div class="col-sm-7">
+                                                                                <input type="text" readonly class="form-control form-control-sm">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="fname" class="col-sm-5 control-label col-form-label">Custom Message</label>
+                                                                            <div class="col-sm-7">
+                                                                                <input type="text" readonly class="form-control form-control-sm">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="fname" class="col-sm-5 control-label col-form-label">Guide Video</label>
+                                                                            <div class="col-sm-7">
+                                                                                <input type="text" readonly class="form-control form-control-sm">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-xs-6 col-sm-6 col-md-6 mx-auto text-center">
+                                                                        <div class="p-5">
+                                                                            <h5 class="text-center">Your App Is Ready</h5>
+                                                                            <div class="col-sm">
+                                                                                <div class="card shadow">
+                                                                                    <div class="box pt-3 bg-warning text-center">
+                                                                                        <p class="h1 text-white">00:00:00</p>
                                                                                     </div>
                                                                                 </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            
+                                                            @else
 
+                                                            <div class="row mt-3 border-top" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="You Can Dowload Files After Completing The Payment">
+                                                                    <div class="col-12">
+                                                                        <div class="row">
+                                                                            <div class="col-4">
                                                                                 <div class="form-group row">
-                                                                                    <label for="fname" class="col-sm-3 control-label col-form-label">Custom Message</label>
-                                                                                    <div class="col-sm-9">
-                                                                                        <input type="text" readonly value="{{$order->custommsg}}" class="form-control">
+                                                                                    <label for="fname" class="col-sm-12 text-center control-label col-form-label">APK</label>
+                                                                                    <div class="col-sm-12 text-left">
+                                                                                        <a href="#" class="btn disabled btn-outline-cyan w-100 btn-sm">Download &nbsp;<i class=" fas fa-download"></i></a>
                                                                                     </div>
                                                                                 </div>
+                                                                            </div>
+                                                                            <div class="col-4">
+                                                                                <div class="form-group row">
+                                                                                    <label for="fname" class="col-sm-12 text-center control-label col-form-label">Source</label>
+                                                                                    <div class="col-sm-12 text-left">
+                                                                                        <a href="#" class="btn disabled btn-outline-cyan w-100 btn-sm">Download &nbsp;<i class=" fas fa-download"></i></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-4">
+                                                                                <div class="form-group row">
+                                                                                    <label for="fname" class="col-sm-12 text-center control-label col-form-label">Keystore</label>
+                                                                                    <div class="col-sm-12 text-left">
+                                                                                        <a href="#" class="btn btn-outline-cyan disabled w-100 btn-sm">Download &nbsp;<i class=" fas fa-download"></i></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
-                                                                                <div class="form-group row">
-                                                                                    <label for="fname" class="col-sm-3 control-label col-form-label">Guide Video</label>
-                                                                                    <div class="col-sm-9">
-                                                                                        <input type="text" readonly value="{{$order->guidevideo}}" class="form-control">
-                                                                                    </div>
-                                                                                </div>
+                                                                <div class="row mt-3 border-top pt-3">
+                                                                    <div class="col-xs-6 col-sm-6 col-md-6 mx-auto" data-toggle="tooltip" data-placement="left" title="" data-original-title="These Will Be Available After Completing The Payment">
+                                                                        <div class="form-group row">
+                                                                            <label for="fname" class="col-sm-5 control-label col-form-label">Admin Panel Link</label>
+                                                                            <div class="col-sm-7">
+                                                                                <input type="text" readonly class="form-control form-control-sm">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="fname" class="col-sm-5 control-label col-form-label">Username</label>
+                                                                            <div class="col-sm-7">
+                                                                                <input type="text" readonly class="form-control form-control-sm">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="fname" class="col-sm-5 control-label col-form-label">Password</label>
+                                                                            <div class="col-sm-7">
+                                                                                <input type="text" readonly class="form-control form-control-sm">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="fname" class="col-sm-5 control-label col-form-label">Custom Message</label>
+                                                                            <div class="col-sm-7">
+                                                                                <input type="text" readonly class="form-control form-control-sm">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="fname" class="col-sm-5 control-label col-form-label">Guide Video</label>
+                                                                            <div class="col-sm-7">
+                                                                                <input type="text" readonly class="form-control form-control-sm">
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     
+                                                                    <div class="col-xs-6 col-sm-6 col-md-6 mx-auto text-center">
+                                                                        <div class="p-5">
+                                                                            <h5 class="text-center">Your App Will Be Ready</h5>
+                                                                            <div class="col-sm">
+                                                                                <div class="card shadow">
+                                                                                    <div class="box pt-3 bg-dark text-center">
+                                                                                        <p class="h1 text-white">02:00:00</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                    
-                                                                
-                                                            </div>
+
+                                                            @endif
+        
+                                                            
+                                                        </div>
                                                 </div>
+                                            </div>
                                         </div>
-                                    </div>
+
                                 </div>
                     </div>
                         <!-- Nav tabs -->

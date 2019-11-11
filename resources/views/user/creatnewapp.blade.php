@@ -1,5 +1,8 @@
 @extends('template.main')
 
+@section('active')
+    selected
+@endsection
 
 @section('content')
 
