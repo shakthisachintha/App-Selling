@@ -7,6 +7,19 @@
    <div class="row">
        <div class="col-md-1"></div>
        <div class="col-md-10">
+            @if ($message = Session::get('payDone'))
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="close" data-dismiss="alert">×</button>	
+                    {{ $message }}
+            </div>
+            @endif
+
+            @if ($message = Session::get('payFail'))
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="close" data-dismiss="alert">×</button>	
+                    {{ $message }}
+            </div>
+            @endif
             <div class="card">
                     <div class="card-header">
                             <h3 class="card-title">{{$title}}</h3>
@@ -76,7 +89,4 @@
             ]
         });
 </script>
-
-
-
 @endsection

@@ -72,7 +72,7 @@
                                         <button class="btn btn-success float-right" type="submit">Login</button>
                                     </div>
                                 </div>
-                                <a href="{{route('register')}}" class="lead text-center" >Dont Have an Account? Registor Now!</a>
+                                <a href="{{route('register')}}" class="lead text-white text-center" >Dont Have an Account? Register Now!</a>
                             </div>
                         </div>
                     </form>
@@ -84,7 +84,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <span class="text-white">Enter your e-mail address below and we will send you instructions how to recover a password.</span>
+                        <span class="text-capitalize text-white">Enter your e-mail address below and we will send you instructions how to recover a password.</span>
                     </div>
                     <div class="row m-t-20">
                         <!-- Form -->

@@ -179,10 +179,9 @@
                                                 <div class="card">
                                                             <div class="card-body">
                                                                 <h3 class="card-title">Get Your App</h3>
-                                                                
                                                                 <div class="row">
                                                                     <div class="col">
-                                                                            <div class="form-group row">
+                                                                                <div class="form-group row">
                                                                                     <label for="fname" class="col-sm-3 control-label col-form-label">APK</label>
                                                                                     <div class="col-sm-5 text-left">
                                                                                         <a href="{{route('download',['apk',$order->id])}}" class="btn @if (!$order->apk) disabled @endif btn-sm btn-outline-cyan">Download</a>

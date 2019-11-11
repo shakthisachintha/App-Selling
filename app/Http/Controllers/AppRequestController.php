@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\App_Plans;
 use PaytmWallet;
 use App\Order;
-
+use App\Transaction;
 
 class AppRequestController extends Controller
 {
@@ -89,12 +89,14 @@ class AppRequestController extends Controller
     }
 
     public function orders(){
-        $orders=Order::where('payment',"YES")->get();
+        $orders=Order::where('payment',"YES")->where('delivered',"NO")->orderBy('updated_at', 'desc')->get();
         $orders_total=Order::where('payment',"YES")->count();
+        $areq=Order::where('payment',"YES")->orderBy('updated_at', 'desc')->get();
         $new=Order::where('delivered',"NO")->where('payment','YES')->count();
         $count=Order::where('payment','YES')->sum('amount');
-        $this_month=\DB::table('orders')->select('id')->whereRaw("MONTH(created_at)=MONTH(CURDATE())")->count();
-        return view('admin.requests',["orders"=>$orders,"this_month"=>$this_month,"total_orders"=>$orders_total,"new_orders"=>$new,"total"=>$count]);
+        $this_month=\DB::table('orders')->select('id')->whereRaw("MONTH(created_at)=MONTH(CURDATE())")->where('payment',"YES")->count();
+        $revision=Order::where('payment',"YES")->where('paymentType',"FULL")->where("revision","YES")->get();
+        return view('admin.requests',["norders"=>$orders,"revisions"=>$revision,"arequests"=>$areq,"this_month"=>$this_month,"total_orders"=>$orders_total,"new_orders"=>$new,"total"=>$count]);
     }
 
     public function create($id){
@@ -120,7 +122,24 @@ class AppRequestController extends Controller
           'mobile_number' => \Auth::getUser()->telephone,
           'email' => \Auth::getUser()->email,
           'amount' => $plan->price,
-          'callback_url' =>route('payComplete',[$order_id,\Auth::getUser()->id])
+          'callback_url' =>route('payComplete',[$order_id,'f',\Auth::getUser()->id])
+        ]);
+        return $payment->receive();
+    }
+
+    public function makeHalfPayment(Request $request){
+        $order_id=$request->orderId;
+        $plan_id=$request->plan;
+        $plan=App_Plans::find($plan_id);
+        
+        $payment = PaytmWallet::with('receive');
+        $payment->prepare([
+          'order' => $order_id,
+          'user' => \Auth::getUser()->id,
+          'mobile_number' => \Auth::getUser()->telephone,
+          'email' => \Auth::getUser()->email,
+          'amount' => $plan->hprice,
+          'callback_url' =>route('payComplete',[$order_id,'h',\Auth::getUser()->id])
         ]);
         return $payment->receive();
     }
@@ -144,7 +163,13 @@ class AppRequestController extends Controller
     }
 
 
-    public function notify($to_email="sandeepolamail@gmail.com",$to_name,$from,$amount,$date){
+    public function notify($to_email="sandeepolamail@gmail.com",$to_name,$from,$amount,$date,$mode){
+        if($mode=='h'){
+            $mode=='HALF';
+        }
+        if($mode=='f'){
+            $mode=='FULL';
+        }
         $email = new \SendGrid\Mail\Mail(); 
         $email->setFrom("orders@apdue.com", "New AppDue Order");
         $email->setSubject("Apdue New Order");
@@ -156,6 +181,7 @@ class AppRequestController extends Controller
                 <h3>New Order</h3>
                 <p>New Order From $from</p>
                 <p>Total Amount ₹ $amount</p>
+                <p>($mode Payment)</p>
                 <p>Date ₹ $date</p>
             </center>"
         );
@@ -170,17 +196,39 @@ class AppRequestController extends Controller
         }
     }
 
-    public function payComplete($trans_id,$user_id,Request $request){
+    public function payComplete($trans_id,$pay_type,$user_id,Request $request){
         $order=Order::where('orderId',$trans_id)->first();
         if($order){
-            // dd($order->appPlan());
-            $order->payment="YES";
-            $order->amount=App_Plans::find($order->app_plan_id)->price;
-            $order->save();
-            $this->notify("sandeepolamail@gmail.com","Sandeep",\Auth::getUser()->name,$order->amount,$order->updated_at);
-            $this->notify("shakthisachintha@gmail.com","Sandeep",\Auth::getUser()->name,$order->amount,$order->updated_at);
-            return redirect()->route('apppurch');
+            $transction=new Transaction();
+            $transction->txnid=$request->TXNID;
+            $transction->amount=$request->TXNAMOUNT;
+            $transction->pay_method=$request->PAYMENTMODE;
+            $transction->status=$request->STATUS;
+            $transction->resp_code=$request->RESPCODE;
+            $transction->resp_msg=$request->RESPMSG;
+            $transction->order_id=$order->id;
+            $transction->save();
+
+            if($request->RESPCODE!=1){ //transaction failed
+                $order->payment="NO";
+                $order->save();
+                return redirect()->route('allaps')->with('payFail',$request->RESPMSG);
+            }else{  //transaction success
+                $order->payment="YES";
+                if($pay_type=='h'){
+                    $order->paymentType="HALF";
+                    $order->amount=App_Plans::find($order->app_plan_id)->hprice;
+                }else if($pay_type=='f'){
+                    $order->paymentType="FULL";
+                    $order->amount=App_Plans::find($order->app_plan_id)->price;
+                }
+                $this->notify("sandeepolamail@gmail.com","Sandeep",\Auth::getUser()->name,$order->amount,$order->updated_at,$pay_type);
+                $this->notify("shakthisachintha@gmail.com","Sandeep",\Auth::getUser()->name,$order->amount,$order->updated_at,$pay_type);
+                $order->save();
+                return redirect()->route('apppurch')->with('payDone',"Payment Received. Your App Is Being Generated!");
+            }
         }
+        return redirect()->route('allaps');
     }
 
     public function viewOrder($id){

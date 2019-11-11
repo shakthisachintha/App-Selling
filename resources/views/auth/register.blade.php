@@ -101,7 +101,7 @@
                                         <button class="btn btn-block btn-lg btn-info" type="submit">Sign Up</button>
                                     </div>
                                 </div>
-                                <a href="{{route('login')}}" class="lead">Already Have an Account? Login..</a>
+                                <a href="{{route('login')}}" class="lead text-white">Already Have an Account? Login..</a>
                             </div>
                         </div>
                     </form>

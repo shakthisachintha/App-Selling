@@ -36,7 +36,7 @@
                                                             <div class="form-group row">
                                                                 <label for="lname" class="col-sm-3 text-right control-label col-form-label">App Logo<span class="text-danger">*</span></label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="file" name="applogo" class="form-control" id="lname" placeholder="Last Name Here">
+                                                                    <input type="file" name="applogo" accept="image/*" required class="form-control" id="lname" placeholder="Last Name Here">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -48,7 +48,7 @@
                                                             <div class="form-group row">
                                                                 <label for="email1" class="col-sm-3 text-right control-label col-form-label">App Version<span class="text-danger">*</span></label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="number" name="appversion" value="1.0" required class="form-control" id="email1" placeholder="App Version">
+                                                                    <input type="number" name="appversion" value="1.0" required required class="form-control" id="email1" placeholder="App Version">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -185,7 +185,7 @@
                                                         console.log(data);
                                                         $("#add-save-btn").removeClass("btn-primary");
                                                         $("#add-save-btn").addClass("btn-success");
-                                                        // $("#add-save-btn").attr("disabled","disabled");
+                                                        $("#add-save-btn").attr("disabled","disabled");
                                                         $("#add-save-btn").text("Saved!");
                                                     },
                                                     error: function(data){
@@ -211,9 +211,10 @@
                                                         console.log(data);
                                                         $("#appinfo-save-btn").removeClass("btn-primary");
                                                         $("#appinfo-save-btn").addClass("btn-success");
-                                                        // $("#appinfo-save-btn").attr("disabled","disabled");
+                                                        $("#appinfo-save-btn").attr("disabled","disabled");
                                                         $("#appinfo-save-btn").text("Saved!");
-                                                        $("#purchase-btn").removeAttr("disabled");
+                                                        $("#purchase-full-btn").removeAttr("disabled");
+                                                        $("#purchase-half-btn").removeAttr("disabled");
                                                         $("#purchase-hint").fadeOut();
                                                     },
                                                     error: function(data){
@@ -245,57 +246,137 @@
                                     </script>
 
                                 <div class="tab-pane p-20" id="messages" role="tabpanel">
-                                    <div class="p-4">
-                                            <div class="card">
-                                                        <div class="card-body">
+                                    <div class="pl-2 pr-2 pb-4 pt-2">
+                                        <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-12">
                                                             <h3 class="card-title">Get Your App</h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <table class="w-100">
+                                                                <tr>
+                                                                    <td valign="center" rowspan="2" style="font-size:1rem">
+                                                                     Pay & Generate App
+                                                                    </td>
+                                                                    <td class="text-right">
+                                                                        <form method="POST" action="{{route('hpayment')}}">
+                                                                             @csrf 
+                                                                             <input type="hidden" value="{{$orderId}}" name="orderId">
+                                                                             <input name="plan" value="{{$plan->id}}" type="hidden">
+                                                                             <input id="purchase-half-btn" type="submit" disabled data-toggle="tooltip" data-placement="top" title="" data-original-title="Once The App Is Ready Pay The Rest & Download" class="btn btn-success" value="Make Half Payment">
+                                                                        </form>
+                                                                    </td>
+                                                                    <td class="text-right">
+                                                                        <form method="POST" action="{{route('payment')}}">
+                                                                             @csrf 
+                                                                             <input type="hidden" value="{{$orderId}}" name="orderId">
+                                                                             <input name="plan" value="{{$plan->id}}" type="hidden">
+                                                                             <input id="purchase-full-btn" type="submit" disabled data-toggle="tooltip" data-placement="top" title="" data-original-title="Once The App Ready Is Just Donwload " class="btn btn-primary" value="Make Full Payment">
+                                                                        </form>
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                    <td class="h4 text-right pt-1">
+                                                                        ₹ {{$plan->price}}
+                                                                    </td>
+                                                                    <td class="h4 text-right pt-1">
+                                                                        ₹ {{$plan->hprice}}
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    
+                                                                    <td colspan="3" class="text-center">
+                                                                        <span id="purchase-hint"><small><span class="text-danger">*</span>Fill & Save App Info Details To Enable To Payment Section.</small></span>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mt-3 border-top" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="You Can Dowload Files After The Payment">
+                                                        <div class="col-12">
                                                             <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <h5 class="lead">Selected App Plan</h5>
-                                                                    <div class="row ml-1 el-element-overlay">
-                                                                        <div class="card">
-                                                                            <div class="el-card-item">
-                                                                                <div class="el-card-avatar el-overlay-1"> <img src="{{Storage::url($plan->icon)}}" alt="user">
-                                                                                    <div class="el-overlay">
-                                                                                        <ul class="list-style-none el-info">
-                                                                                        <li class="el-item"><a class="btn btn-sm  btn-primary-outline el-link" target="new" href="{{$plan->videoLink}}">Video</a></li>
-                                                                                            <li class="el-item"><a class="btn btn-sm  btn-primary-outline el-link" target="new" href="{{$plan->prevLink}}">Preview</a></li>
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="el-card-content">
-                                                                                    <h4 class="m-b-0 text-left">{{$plan->name}}</h4>
-                                                                                </div>
-                                                                                <div class="row mt-1">
-                                                                                    <div class="col">
-                                                                                        <h4 class="pt-2 text-dark">₹{{$plan->price}}</h4>
-                                                                                    </div>
-                                                                                    <div class="col">
-                                                                                          
-                                                                                        <form method="POST" action="{{route('payment')}}">
-                                                                                             @csrf 
-                                                                                             <input type="hidden" value="{{$orderId}}" name="orderId">
-                                                                                             <input name="plan" value="{{$plan->id}}" type="hidden">
-                                                                                             <input id="purchase-btn" type="submit" disabled class="btn btn-outline-success" value="Pay & Generate App"><BR>
-                                                                                             <span id="purchase-hint"><small><span class="text-danger">*</span>Fill & Save App Info Details To Proceed To The Payment Section.</small></span>
-                                                                                            </form>
-                                                                                    </div>
-                                                                                    
-                                                                                </div>
-                                                                                <div class="row mt-1">
-                                                                                    <div class="col">
-                                                                                        <small class="text-muted">You Will Receive APK,Source Code & Keystore After The Purchase.</small>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                <div class="col-4">
+                                                                    <div class="form-group row">
+                                                                        <label for="fname" class="col-sm-12 text-center control-label col-form-label">APK</label>
+                                                                        <div class="col-sm-12 text-left">
+                                                                            <a href="#" class="btn disabled w-100 btn-sm btn-outline-cyan">Download &nbsp;<i class=" fas fa-download"></i></a>
                                                                         </div>
                                                                     </div>
-                                                                   
                                                                 </div>
-                                                                
+                                                                <div class="col-4">
+                                                                    <div class="form-group row">
+                                                                        <label for="fname" class="col-sm-12 text-center control-label col-form-label">Source</label>
+                                                                        <div class="col-sm-12 text-left">
+                                                                            <a href="#" class="btn disabled w-100 btn-sm btn-outline-cyan">Download &nbsp;<i class=" fas fa-download"></i></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <div class="form-group row">
+                                                                        <label for="fname" class="col-sm-12 text-center control-label col-form-label">Keystore</label>
+                                                                        <div class="col-sm-12 text-left">
+                                                                            <a href="#" class="btn disabled w-100 btn-sm btn-outline-cyan">Download &nbsp;<i class=" fas fa-download"></i></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
+                                                    </div>
+
+                                                    <div class="row mt-3 border-top pt-3">
+                                                        <div class="col-xs-6 col-sm-6 col-md-6 mx-auto" data-toggle="tooltip" data-placement="left" title="" data-original-title="These Will Be Available After The Payment">
+                                                            <div class="form-group row">
+                                                                <label for="fname" class="col-sm-5 control-label col-form-label">Admin Panel Link</label>
+                                                                <div class="col-sm-7">
+                                                                    <input type="text" readonly class="form-control form-control-sm">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="fname" class="col-sm-5 control-label col-form-label">Username</label>
+                                                                <div class="col-sm-7">
+                                                                    <input type="text" readonly class="form-control form-control-sm">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="fname" class="col-sm-5 control-label col-form-label">Password</label>
+                                                                <div class="col-sm-7">
+                                                                    <input type="text" readonly class="form-control form-control-sm">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="fname" class="col-sm-5 control-label col-form-label">Custom Message</label>
+                                                                <div class="col-sm-7">
+                                                                    <input type="text" readonly class="form-control form-control-sm">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="fname" class="col-sm-5 control-label col-form-label">Guide Video</label>
+                                                                <div class="col-sm-7">
+                                                                    <input type="text" readonly class="form-control form-control-sm">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-6 col-sm-6 col-md-6 mx-auto text-center">
+                                                            <div class="p-5">
+                                                                <h5 class="text-center">Your App Will Be Ready</h5>
+                                                                <div class="col-sm">
+                                                                    <div class="card shadow">
+                                                                        <div class="box pt-3 bg-dark text-center">
+                                                                            <p class="h1 text-white">02:00:00</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

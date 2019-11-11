@@ -8,7 +8,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="display-4 card-title">Welcome To Appdue!</h2>
+                    <h2 class="display-4 card-title">Welcome To Apdue!</h2>
                     <p class="lead">Where Your Dream Android App Comes True</p>
                     <div class="pt-3 row">
                         <!-- Column -->

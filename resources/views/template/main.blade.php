@@ -3,7 +3,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Order;
 $user = Auth::user();
 
-$new_reqs=Order::where('responded','NO')->count();
+$new_reqs=Order::where('responded','NO')->where('payment','YES')->count();
 $responded=Order::where('delivered','YES')->where('viewed','NO')->where('user_id',$user->id)->count();
 
 
@@ -16,11 +16,11 @@ $responded=Order::where('delivered','YES')->where('viewed','NO')->where('user_id
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="Apdue Is an Online Android Application Building Service.Easily Develop Your Dream Mobile Application.">
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ URL::asset('assets/images/favicon.png')}}">
-    <title>Apdue App Management Platform</title>
+    <title>Apdue Android App Builder</title>
     <script
     src="https://code.jquery.com/jquery-3.4.1.js"
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -198,8 +198,8 @@ $responded=Order::where('delivered','YES')->where('viewed','NO')->where('user_id
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
 
-            <footer class="footer text-center">
-                All Rights Reserved by App Management System. 
+            <footer class="mx-auto footer text-center">
+                All Rights Reserved by Apdue App Management System. 
             </footer>
            
         </div>
@@ -230,7 +230,7 @@ $responded=Order::where('delivered','YES')->where('viewed','NO')->where('user_id
     <script src="{{URL::asset('assets/extra-libs/multicheck/datatable-checkbox-init.js')}}"></script>
     <script src="{{URL::asset('assets/extra-libs/multicheck/jquery.multicheck.js')}}"></script>
     <script src="{{URL::asset('assets/extra-libs/DataTables/datatables.min.js')}}"></script>
-
+    <script src="//code.tidio.co/cx0bxjichqelfzbvk15vgga4derbcazq.js"></script>
     @yield('scripts')
 
 </body>

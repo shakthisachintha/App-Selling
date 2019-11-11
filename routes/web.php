@@ -29,9 +29,10 @@ Route::get('/paidapps', 'AppRequestController@allPurchases')->name('apppurch')->
 Route::get('/orders', 'AppRequestController@orders')->name('orders')->middleware('auth');
 
 Route::post('/makepay', 'AppRequestController@makePayment')->name('payment')->middleware('auth');
+Route::post('/makepayh', 'AppRequestController@makeHalfPayment')->name('hpayment')->middleware('auth');
 Route::post('/saveappinfo', 'AppRequestController@saveAppInfo')->name('appinfo')->middleware('auth');
 Route::post('/saveaddinfo', 'AppRequestController@saveAddInfo')->name('addinfo')->middleware('auth');
-Route::post('/payment/{trans_id}/{user_id}', 'AppRequestController@PayComplete')->name('payComplete')->middleware('auth');
+Route::post('/payment/{trans_id}/{pay_type}/{user_id}', 'AppRequestController@PayComplete')->name('payComplete')->middleware('auth');
 
 Route::get('/upcommingapps', 'GeneralController@upcomming')->name('upcomming')->middleware('auth');
 Route::get('/help', 'GeneralController@help')->name('help')->middleware('auth');
