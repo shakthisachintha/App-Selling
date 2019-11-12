@@ -57,5 +57,9 @@ Route::post('/response', 'AppRequestController@response')->name('response')->mid
 
 Route::post('/saveapp', 'AppRequestController@saveAppInfoTwo')->name('appinfo2')->middleware('auth');
 Route::post('/saveadd', 'AppRequestController@saveAddInfoTwo')->name('addinfo2')->middleware('auth');
+
 Route::get('/cat', 'PlanController@addCat')->name('addcat')->middleware('auth');
 Route::post('/catsave', 'PlanController@catSave')->name('catsave')->middleware('auth');
+Route::get('/catedit/{id}', 'PlanController@catEdit')->name('catedit')->middleware('auth');
+Route::post('/catupdate', 'PlanController@catUpdate')->name('catupdate')->middleware('auth');
+Route::get('/catdel/{id}', 'PlanController@catDel')->name('catdel')->middleware('auth');

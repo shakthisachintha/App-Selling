@@ -86,7 +86,7 @@ class PlanController extends Controller
     }
 
     public function addCat(){
-        return view('admin.addcat');
+        return view('admin.addcat',["cats"=>Category::all()]);
     }
 
     public function catSave(Request $request){
@@ -100,6 +100,28 @@ class PlanController extends Controller
         return redirect()->back()->with("success","Category ($request->name) Saved.");
     }
 
+    public function catEdit($id){
+        $cat=Category::findOrFail($id);
+        return view("admin.editcat",["cat"=>$cat]);
+    }
+
+    public function catUpdate(Request $request){
+        $cat=Category::findOrFail($request->id);
+        $cat->name=$request->name;
+        $cat->position=$request->position;
+        if($request->file('icon')){
+            $path = $request->file('icon')->store('public/appcats');
+            $cat->icon=$path;
+        }
+        $cat->save();
+        return redirect()->route('addcat')->with("success","Category ($request->name) Updated.");
+    }
+
+    public function catDel($id){
+        $app=Category::find($id);
+        $app->forceDelete();
+        return redirect()->route('addcat')->with('success',"Category $app->name Deleted");
+    }
 
 
     /**
