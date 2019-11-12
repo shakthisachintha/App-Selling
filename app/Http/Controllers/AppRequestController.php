@@ -13,9 +13,17 @@ class AppRequestController extends Controller
 {
     public function index(){
         $plans=App_Plans::All();
-        return view('user.appreq',["plans"=>$plans]);
+        $cats=\DB::table('app__plans')->select('category_id')->distinct()->get(['category_id']);
+        $str="";
+        foreach ($cats as $cat) {
+            $str.=$cat->category_id.",";
+        }
+        $str = rtrim($str, ",");
+        $cats=\DB::select("select * from categories where id in($str) order by position asc");
+        // dd($cats);
+        return view('user.appreq',["plans"=>$plans,"cats"=>$cats]);
     }
-
+// select * from categories where id in(1,2,3,4) order by position asc;
     public function saveAppInfoTwo(Request $request){
         $order=Order::find($request->orderId);
         if($order){
@@ -48,6 +56,34 @@ class AppRequestController extends Controller
         }
     }
 
+    public function regenerate(Request $request){
+        $order=Order::findOrFail($request->order);
+        $order->revision="YES";
+        $order->save();
+        $email = new \SendGrid\Mail\Mail(); 
+        $email->setFrom("revisions@apdue.com", "App Regenerate Request");
+        $email->setSubject("Apdue New Order");
+        $email->addTo("sandeepolamail@gmail.com", "Sandeep");
+        $email->addContent("text/plain", "App Regeneration Request Order($order->orderId");
+        $email->addContent(
+            "text/html", 
+            "<center>
+                <h3>App Regeneration</h3>
+                <p>Order Number $order->number</p>
+                <p>Date $order->updated_at</p>
+            </center>"
+        );
+        $sendgrid = new \SendGrid(env("SENDGRID_KEY"));
+        try {
+            $response = $sendgrid->send($email);
+            // print $response->statusCode() . "\n";
+            // print_r($response->headers());
+            // print $response->body() . "\n";
+        } catch (Exception $e) {
+            echo 'Caught exception: '. $e->getMessage() ."\n";
+        }
+        return redirect()->back();
+    }
 
     public function allPurchases(){
         $orders=Order::where('user_id',\Auth::getUser()->id)->orderBy('updated_at','desc')->where('payment',"YES")->get();
@@ -95,6 +131,7 @@ class AppRequestController extends Controller
         }
 
         $order->delivered="YES";
+        $order->revision="NO";
         $order->save();
         return redirect()->back()->with('success',"Order Delivered");
     }
@@ -184,10 +221,10 @@ class AppRequestController extends Controller
 
     public function notify($to_email="sandeepolamail@gmail.com",$to_name,$from,$amount,$date,$mode){
         if($mode=='h'){
-            $mode=='HALF';
+            $mode='HALF';
         }
         if($mode=='f'){
-            $mode=='FULL';
+            $mode='FULL';
         }
         $email = new \SendGrid\Mail\Mail(); 
         $email->setFrom("orders@apdue.com", "New AppDue Order");
@@ -201,7 +238,7 @@ class AppRequestController extends Controller
                 <p>New Order From $from</p>
                 <p>Total Amount ₹ $amount</p>
                 <p>($mode Payment)</p>
-                <p>Date ₹ $date</p>
+                <p>Date $date</p>
             </center>"
         );
         $sendgrid = new \SendGrid(env("SENDGRID_KEY"));

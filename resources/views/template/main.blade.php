@@ -31,7 +31,20 @@ $responded=Order::where('delivered','YES')->where('viewed','NO')->where('user_id
     <link href="{{ URL::asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
     <link href="{{ URL::asset('assets/extra-libs/multicheck/multicheck.css')}}" rel="stylesheet">
     <link href="{{URL::asset('assets/libs/toastr/build/toastr.min.css')}}" rel="stylesheet">
-  
+    
+    
+    <style>
+     
+
+        .nav-pills > li > a.active {
+            background-color: RGBA(12,10,8,0.9) !important;
+            border-radius: 3px !important;
+            -webkit-box-shadow: 0px 10px 13px -7px #000000, 2px 6px 25px 4px rgba(0,0,0,0.43); 
+            box-shadow: 0px 10px 13px -7px #000000, 2px 6px 25px 4px rgba(0,0,0,0.43);
+        }
+    </style>
+    
+
 </head>
 
 <body>
@@ -158,12 +171,13 @@ $responded=Order::where('delivered','YES')->where('viewed','NO')->where('user_id
                                 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('upcomming')}}" aria-expanded="false"><i class="fas fa-people-carry"></i><span class="hide-menu">Upcoming Apps</span></a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('help')}}" aria-expanded="false"><i class="fas fa-question"></i><span class="hide-menu">Help</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('contact')}}" aria-expanded="false"><i class="far fa-envelope"></i><span class="hide-menu">Contact Us</span></a></li>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('contact')}}" aria-expanded="false"><i class="far fa-envelope"></i><span class="hide-menu">Create Ticket</span></a></li>
         
                                 {{-- Admin Links --}}
                                 @if ($user->email=='admin@apdue.com')
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('plans.index')}}" aria-expanded="false"><i class="fas fa-boxes"></i><span class="hide-menu">All Plans</span></a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('plans.create')}}" aria-expanded="false"><i class="far fa-plus-square"></i><span class="hide-menu">Add Plan</span></a></li>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('addfaq')}}" aria-expanded="false"><i class="fas fa-question"></i><span class="hide-menu">FAQs</span></a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('addcat')}}" aria-expanded="false"><i class="fas fa-list-ol"></i><span class="hide-menu">Add Category</span></a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('orders')}}" aria-expanded="false"><i class="fas fa-inbox"></i><span class="hide-menu">Requests</span>@if($new_reqs>0)<span class="badge badge-pill badge-success">{{$new_reqs}}</span>@endif</a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('allusers')}}" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu">All Users</span></a></li>

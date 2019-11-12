@@ -53,7 +53,7 @@ class CreateOrdersTable extends Migration
             $table->string('responded')->default("NO");
             $table->string('viewed')->default("YES");
             
-            $table->char('revision',5)->default("NO");
+            $table->char('revision',10)->default("NO");
             
             $table->timestamps();
         });

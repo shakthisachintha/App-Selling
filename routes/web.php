@@ -34,9 +34,16 @@ Route::post('/makepayah', 'AppRequestController@payOtherHalf')->name('ahpayment'
 Route::post('/saveappinfo', 'AppRequestController@saveAppInfo')->name('appinfo')->middleware('auth');
 Route::post('/saveaddinfo', 'AppRequestController@saveAddInfo')->name('addinfo')->middleware('auth');
 Route::post('/payment/{trans_id}/{pay_type}/{user_id}', 'AppRequestController@PayComplete')->name('payComplete')->middleware('auth');
+Route::post('/regen', 'AppRequestController@regenerate')->name('regen')->middleware('auth');
+
 
 Route::get('/upcommingapps', 'GeneralController@upcomming')->name('upcomming')->middleware('auth');
 Route::get('/help', 'GeneralController@help')->name('help')->middleware('auth');
+Route::get('/addfaq', 'GeneralController@addFaq')->name('addfaq')->middleware('auth');
+Route::post('/createfaq', 'GeneralController@createFaq')->name('createfaq')->middleware('auth');
+Route::get('/editfaq/{id}', 'GeneralController@editFaq')->name('editfaq')->middleware('auth');
+Route::post('/savefaq', 'GeneralController@saveFaq')->name('savefaq')->middleware('auth');
+Route::get('/delfaq/{id}', 'GeneralController@delFaq')->name('delfaq')->middleware('auth');
 Route::get('/contact', 'GeneralController@contact')->name('contact')->middleware('auth');
 Route::post('/contactmsg', 'GeneralController@contactMessage')->name('contactSave')->middleware('auth');
 Route::get('/users', 'GeneralController@users')->name('allusers')->middleware('auth');

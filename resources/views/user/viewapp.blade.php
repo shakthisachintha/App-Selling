@@ -238,11 +238,25 @@
                                                             </div>
 
                                                             @if($order->paymentType=="FULL")
-                                                                
+                                                                <div class="row">
+                                                                    <div class="col-sm-7">
+                                                                        <p style="font-size:1rem" class="p-1">Not Satisfied With The App? No Worries, Regenerate App Again</p>
+                                                                    </div>
+                                                                    <div class="col-sm-5">
+                                                                        <form method="POST" action="{{route('regen')}}">
+                                                                        @csrf
+                                                                        <input type="hidden" name="order" value="{{$order->id}}">
+                                                                        <input type="submit" @if($order->revision=="YES") disabled @endif value="Regenerate" class="@if($order->revision=="YES") disabled @endif btn btn-dark">
+                                                                        </form>
+                                                                        @if($order->revision=="YES")
+                                                                        <p class="text-success"><small>Your App Is Being Regenerated<small></p>
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
                                                                 <div class="col-12">
                                                                     <div class="row mt-3 border-top">
                                                                         <div class="row">
-                                                                            <div class="col-4">
+                                                                            <div class="col-sm-4">
                                                                                 <div class="form-group row">
                                                                                     <label for="fname" class="col-sm-12 text-center control-label col-form-label">APK</label>
                                                                                     <div class="col-sm-12 text-left">
@@ -250,7 +264,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-4">
+                                                                            <div class="col-sm-4">
                                                                                 <div class="form-group row">
                                                                                     <label for="fname" class="col-sm-12 text-center control-label col-form-label">Source</label>
                                                                                     <div class="col-sm-12 text-left">
@@ -258,7 +272,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-4">
+                                                                            <div class="col-sm-4">
                                                                                 <div class="form-group row">
                                                                                     <label for="fname" class="col-sm-12 text-center control-label col-form-label">Keystore</label>
                                                                                     <div class="col-sm-12 text-left">

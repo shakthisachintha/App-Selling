@@ -28,6 +28,14 @@ $user = \Auth::user();
                             <input type="text" class="form-control" id="cono1" required name="subject">
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <label for="cono1" class="col-sm-2 control-label col-form-label">Attachments</label>
+                        <div class="col-sm-9">
+                            <input type="file" class="form-control" id="file1" name="attach">
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                         <label for="cono1" class="col-sm-2 control-label col-form-label">Message<span class="text-danger">*</span></label>
                         <div class="col-sm-9">
@@ -35,6 +43,7 @@ $user = \Auth::user();
                         </div>
                     </div>
                 </div>
+
                 <div class="border-top">
                     <div class="card-body">
                         <button type="submit" class="btn btn-primary">Submit</button>
