@@ -35,9 +35,9 @@
                                 </div>
         
                                 <div class="form-group row">
-                                    <input type="submit" value="Save" class="ml-0 btn btn-lg btn-primary">
+                                    <input type="submit" value="Save" class="ml-0 mr-2 btn btn-lg btn-primary">
                                     @if($cat->name!="General Apps")
-                                    <a href="{{route('catdel',$cat->id)}}" class="btn btn-danger">Delete</a>
+                                    <a href="{{route('catdel',$cat->id)}}" class="btn btn-lg btn-danger">Delete</a>
                                     @endif
                                 </div>                         
                             </form>

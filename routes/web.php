@@ -63,3 +63,9 @@ Route::post('/catsave', 'PlanController@catSave')->name('catsave')->middleware('
 Route::get('/catedit/{id}', 'PlanController@catEdit')->name('catedit')->middleware('auth');
 Route::post('/catupdate', 'PlanController@catUpdate')->name('catupdate')->middleware('auth');
 Route::get('/catdel/{id}', 'PlanController@catDel')->name('catdel')->middleware('auth');
+
+Route::get('/addup', 'UpCommingController@index')->name('addup')->middleware('auth');
+Route::post('/saveup', 'UpCommingController@save')->name('saveup')->middleware('auth');
+Route::post('/updateup', 'UpCommingController@update')->name('updateup')->middleware('auth');
+Route::get('/editup/{id}', 'UpCommingController@edit')->name('editup')->middleware('auth');
+Route::get('/deleteup/{id}', 'UpCommingController@delete')->name('deleteup')->middleware('auth');

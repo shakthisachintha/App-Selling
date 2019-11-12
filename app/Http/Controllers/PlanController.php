@@ -118,9 +118,15 @@ class PlanController extends Controller
     }
 
     public function catDel($id){
-        $app=Category::find($id);
-        $app->forceDelete();
-        return redirect()->route('addcat')->with('success',"Category $app->name Deleted");
+        $cat=Category::find($id);
+        $def=Category::where('name',"General Apps")->first();
+        $apps=App_Plans::where('category_id',$id)->get();
+        foreach ($apps as $app) {
+            $app->category_id=$def->id;
+            $app->save();
+        }
+        $cat->forceDelete();
+        return redirect()->route('addcat')->with('success',"Category $cat->name Deleted");
     }
 
 

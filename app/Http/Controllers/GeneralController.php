@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Faq;
 use Illuminate\Http\Request;
 use App\User;
+use App\Upcomming;
 class GeneralController extends Controller
 {
     public function upComming(){
-        return view('general.upcomming');
+        return view('general.upcomming',["plans"=>Upcomming::all()]);
     }
 
     public function addFaq(Request $request){
