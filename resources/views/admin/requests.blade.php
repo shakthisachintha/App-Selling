@@ -60,7 +60,7 @@
                                     @else
                                         <span class="badge badge-primary">Half Payment</span>
                                     @endif 
-                                    <span class="m-b-15 d-block">App Name : {{$order->appName}} &nbsp;|&nbsp; App Price : ₹{{$order->amount}} &nbsp;|&nbsp; App Version : {{$order->appVersion}}</span>
+                                    <span class="m-b-15 d-block">App Name : {{$order->appName}} &nbsp;|&nbsp; App Price : ₹{{$order->amount}} &nbsp;|&nbsp; App Version : {{$order->appVersion}} &nbsp;|&nbsp; App Plan : {{$order->appPlan->name}}</span>
                                     <div class="mt-2 comment-footer">
                                     <span class="text-muted float-right">{{$order->created_at}}</span> 
                                         <a onclick="window.open('{{route('viewreq',$order->id)}}','popUpWindow','height=700,width=1024,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');" class="btn btn-cyan btn-sm">Edit</a>

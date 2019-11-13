@@ -15,12 +15,14 @@ class AppRequestController extends Controller
         $plans=App_Plans::All();
         $cats=\DB::table('app__plans')->select('category_id')->distinct()->get(['category_id']);
         $str="";
+        if($cats->isEmpty()){
+            $str="0";
+        }
         foreach ($cats as $cat) {
             $str.=$cat->category_id.",";
         }
         $str = rtrim($str, ",");
         $cats=\DB::select("select * from categories where id in($str) order by position asc");
-        // dd($cats);
         return view('user.appreq',["plans"=>$plans,"cats"=>$cats]);
     }
 // select * from categories where id in(1,2,3,4) order by position asc;

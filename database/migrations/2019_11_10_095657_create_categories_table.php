@@ -20,6 +20,13 @@ class CreateCategoriesTable extends Migration
             $table->integer('position')->nullable();
             $table->timestamps();
         });
+
+        DB::table('categories')->insert(
+            array(
+                'name' => 'General Apps',
+                'position'=>'2',
+            )
+        );
     }
 
     /**

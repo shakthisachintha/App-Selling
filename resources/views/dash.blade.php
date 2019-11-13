@@ -15,8 +15,8 @@
                         <div class="col-md-6 col-lg-3">
                             <div class="card card-hover">
                                 <div class="box bg-dark text-center">
-                                    <h1 class="count font-light text-white">{{$total_users}}</h1>
-                                    <h6 class="text-white">Total Users</h6>
+                                    <h1 class="count font-light text-white">{{$all_apps}}</h1>
+                                    <h6 class="text-white">All Apps</h6>
                                 </div>
                             </div>
                         </div>
@@ -24,8 +24,8 @@
                         <div class="col-md-6 col-lg-3">
                             <div class="card card-hover">
                                 <div class="box bg-success text-center">
-                                    <h1 class="count font-light text-white">{{$happy_customers}}</h1>
-                                    <h6 class="text-white">Happy Customers</h6>
+                                    <h1 class="count font-light text-white">{{$purchased_apps}}</h1>
+                                    <h6 class="text-white">Purchased Apps</h6>
                                 </div>
                             </div>
                         </div>
@@ -33,8 +33,8 @@
                         <div class="col-md-6 col-lg-3">
                             <div class="card card-hover">
                                 <div class="box bg-warning text-center">
-                                    <h1 class="count font-light text-white">{{$total_orders}}</h1>
-                                    <h6 class="text-white">Total Orders</h6>
+                                    <h1 class="count font-light text-white">{{$upcomming}}</h1>
+                                    <h6 class="text-white">Upcomming Apps</h6>
                                 </div>
                             </div>
                         </div>
@@ -42,8 +42,8 @@
                         <div class="col-md-6 col-lg-3">
                             <div class="card card-hover">
                                 <div class="box bg-info text-center">
-                                    <h1 class="count font-light text-white">{{$app_plans}}</h1>
-                                    <h6 class="text-white">App Plans</h6>
+                                    <h1 class="count font-light text-white">{{$all_tickets}}</h1>
+                                    <h6 class="text-white">All Tickets</h6>
                                 </div>
                             </div>
                         </div>
