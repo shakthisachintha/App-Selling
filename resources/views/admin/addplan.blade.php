@@ -44,15 +44,16 @@
                                     <input class="@error('videolink') is-invalid @enderror form-control" value="{{old('videolink')}}" type="text" placeholder="Video Link" name="videolink">
                                     @error('videolink') <span class="invalid-feedback">{{$message}}</span> @enderror
                                 </div>
-            
+
                                 <div class="form-group row">
                                     <label class="control-label col-form-label">App Category<span class="text-danger">*</span></label>
-                                    <select @error('cat') is-invalid @enderror value="{{old('cat')}}" name="cat" class="form-control">
+                                    <select multiple="multiple"  value="{{old('cat')}}" name="cat[]" class="form-control @error('cat') is-invalid @enderror">
                                         @foreach ($cats as $cat)
                                             <option value="{{$cat->id}}">{{$cat->name}}</option>
                                         @endforeach
                                     </select>
                                     @error('cat') <span class="invalid-feedback">{{$message}}</span> @enderror
+                                    <span>(ctrl+click to select multiple categories)</span>
                                 </div>
 
                                 <div class="form-group row">

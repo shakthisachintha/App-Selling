@@ -65,7 +65,7 @@
                                     <span class="text-muted float-right">{{$order->created_at}}</span> 
                                         <a onclick="window.open('{{route('viewreq',$order->id)}}','popUpWindow','height=700,width=1024,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');" class="btn btn-cyan btn-sm">Edit</a>
                                         <a onclick="window.open('{{route('viewreq',$order->id)}}','popUpWindow','height=700,width=1024,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');" class="btn btn-success btn-sm">Deliver</a>
-                                        <button onclick="delFun('{{$order->id}}')" class="btn btn-danger btn-sm">Delete</button>
+                                        <a href="{{route('delorder',$order->id)}}" class="btn btn-danger btn-sm">Delete</a>
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                                     <span class="text-muted float-right">{{$order->created_at}}</span> 
                                         <a onclick="window.open('{{route('viewreq',$order->id)}}','popUpWindow','height=700,width=1024,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');" class="btn btn-cyan btn-sm">Edit</a>
                                         <a onclick="window.open('{{route('viewreq',$order->id)}}','popUpWindow','height=700,width=1024,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');" class="btn btn-success btn-sm">Deliver</a>
-                                        <button onclick="delFun('{{$order->id}}')" class="btn btn-danger btn-sm">Delete</button>
+                                        <a href="{{route('delorder',$order->id)}}" class="btn btn-danger btn-sm">Delete</a>
                                     </div>
                                 </div>
                             </div>
@@ -148,7 +148,7 @@
                                         </td>
                                         <td>
                                             <button onclick="window.open('{{route('vieworder',$app->id)}}','popUpWindow','height=700,width=1024,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');" class="btn btn-sm btn-outline-primary">View</button>
-                                            <button onclick="delFun('{{$app->id}}')" class="btn btn-sm btn-outline-danger">Delete</button>
+                                            <a href="{{route('delorder',$app->id)}}" class="btn btn-sm btn-outline-danger">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -169,14 +169,6 @@
             </div>
         </div>
 </div>
-
-<script>
-function delFun(id){
-    if(confirm("Are You Sure You Want To Delete? This Cannot Be Undone")){
-        window.location.href='{{route('delorder',$order->id)}}';
-    }
-}
-</script>
 
 @endsection
 

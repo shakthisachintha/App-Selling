@@ -38,7 +38,11 @@
                                 <tr>
                                     <td class="mx-auto text-center"><img src="{{\Storage::url($app->icon)}}" class="rounded-circle text-center" style="height:45px;width:45px" alt=""></td>
                                     <td>{{$app->name}}</td>
-                                    <td>{{$app->category->name}}</td>
+                                    <td>
+                                        @foreach ($app->category as $item)
+                                        <span class="badge badge-primary">{{$item->name}}</span>
+                                        @endforeach
+                                    </td>
                                     <td>₹ {{$app->price}}</td>
                                     <td>₹ {{$app->hprice}}</td>
                                     <td>

@@ -13,7 +13,7 @@ class AppRequestController extends Controller
 {
     public function index(){
         $plans=App_Plans::All();
-        $cats=\DB::table('app__plans')->select('category_id')->distinct()->get(['category_id']);
+        $cats=\DB::table('app__plans_category')->select('category_id')->distinct()->get(['category_id']);
         $str="";
         if($cats->isEmpty()){
             $str="0";

@@ -131,13 +131,13 @@ $tickets_ans=Tickets::where("answered","YES")->where('seen','NO')->where('user_i
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="mr-2 text-white">{{$user->name}}</span><img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>My Profile</a>
+                                {{-- <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>My Profile</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i>Account Setting</a>
-                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i>Account Setting</a> --}}
+                                {{-- <div class="dropdown-divider"></div> --}}
                                 <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                    <button style="cursor:pointer" class="dropdown-item" type="submit"><i class="fa fa-power-off m-r-5 m-l-5"></i>Logout</button>
+                                    <button style="cursor:pointer" class="dropdown-item" type="submit"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</button>
                                 </form>
                             
                             </div>

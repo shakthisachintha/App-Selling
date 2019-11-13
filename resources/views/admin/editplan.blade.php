@@ -19,7 +19,7 @@
                         <h3 class="card-title">Edit App Plan</h3>
                     </div>
                         <div class="card-body">
-                                <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{route('plans.update',3)}}">
+                                <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{route('plans.update',$app->id)}}">
                                     @csrf
                                     {{ method_field('PUT') }}
                                     <div class="form-group row">
@@ -48,7 +48,7 @@
 
                                     <div class="form-group row">
                                         <label class="control-label col-form-label">App Category<span class="text-danger">*</span></label>
-                                        <select @error('cat') is-invalid @enderror value="{{old('cat')}}" name="cat" class="form-control">
+                                        <select required @error('cat') is-invalid @enderror value="{{old('cat')}}" multiple name="cat[]" class="form-control">
                                             @foreach ($cats as $cat)
                                                 @if ($cat->id==$app->category_id)
                                                     <option selected value="{{$cat->id}}">{{$cat->name}}</option>
@@ -74,7 +74,7 @@
 
                                     <div class="form-group row">
                                         <label class="control-label col-form-label">Position<span class="text-danger">*</span></label>
-                                        <input class="@error('position') is-invalid @enderror form-control" value="{{old('position')}}" type="number" placeholder="Position" name="position">
+                                        <input class="@error('position') is-invalid @enderror form-control" value="{{$app->position}}" type="number" placeholder="Position" name="position">
                                         @error('position') <span class="invalid-feedback">{{$message}}</span> @enderror
                                     </div>
                                     

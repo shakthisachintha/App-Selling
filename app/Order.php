@@ -14,6 +14,6 @@ class Order extends Model
 
     public function appPlan()
     {
-        return $this->hasOne('App\App_Plans');
+        return $this->belongsTo('App\App_Plans');
     }
 }

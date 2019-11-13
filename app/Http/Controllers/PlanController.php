@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\App__plans_category;
 use Illuminate\Http\Request;
 use App\App_Plans;
 use App\Category;
@@ -67,11 +68,18 @@ class PlanController extends Controller
         $app->prevLink=$request->prevlink;
         $app->videoLink=$request->videolink;
         $app->price=$request->price;
-        $app->category_id=$request->cat;
+        // $app->category_id=$request->cat;
         $app->hprice=$request->hprice;
         $app->position=$request->position;
         
         $app->save();
+
+        foreach ($request->cat as $cat) {
+            $app_cat=new App__plans_category();
+            $app_cat->app__plans_id=$app->id;
+            $app_cat->category_id=$cat;
+            $app_cat->save();
+        }
         return redirect()->back()->with('success', "App Plan ($request->name #$app->id) Saved!");
     }
 
@@ -93,6 +101,7 @@ class PlanController extends Controller
     public function catSave(Request $request){
         $cat=new Category();
         $cat->name=$request->name;
+        $cat->position=$request->position;
         if($request->file('icon')){
             $path = $request->file('icon')->store('public/appcats');
             $cat->icon=$path;
@@ -171,11 +180,22 @@ class PlanController extends Controller
         $app->prevLink=$request->prevlink;
         $app->videoLink=$request->videolink;
         $app->price=$request->price;
-        $app->category_id=$request->cat;
         $app->hprice=$request->hprice;
         $app->position=$request->position;
-        
         $app->save();
+
+        $cats=App__plans_category::where('app__plans_id',$app->id)->get();
+        foreach ($cats as $dsa) {
+            $dsa->delete();
+        }
+    
+        foreach ($request->cat as $cat) {
+            $app_cat=new App__plans_category();
+            $app_cat->app__plans_id=$app->id;
+            $app_cat->category_id=$cat;
+            $app_cat->save();
+        }
+    
         return redirect()->back()->with('success', "App Plan ($request->name #$app->id) Saved!");
     }
 
@@ -189,6 +209,12 @@ class PlanController extends Controller
     {
         $app=App_Plans::find($id);
         $app->forceDelete();
+        $cats=App__plans_category::where('app__plans_id',$id)->get();
+        foreach ($cats as $cat) {
+            print_r($cat);
+            $ca=App__plans_category::find($cat->id);
+            $ca->forceDelete();
+        }
         return redirect()->route('plans.index')->with('success',"Application Plan $app->name Is Permanatly Deleted");
     }
 }

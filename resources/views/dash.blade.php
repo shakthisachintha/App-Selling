@@ -66,7 +66,7 @@
 
                     <div class="row mt-3">
                         <div class="col-md-4"></div>
-                        <div class="col-md-4 text-center"><a href="" class="w-100 btn btn-lg btn-outline-success"><i class=" fab fa-android"></i>&nbsp; Build My App &nbsp;<i class=" fab fa-android"></i></a></div>
+                        <div class="col-md-4 text-center"><a href="{{route('appreq')}}" class="w-100 btn btn-lg btn-outline-success"><i class=" fab fa-android"></i>&nbsp; Build My App &nbsp;<i class=" fab fa-android"></i></a></div>
                         <div class="col-md-4"></div>
                     </div>
                     

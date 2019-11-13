@@ -28,7 +28,8 @@
                 <div class="tab-pane fade @if($count==1) show active  @endif" id="pills-{{$cat->id}}" role="tabpanel" aria-labelledby="pills-{{$cat->id}}-tab">
                     {{-- {{$cat->name}} --}}
                     <?php
-                    $plans=App\App_Plans::where('category_id',$cat->id)->orderBy('position','asc')->get();
+                    // $plans=App\App_Plans::where('category_id',$cat->id)->orderBy('position','asc')->get();
+                    $plans=App\Category::find($cat->id)->appPlans;
                     ?>
                     <div class="container-fluid">
                         <div class="row el-element-overlay">
