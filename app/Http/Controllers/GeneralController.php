@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Faq;
+use App\Tickets;
 use Illuminate\Http\Request;
 use App\User;
 use App\Upcomming;
@@ -63,24 +64,23 @@ class GeneralController extends Controller
         $message=$request->message;
         $file=$request->attach;
 
+        $ticket=new Tickets();
+        $ticket->user_id=\Auth::getUser()->id;
+        $ticket->name=$from;
+        $ticket->message=$message;
+        $ticket->subject=$subject;
+        if($request->file('attach')){
+            $path=$request->file('attach')->store('public/attach');
+            $ticket->attach=$path;
+        }
+        $ticket->save();
         
-
-
         $email = new \SendGrid\Mail\Mail(); 
         $email->setFrom("help@apdue.com", "Help Me $from");
         $email->setSubject("Apdue Support Ticket");
         $email->addTo("sandeepolamail@gmail.com", "Sandeep");
         $email->addBcc("shakthisachintha@gmail.com","Shakthi");
-        if($request->file('attach')){
-            $path=$request->file('attach')->store('attach');
-            $name=$request->file('attach')->getClientOriginalName();
-            $file_encoded = base64_encode(file_get_contents($path));
-            $email->addAttachment( 
-            $file_encoded,
-            "application/text",
-            "$name",
-            "attachment");
-        }
+       
         $email->addContent("text/plain", "New Contact Message From $from Subject $subject Message $message");
         $email->addContent(
             "text/html", 
@@ -102,7 +102,7 @@ class GeneralController extends Controller
         } catch (Exception $e) {
             echo 'Caught exception: '. $e->getMessage() ."\n";
         }
-        // return redirect()->back()->with("success","Your Support Ticket Has Been Submitted");
+        return redirect()->back()->with("success","Your Support Ticket Has Been Submitted");
     }
 
 }

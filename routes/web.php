@@ -69,3 +69,8 @@ Route::post('/saveup', 'UpCommingController@save')->name('saveup')->middleware('
 Route::post('/updateup', 'UpCommingController@update')->name('updateup')->middleware('auth');
 Route::get('/editup/{id}', 'UpCommingController@edit')->name('editup')->middleware('auth');
 Route::get('/deleteup/{id}', 'UpCommingController@delete')->name('deleteup')->middleware('auth');
+
+Route::get('/tickets/', 'TicketsController@index')->name('viewtickets')->middleware('auth');
+Route::get('/ticketanswer/{id}', 'TicketsController@answer')->name('answerticket')->middleware('auth');
+Route::post('/ticketanswer', 'TicketsController@answerSave')->name('answerticketsave')->middleware('auth');
+

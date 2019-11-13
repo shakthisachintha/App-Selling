@@ -87,7 +87,7 @@
 @if ($message = Session::get('success'))
 <script src="{{URL::asset('assets/libs/toastr/build/toastr.min.js')}}"></script>
 <script>
-    setTimeout(function(){toastr.success("{{$message}}");}, 2000);
+    setTimeout(function(){toastr.success("{{$message}}");}, 1500);
     
 </script>
 @endif

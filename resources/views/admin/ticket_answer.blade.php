@@ -10,43 +10,46 @@ $user = \Auth::user();
     <div class="col-md-8">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Submit a Support Ticket</h4>
+                <h4 class="card-title">Answer Support Ticket</h4>
             </div>
-            <form method="POST" enctype="multipart/form-data" action="{{route('contactSave')}}"  class="form-horizontal">
+            <form method="POST" action="{{route('answerticketsave')}}"  class="form-horizontal">
                 @csrf
                 <div class="card-body">   
                     <div class="form-group row">
                         <label for="fname" class="col-sm-2 control-label col-form-label">Name<span class="text-danger">*</span></label>
                         <div class="col-sm-9">
-                            <input type="text" required name="name" value="{{$user->name}}" class="form-control" id="fname" >
+                            <input type="text"  readonly value="{{$ticket->name}}" class="form-control" id="fname" >
                         </div>
                     </div>
                     
                     <div class="form-group row">
                         <label for="cono1" class="col-sm-2 control-label col-form-label">Subject<span class="text-danger">*</span></label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="cono1" required name="subject">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="cono1" class="col-sm-2 control-label col-form-label">Attachments</label>
-                        <div class="col-sm-9">
-                            <input type="file" class="form-control" id="file1" name="attach">
+                            <input type="text" value="{{$ticket->subject}}" class="form-control" id="cono1" readonly>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="cono1" class="col-sm-2 control-label col-form-label">Message<span class="text-danger">*</span></label>
                         <div class="col-sm-9">
-                            <textarea rows="10" name="message" required minlength="10" class="form-control"></textarea>
+                            <textarea rows="10" readonly class="form-control">{{$ticket->message}}</textarea>
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <label for="cono1" class="col-sm-2 control-label col-form-label">Answer<span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <textarea rows="10" required name="answer" class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="id" value="{{$ticket->id}}">
+
                 </div>
 
                 <div class="border-top">
                     <div class="card-body">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit Answer</button>
                     </div>
                 </div>
             </form>
