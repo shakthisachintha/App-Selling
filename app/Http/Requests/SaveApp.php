@@ -30,7 +30,8 @@ class SaveApp extends FormRequest
             'price' => 'required|numeric',
             'hprice' => 'required|numeric',
             'icon'=>'image',
-            'cat'=>'required'
+            'cat'=>'required',
+            'position'=>'required|numeric'
         ];
     }
 

@@ -71,6 +71,12 @@
                                         <input class="@error('hprice') is-invalid @enderror form-control" value="{{$app->hprice}}" type="number" placeholder="Half Price" name="hprice">
                                         @error('hprice') <span class="invalid-feedback">{{$message}}</span> @enderror
                                     </div>
+
+                                    <div class="form-group row">
+                                        <label class="control-label col-form-label">Position<span class="text-danger">*</span></label>
+                                        <input class="@error('position') is-invalid @enderror form-control" value="{{old('position')}}" type="number" placeholder="Position" name="position">
+                                        @error('position') <span class="invalid-feedback">{{$message}}</span> @enderror
+                                    </div>
                                     
 
                                     <div class="form-group row">

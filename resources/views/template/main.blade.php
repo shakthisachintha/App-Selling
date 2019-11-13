@@ -1,11 +1,13 @@
 <?php 
 use Illuminate\Support\Facades\Auth;
 use App\Order;
+use App\Tickets;
 $user = Auth::user();
 
 $new_reqs=Order::where('responded','NO')->where('payment','YES')->count();
 $responded=Order::where('delivered','YES')->where('viewed','NO')->where('user_id',$user->id)->count();
-
+$tickets=Tickets::where("answered","NO")->count();
+$tickets_ans=Tickets::where("answered","YES")->where('seen','NO')->where('user_id',$user->id)->count();
 
 ?>
 <!DOCTYPE html>
@@ -171,7 +173,7 @@ $responded=Order::where('delivered','YES')->where('viewed','NO')->where('user_id
                                 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('upcomming')}}" aria-expanded="false"><i class="fas fa-people-carry"></i><span class="hide-menu">Upcoming Apps</span></a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('help')}}" aria-expanded="false"><i class="fas fa-question"></i><span class="hide-menu">Help</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('contact')}}" aria-expanded="false"><i class="far fa-envelope"></i><span class="hide-menu">Create Ticket</span></a></li>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('contact')}}" aria-expanded="false"><i class="far fa-envelope"></i><span class="hide-menu">Create Ticket</span>@if($tickets_ans>0)<span class="badge badge-pill badge-success">{{$tickets_ans}}</span>@endif</a></li>
         
                                 {{-- Admin Links --}}
                                 @if ($user->email=='admin@apdue.com')
@@ -180,7 +182,7 @@ $responded=Order::where('delivered','YES')->where('viewed','NO')->where('user_id
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('addup')}}" aria-expanded="false"><i class="fas fa-people-carry"></i><span class="hide-menu">Add Upcoming Apps</span></a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('addfaq')}}" aria-expanded="false"><i class="fas fa-question"></i><span class="hide-menu">FAQs</span></a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('addcat')}}" aria-expanded="false"><i class="fas fa-list-ol"></i><span class="hide-menu">Add Category</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('viewtickets')}}" aria-expanded="false"><i class="far fa-envelope"></i><span class="hide-menu">Tickets</span></a></li>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('viewtickets')}}" aria-expanded="false"><i class="far fa-envelope"></i><span class="hide-menu">Tickets</span>@if($tickets>0)<span class="badge badge-pill badge-success">{{$tickets}}</span>@endif</a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('orders')}}" aria-expanded="false"><i class="fas fa-inbox"></i><span class="hide-menu">Requests</span>@if($new_reqs>0)<span class="badge badge-pill badge-success">{{$new_reqs}}</span>@endif</a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('allusers')}}" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu">All Users</span></a></li>
                                 @endif

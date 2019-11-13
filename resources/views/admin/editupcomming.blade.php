@@ -19,7 +19,7 @@
                     <h3 class="card-title">Edit Upcomming App</h3>
                 </div>
                     <div class="card-body">
-                            <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{route('saveup')}}">
+                            <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{route('updateup')}}">
                                 @csrf
                                 
                                 <input type="hidden" value="{{$app->id}}" name="id" required>
@@ -58,6 +58,11 @@
                                     <label class="control-label col-form-label">Half Price<span class="text-danger">*</span></label>
                                     <input class="form-control" required value="{{$app->hprice}}" type="number" placeholder="Half Price" name="hprice">
                                
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="control-label col-form-label">Position<span class="text-danger">*</span></label>
+                                    <input class="form-control" required value="{{$app->position}}" type="number" placeholder="Half Price" name="position">
                                 </div>
         
                                 <div class="form-group row">

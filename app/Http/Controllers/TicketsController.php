@@ -20,6 +20,8 @@ class TicketsController extends Controller
     public function answerSave(Request $request){
         $ticket=Tickets::findOrFail($request->id);
         $ticket->answered="YES";
-        
+        $ticket->answer=$request->answer;
+        $ticket->save();
+        return redirect()->back()->with('success',"Ticket Answered!");
     }
 }

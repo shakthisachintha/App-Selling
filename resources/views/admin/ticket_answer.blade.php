@@ -39,7 +39,7 @@ $user = \Auth::user();
                     <div class="form-group row">
                         <label for="cono1" class="col-sm-2 control-label col-form-label">Answer<span class="text-danger">*</span></label>
                         <div class="col-sm-9">
-                            <textarea rows="10" required name="answer" class="form-control"></textarea>
+                            <textarea rows="10" required name="answer" class="form-control">{{$ticket->answer}}</textarea>
                         </div>
                     </div>
 

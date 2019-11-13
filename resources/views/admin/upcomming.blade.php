@@ -50,6 +50,11 @@
                                     <label class="control-label col-form-label">Half Price<span class="text-danger">*</span></label>
                                     <input class="form-control" required type="number" placeholder="Half Price" name="hprice">
                                 </div>
+
+                                <div class="form-group row">
+                                    <label class="control-label col-form-label">Position<span class="text-danger">*</span></label>
+                                    <input class="form-control" required type="number" placeholder="Position" name="position">
+                                </div>
         
                                 <div class="form-group row">
                                     <input type="submit" value="Save" class="ml-0 btn btn-lg btn-primary">

@@ -10,7 +10,7 @@ use App\Upcomming;
 class GeneralController extends Controller
 {
     public function upComming(){
-        return view('general.upcomming',["plans"=>Upcomming::all()]);
+        return view('general.upcomming',["plans"=>Upcomming::orderBy('position','asc')->get()]);
     }
 
     public function addFaq(Request $request){
@@ -51,7 +51,12 @@ class GeneralController extends Controller
     }
 
     public function contact(){
-        return view('general.contact');
+        $tickets=Tickets::where('user_id',\Auth::getUser()->id)->where('answered',"YES")->orderBy('updated_at','desc')->get();
+        foreach ($tickets as $ticket) {
+            $ticket->seen="YES";
+            $ticket->save();
+        }
+        return view('general.contact',["tickets"=>$tickets]);
     }
 
     public function users(){

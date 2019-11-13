@@ -21,6 +21,7 @@ class CreateTicketsTable extends Migration
             $table->string('subject')->nullable();
             $table->string('attach')->nullable();
             $table->char('answered',5)->default("NO");
+            $table->char('seen',5)->default("YES");
             $table->text('answer')->nullable();
             $table->timestamps();
         });

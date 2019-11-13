@@ -21,6 +21,7 @@ class CreateUpcommingsTable extends Migration
             $table->string('videoLink')->nullable();
             $table->string('price')->nullable();
             $table->string('hprice')->nullable();
+            $table->integer('position')->nullable();
             $table->timestamps();
         });
     }

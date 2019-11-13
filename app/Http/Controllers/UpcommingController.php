@@ -33,6 +33,7 @@ class UpcommingController extends Controller
         $app->videoLink=$request->videolink;
         $app->price=$request->price;
         $app->hprice=$request->hprice;
+        $app->position=$request->position;
         
         $app->save();
         return redirect()->back()->with('success', "Upcomming App ($request->name #$app->id) Saved!");
@@ -64,6 +65,7 @@ class UpcommingController extends Controller
         $app->videoLink=$request->videolink;
         $app->price=$request->price;
         $app->hprice=$request->hprice;
+        $app->position=$request->position;
         
         $app->save();
         return redirect()->route('addup')->with('success', "Upcomming App ($request->name #$app->id) Updated!");

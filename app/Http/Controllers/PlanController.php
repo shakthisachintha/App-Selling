@@ -69,6 +69,7 @@ class PlanController extends Controller
         $app->price=$request->price;
         $app->category_id=$request->cat;
         $app->hprice=$request->hprice;
+        $app->position=$request->position;
         
         $app->save();
         return redirect()->back()->with('success', "App Plan ($request->name #$app->id) Saved!");
@@ -172,6 +173,7 @@ class PlanController extends Controller
         $app->price=$request->price;
         $app->category_id=$request->cat;
         $app->hprice=$request->hprice;
+        $app->position=$request->position;
         
         $app->save();
         return redirect()->back()->with('success', "App Plan ($request->name #$app->id) Saved!");
