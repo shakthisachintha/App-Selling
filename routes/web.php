@@ -64,11 +64,11 @@ Route::get('/catedit/{id}', 'PlanController@catEdit')->name('catedit')->middlewa
 Route::post('/catupdate', 'PlanController@catUpdate')->name('catupdate')->middleware('auth');
 Route::get('/catdel/{id}', 'PlanController@catDel')->name('catdel')->middleware('auth');
 
-Route::get('/addup', 'UpCommingController@index')->name('addup')->middleware('auth');
-Route::post('/saveup', 'UpCommingController@save')->name('saveup')->middleware('auth');
-Route::post('/updateup', 'UpCommingController@update')->name('updateup')->middleware('auth');
-Route::get('/editup/{id}', 'UpCommingController@edit')->name('editup')->middleware('auth');
-Route::get('/deleteup/{id}', 'UpCommingController@delete')->name('deleteup')->middleware('auth');
+Route::get('/addup', 'UpcommingController@index')->name('addup')->middleware('auth');
+Route::post('/saveup', 'UpcommingController@save')->name('saveup')->middleware('auth');
+Route::post('/updateup', 'UpcommingController@update')->name('updateup')->middleware('auth');
+Route::get('/editup/{id}', 'UpcommingController@edit')->name('editup')->middleware('auth');
+Route::get('/deleteup/{id}', 'UpcommingController@delete')->name('deleteup')->middleware('auth');
 
 Route::get('/tickets/', 'TicketsController@index')->name('viewtickets')->middleware('auth');
 Route::get('/ticketanswer/{id}', 'TicketsController@answer')->name('answerticket')->middleware('auth');

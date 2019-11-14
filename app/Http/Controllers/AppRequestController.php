@@ -285,7 +285,7 @@ class AppRequestController extends Controller
                 }
                 $order->save();
                 $this->notify("sandeepolamail@gmail.com","Sandeep",\Auth::getUser()->name,$order->amount,$order->updated_at,$pay_type);
-                $this->notify("shakthisachintha@gmail.com","Sandeep",\Auth::getUser()->name,$order->amount,$order->updated_at,$pay_type);
+                // $this->notify("shakthisachintha@gmail.com","Sandeep",\Auth::getUser()->name,$order->amount,$order->updated_at,$pay_type);
                 return redirect()->route('apppurch')->with('payDone',"Payment Received. Your App Is Being Generated!");
             }
         }

@@ -84,7 +84,7 @@ class GeneralController extends Controller
         $email->setFrom("help@apdue.com", "Help Me $from");
         $email->setSubject("Apdue Support Ticket");
         $email->addTo("sandeepolamail@gmail.com", "Sandeep");
-        $email->addBcc("shakthisachintha@gmail.com","Shakthi");
+        // $email->addBcc("shakthisachintha@gmail.com","Shakthi");
        
         $email->addContent("text/plain", "New Contact Message From $from Subject $subject Message $message");
         $email->addContent(
