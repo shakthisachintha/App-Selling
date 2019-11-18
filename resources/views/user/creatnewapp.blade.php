@@ -284,10 +284,10 @@
                                                                 
                                                                 <tr>
                                                                     <td class="h4 text-right pt-1">
-                                                                        ₹ {{$plan->price}}
+                                                                        ₹ {{$plan->hprice}}
                                                                     </td>
                                                                     <td class="h4 text-right pt-1">
-                                                                        ₹ {{$plan->hprice}}
+                                                                        ₹ {{$plan->price}}
                                                                     </td>
                                                                 </tr>
 

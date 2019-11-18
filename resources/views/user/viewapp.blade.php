@@ -211,14 +211,25 @@
                                                                         </tr>
                                                                         
                                                                         <tr>
+                                                                            @if ($order->paymentType=="HALF")                                                                            
                                                                             <td class="h4 text-right pt-1">
-                                                                                ₹ {{$plan->price}}
+                                                                                    ₹ {{$plan->hprice}}
                                                                             </td>
                                                                             <td class="h4 text-right pt-1">
-                                                                                @if ($order->paymentType!="HALF")
-                                                                                    ₹ {{$plan->hprice}}
+                                                                                
+                                                                            </td>
+                                                                            @else
+                                                                            <td class="h4 text-right pt-1">
+                                                                                    @if ($order->paymentType!="HALF")
+                                                                                ₹ {{$plan->price}}
                                                                                 @endif
                                                                             </td>
+                                                                            <td class="h4 text-right pt-1">
+                                                                                    ₹ {{$plan->hprice}}
+                                                                            </td>
+                                                                            @endif
+
+                                                                           
                                                                         </tr>
         
                                                                         <tr>
@@ -323,7 +334,7 @@
                                                                             <div class="col-sm">
                                                                                 <div class="card shadow">
                                                                                     <div class="box pt-3 bg-success text-center">
-                                                                                        <p class="h1 text-white">00:00:00</p>
+                                                                                        <p id="demo" class="h1 text-white">00:00:00</p>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -333,14 +344,14 @@
                                                             
                                                                 @elseif($order->paymentType=="HALF")
                                                                 
-                                                                <div class="row mt-3 border-top" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="You Can Dowload Files After Completing The Payment">
+                                                                <div class="row mt-3 border-top">
                                                                     <div class="col-12">
                                                                         <div class="row">
                                                                             <div class="col-4">
                                                                                 <div class="form-group row">
                                                                                     <label for="fname" class="col-sm-12 text-center control-label col-form-label">APK</label>
                                                                                     <div class="col-sm-12 text-left">
-                                                                                        <a href="#" class="btn disabled btn-outline-cyan w-100 btn-sm">Download &nbsp;<i class=" fas fa-download"></i></a>
+                                                                                        <a href="{{route('download',['apk',$order->id])}}" class="btn @if (!$order->apk) btn-outline-cyan disabled @endif btn-cyan w-100 btn-sm ">Download &nbsp;<i class=" fas fa-download"></i></a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -348,7 +359,7 @@
                                                                                 <div class="form-group row">
                                                                                     <label for="fname" class="col-sm-12 text-center control-label col-form-label">Source</label>
                                                                                     <div class="col-sm-12 text-left">
-                                                                                        <a href="#" class="btn disabled btn-outline-cyan w-100 btn-sm">Download &nbsp;<i class=" fas fa-download"></i></a>
+                                                                                        <a href="{{route('download',['source',$order->id])}}" class="btn @if (!$order->sourceCode) btn-outline-cyan disabled @endif btn-cyan w-100 btn-sm ">Download &nbsp;<i class=" fas fa-download"></i></a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -356,7 +367,7 @@
                                                                                 <div class="form-group row">
                                                                                     <label for="fname" class="col-sm-12 text-center control-label col-form-label">Keystore</label>
                                                                                     <div class="col-sm-12 text-left">
-                                                                                        <a href="#" class="btn btn-outline-cyan disabled w-100 btn-sm">Download &nbsp;<i class=" fas fa-download"></i></a>
+                                                                                        <a href="{{route('download',['keystore',$order->id])}}" class=" btn @if (!$order->keyStore) btn-outline-cyan disabled @endif btn-cyan w-100 btn-sm" >Download &nbsp;<i class=" fas fa-download"></i></a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -365,35 +376,35 @@
                                                                 </div>
 
                                                                 <div class="row mt-3 border-top pt-3">
-                                                                    <div class="col-xs-6 col-sm-6 col-md-6 mx-auto" data-toggle="tooltip" data-placement="left" title="" data-original-title="These Will Be Available After Completing The Payment">
+                                                                    <div class="col-xs-6 col-sm-6 col-md-6 mx-auto">
                                                                         <div class="form-group row">
                                                                             <label for="fname" class="col-sm-5 control-label col-form-label">Admin Panel Link</label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="text" readonly class="form-control form-control-sm">
+                                                                                <input type="text" value="{{$order->adminLink}}" readonly class="form-control form-control-sm">
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group row">
                                                                             <label for="fname" class="col-sm-5 control-label col-form-label">Username</label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="text" readonly class="form-control form-control-sm">
+                                                                                <input type="text" value="{{$order->username}}" readonly class="form-control form-control-sm">
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group row">
                                                                             <label for="fname" class="col-sm-5 control-label col-form-label">Password</label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="text" readonly class="form-control form-control-sm">
+                                                                                <input type="text" value="{{$order->password}}" readonly class="form-control form-control-sm">
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group row">
                                                                             <label for="fname" class="col-sm-5 control-label col-form-label">Custom Message</label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="text" readonly class="form-control form-control-sm">
+                                                                                <input type="text" value="{{$order->custommsg}}" readonly class="form-control form-control-sm">
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group row">
                                                                             <label for="fname" class="col-sm-5 control-label col-form-label">Guide Video</label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="text" readonly class="form-control form-control-sm">
+                                                                                <input type="text" value="{{$order->guidevideo}}" readonly class="form-control form-control-sm">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -403,7 +414,7 @@
                                                                             <div class="col-sm">
                                                                                 <div class="card shadow">
                                                                                     <div class="box pt-3 bg-warning text-center">
-                                                                                        <p class="h1 text-white">00:00:00</p>
+                                                                                        <p id="demo" class="h1 text-white">00:00:00</p>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -484,7 +495,7 @@
                                                                             <div class="col-sm">
                                                                                 <div class="card shadow">
                                                                                     <div class="box pt-3 bg-dark text-center">
-                                                                                        <p class="h1 text-white">02:00:00</p>
+                                                                                        <p id="demo" class="h1 text-white">02:00:00</p>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -508,5 +519,40 @@
         </div>
         <div class="col-md-1"></div>
     </div>
+
+@if (($order->paymentType=="HALF" || $order->paymentType=="FULL") && $order->delivered=="NO")
+<?php 
+$expires = clone $order->updated_at;
+$expires->addHours(2);
+?>
+<script>
+   
+    var countDownDate = new Date("{{$expires}}").getTime();
+    var countdownfunction = setInterval(function() {    
+        var now = new Date().getTime();
+        var distance = countDownDate - now;      
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        if(hours<10){
+        	hours="0"+hours;
+        }
+        if(minutes<10){
+        	minutes="0"+minutes
+        }if(seconds<10){
+        	seconds="0"+seconds
+        }
+    
+        document.getElementById("demo").innerHTML = hours + ":"
+        + minutes + ":" + seconds;
+      
+      
+        if (distance < 0) {
+          clearInterval(countdownfunction);
+          document.getElementById("demo").innerHTML = "00:00:00";
+        }
+        }, 1000);
+</script>
+@endif
 
 @endsection

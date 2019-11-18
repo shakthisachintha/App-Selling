@@ -256,6 +256,11 @@ class AppRequestController extends Controller
 
     public function payComplete($trans_id,$pay_type,$user_id,Request $request){
         $order=Order::where('orderId',$trans_id)->first();
+
+        if($request->RESPCODE==501){
+            return redirect()->route('allaps')->with('payFail',"$request->RESPMSG . You Can Ignore This and Place a New Order.");
+        }
+
         if($order){
             $transction=new Transaction();
             $transction->txnid=$request->TXNID;
