@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-})->middleware('guest');
+Route::get('/', 'AppRequestController@index')->middleware('guest');
 
 Auth::routes();
 
@@ -22,7 +20,7 @@ Route::resources([
 ]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
-Route::get('/newapp/', 'AppRequestController@index')->name('appreq')->middleware('auth');
+Route::get('/newapp/', 'AppRequestController@index')->name('appreq');
 Route::get('/newapp/{id}', 'AppRequestController@create')->name('makeapp')->middleware('auth');
 Route::get('/apps', 'AppRequestController@display')->name('allaps')->middleware('auth');
 Route::get('/paidapps', 'AppRequestController@allPurchases')->name('apppurch')->middleware('auth');
@@ -37,8 +35,8 @@ Route::post('/payment/{trans_id}/{pay_type}/{user_id}', 'AppRequestController@Pa
 Route::post('/regen', 'AppRequestController@regenerate')->name('regen')->middleware('auth');
 
 
-Route::get('/upcommingapps', 'GeneralController@upcomming')->name('upcomming')->middleware('auth');
-Route::get('/help', 'GeneralController@help')->name('help')->middleware('auth');
+Route::get('/upcommingapps', 'GeneralController@upcomming')->name('upcomming');
+Route::get('/help', 'GeneralController@help')->name('help');
 Route::get('/addfaq', 'GeneralController@addFaq')->name('addfaq')->middleware('auth');
 Route::post('/createfaq', 'GeneralController@createFaq')->name('createfaq')->middleware('auth');
 Route::get('/editfaq/{id}', 'GeneralController@editFaq')->name('editfaq')->middleware('auth');
