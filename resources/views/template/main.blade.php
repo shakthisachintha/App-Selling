@@ -173,10 +173,12 @@ $tickets_ans=Tickets::where("answered","YES")->where('seen','NO')->where('user_i
                                     src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle"
                                     width="31"></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="{{route('login')}}"><i class="fas fa-user m-r-5 m-l-5"></i>&nbsp;Login</a>
+                                <a class="dropdown-item" href="{{route('login')}}"><i
+                                        class="fas fa-user m-r-5 m-l-5"></i>&nbsp;Login</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{route('register')}}"><i class="fas fa-user-plus m-r-5 m-l-5"></i>&nbsp;Register</a>
-                             
+                                <a class="dropdown-item" href="{{route('register')}}"><i
+                                        class="fas fa-user-plus m-r-5 m-l-5"></i>&nbsp;Register</a>
+
                             </div>
                         </li>
                         <!-- ============================================================== -->
@@ -206,9 +208,10 @@ $tickets_ans=Tickets::where("answered","YES")->where('seen','NO')->where('user_i
                 @guest
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
-
-                        <li class="sidebar-item @yield('active')"> <a
-                                class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('appreq')}}"
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{route('home')}}" aria-expanded="false"><i
+                                    class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/"
                                 aria-expanded="false"><i class="fas fa-plus"></i><span class="hide-menu">Create New
                                     App</span></a></li>
 
@@ -216,6 +219,14 @@ $tickets_ans=Tickets::where("answered","YES")->where('seen','NO')->where('user_i
                                 href="{{route('upcomming')}}" aria-expanded="false"><i
                                     class="fas fa-people-carry"></i><span class="hide-menu">Upcoming Apps</span></a>
                         </li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{route('allaps')}}" aria-expanded="false"><i class="fas fa-play"></i><span
+                                    class="hide-menu">My All Apps</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{route('apppurch')}}" aria-expanded="false"><i
+                                    class="fas fa-shopping-basket"></i></i><span class="hide-menu">Purchased
+                                    Apps</span></a></li>
+
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{route('help')}}" aria-expanded="false"><i class="fas fa-question"></i><span
                                     class="hide-menu">Help</span></a></li>
@@ -231,9 +242,6 @@ $tickets_ans=Tickets::where("answered","YES")->where('seen','NO')->where('user_i
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{route('home')}}" aria-expanded="false"><i
                                     class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="{{route('allaps')}}" aria-expanded="false"><i class="fas fa-play"></i><span
-                                    class="hide-menu">All Apps</span></a></li>
                         <li class="sidebar-item @yield('active')"> <a
                                 class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('appreq')}}"
                                 aria-expanded="false"><i class="fas fa-plus"></i><span class="hide-menu">Create New
@@ -249,6 +257,9 @@ $tickets_ans=Tickets::where("answered","YES")->where('seen','NO')->where('user_i
                                 href="{{route('upcomming')}}" aria-expanded="false"><i
                                     class="fas fa-people-carry"></i><span class="hide-menu">Upcoming Apps</span></a>
                         </li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{route('allaps')}}" aria-expanded="false"><i class="fas fa-play"></i><span
+                                    class="hide-menu">My All Apps</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{route('help')}}" aria-expanded="false"><i class="fas fa-question"></i><span
                                     class="hide-menu">Help</span></a></li>
@@ -289,10 +300,10 @@ $tickets_ans=Tickets::where("answered","YES")->where('seen','NO')->where('user_i
                         @endif
                         {{-- End Admin Links --}}
                     </ul>
-                </nav>   
+                </nav>
                 @endauth
                 {{-- End Logged In Navigation --}}
-                
+
                 <!-- End Sidebar navigation -->
             </div>
             <!-- End Sidebar scroll-->
